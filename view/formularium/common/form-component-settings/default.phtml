@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var array $formComponent
+ * @var FormComponentTypeInterface $formComponentType
+ */
+?>
+<?php $fieldset = new Laminas\Form\Fieldset('settings'); ?>
+<?php $formComponentType->settingsFieldsetAddElements($fieldset); ?>
+<?php $fieldset->prepareElement(new Laminas\Form\Form); ?>
+<?php $fieldset->populateValues($formComponent['settings'] ?? []); ?>
+<?= $this->formCollection($fieldset, false) ?>

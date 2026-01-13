@@ -1,0 +1,40 @@
+<?php
+/**
+ * @var array $action
+ */
+?>
+<?php $formActionType = $this->formularium()->getFormActionType($action['type']); ?>
+<?php $formActionTypeLabel = $formActionType ? $this->translate($formActionType->getLabel()) : $this->translate('[Unknown action type]') ?>
+<div class="formularium-form-action-settings actions-action row">
+    <div class="formularium-form-action-summary">
+        <span class="sortable-handle"></span>
+        <span class="actions-action-restore"><?= $this->translate('Action to delete') ?></span>
+
+        <input type="text" name="internal_label" class="actions-action-internal-label-input" value="<?= $this->escapeHtml($action['internal_label'] ?? '') ?>" placeholder="<?= $this->escapeHtml($this->translate('Internal label')) ?>">
+        <span>
+            <span class="actions-action-internal-label"><?= $this->escapeHtml($action['internal_label'] ?? '') ?></span>
+            <span class="actions-action-type-label"><?= $formActionTypeLabel ?></span>
+        </span>
+
+
+        <ul class="actions">
+            <li><?= $this->hyperlink('', '', [
+                'class' => 'o-icon-edit actions-action-edit-button',
+                'title' => $this->translate('Edit action'),
+            ]) ?></li>
+            <li><?= $this->hyperlink('', '', [
+                'class' => 'o-icon-delete actions-action-remove-button',
+                'title' => $this->translate('Remove action'),
+            ]) ?></li>
+            <li><?= $this->hyperlink('', '', [
+                'class' => 'o-icon-undo actions-action-restore-button',
+                'title' => $this->translate('Restore action'),
+            ]) ?></li>
+        </ul>
+    </div>
+
+    <input type="hidden" name="type" value="<?= $this->escapeHtml($action['type']) ?>">
+    <div class="formularium-form-action-settings-fieldset">
+        <?= $this->formularium()->formActionSettingsForm($action) ?>
+    </div>
+</div>

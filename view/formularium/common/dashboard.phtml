@@ -1,0 +1,14 @@
+<?php
+$notHandledSubmissionsCount = $this->api()->search('formularium_form_submissions', ['handled' => false])->getTotalResults();
+?>
+<?php if ($notHandledSubmissionsCount): ?>
+<div class="panel">
+    <h2><?= $this->translate('Formularium') ?></h2>
+    <div class="row">
+        <span><?= $this->hyperlink(
+            $this->translate('Not handled submissions:') . ' ' . $notHandledSubmissionsCount,
+            $this->url('admin/formularium/form-submission', [], ['query' => ['handled' => 0]])
+        ) ?></span>
+    </div>
+</div>
+<?php endif; ?>

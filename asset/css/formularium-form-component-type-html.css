@@ -1,0 +1,5 @@
+.formularium-form-component-type-html [contenteditable="true"] {
+    resize: vertical;
+    min-height: 72px;
+    max-height: 288px;
+}

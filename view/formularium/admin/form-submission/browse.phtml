@@ -1,0 +1,211 @@
+<?php
+/**
+ * @var \Laminas\View\Renderer\PhpRenderer $this
+ * @var Formularium\Api\Representation\FormRepresentation[] $forms
+ */
+
+$this->htmlElement('body')->appendAttribute('class', 'formularium formularium-form-submission browse');
+?>
+
+<?php $this->headLink()->appendStylesheet($this->assetUrl('css/formularium.css', 'Formularium')); ?>
+
+<?= $this->pageTitle($this->translate('Form submissions'), 1, $this->translate('Formularium')) ?>
+
+<?php echo $this->searchFilters(); ?>
+
+<div class="browse-controls">
+    <?= $this->pagination() ?>
+    <?= $this->hyperlink($this->translate('Advanced search'), $this->url(null, ['action' => 'search'], ['query' => $this->params()->fromQuery()], true), ['class' => 'advanced-search']) ?>
+    <?= $this->browse()->renderSortSelector('formularium_form_submissions') ?>
+</div>
+
+<?php $this->trigger('view.browse.before'); ?>
+
+<?php if ($formSubmissions): ?>
+
+<form method="post" id="batch-form" class="disable-unsaved-warning">
+    <?php if ($this->userIsAllowed('Formularium\Api\Adapter\FormSubmissionAdapter', 'batch_update')): ?>
+        <div class="batch-inputs">
+            <select class="batch-actions-select" aria-label="<?= $this->translate('Batch actions'); ?>">
+                <option value="default"><?= $this->translate('Batch actions'); ?></option>
+                <option value="delete-selected" disabled><?= $this->translate('Delete selected'); ?></option>
+                <?php if ($this->userIsAllowed('Formularium\Api\Adapter\FormSubmissionAdapter', 'batch_delete_all')): ?>
+                    <option value="delete-all"><?= $this->translate('Delete all'); ?></option>
+                <?php endif; ?>
+            </select>
+
+            <div class="batch-actions">
+                <button type="button" class="default active" disabled><?= $this->translate('Go') ?></button>
+                <input type="hidden" name="query" class="batch-query" value="<?= $this->escapeHtml(json_encode($this->params()->fromQuery())) ?>">
+                <a class="delete button sidebar-content delete-selected" data-sidebar-selector="#sidebar-delete-selected"><?= $this->translate('Go') ?></a>
+                <a class="delete button sidebar-content delete-all" data-sidebar-selector="#sidebar-delete-all"><?= $this->translate('Go'); ?></a>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <table class="tablesaw batch-edit" data-tablesaw-mode="stack">
+        <thead>
+            <tr>
+                <th><input type="checkbox" class="select-all" aria-label="<?= $this->translate('Select all') ?>"><?= $this->translate('ID') ?></th>
+                <th><?= $this->translate('Site') ?></th>
+                <th><?= $this->translate('Submitted') ?></th>
+                <th><?= $this->translate('Submitted by') ?></th>
+                <th><?= $this->translate('Handled') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($formSubmissions as $formSubmission): ?>
+            <tr>
+                <td>
+                    <?php if ($this->userIsAllowed('Formularium\Api\Adapter\FormSubmissionAdapter', 'batch_update') && ($formSubmission->userIsAllowed('update') || $formSubmission->userIsAllowed('delete'))): ?>
+                        <input type="checkbox" name="form_submission_ids[]" value="<?php echo $formSubmission->id(); ?>" aria-label="<?php echo $this->translate('Select form submission'); ?>">
+                    <?php endif; ?>
+
+                    <?= $formSubmission->id() ?>
+
+                    <ul class="actions">
+                        <?php $this->trigger('view.browse.actions', ['resource' => $formSubmission]); ?>
+
+                        <?php if ($formSubmission->userIsAllowed('update')): ?>
+                            <?php if ($formSubmission->handled()): ?>
+                                <li><?= $this->hyperlink('', '#', [
+                                    'data-sidebar-selector' => '#sidebar',
+                                    'data-sidebar-content-url' => $formSubmission->url('mark-as-not-handled-confirm'),
+                                    'class' => 'fas fa-undo sidebar-content',
+                                    'title' => $this->translate('Mark as not handled'),
+                                ]); ?></li>
+                            <?php else: ?>
+                                <li><?= $this->hyperlink('', '#', [
+                                    'data-sidebar-selector' => '#sidebar',
+                                    'data-sidebar-content-url' => $formSubmission->url('mark-as-handled-confirm'),
+                                    'class' => 'fas fa-check sidebar-content',
+                                    'title' => $this->translate('Mark as handled'),
+                                ]); ?></li>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <?php if ($formSubmission->userIsAllowed('delete')): ?>
+                            <li><?php echo $this->hyperlink('', '#', [
+                                'data-sidebar-selector' => '#sidebar',
+                                'data-sidebar-content-url' => $formSubmission->url('delete-confirm'),
+                                'class' => 'o-icon-delete sidebar-content',
+                                'title' => $this->translate('Delete'),
+                            ]); ?></li>
+                        <?php endif; ?>
+
+                        <li><?php echo $this->hyperlink('', '#', [
+                            'data-sidebar-selector' => '#sidebar',
+                            'data-sidebar-content-url' => $formSubmission->url('show-details'),
+                            'class' => 'o-icon-more sidebar-content',
+                            'title' => $this->translate('Details'),
+                        ]); ?></li>
+                    </ul>
+                </td>
+                <td>
+                    <?php if ($site = $formSubmission->site()): ?>
+                        <?= $site->link($site->title()) ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?= $this->i18n()->dateFormat($formSubmission->submitted(), 'long', 'medium') ?>
+                </td>
+                <td>
+                    <?php if ($submitter = $formSubmission->submitter()): ?>
+                        <?= $submitter->link($submitter->name()) ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($handled = $formSubmission->handled()): ?>
+                        <?= $this->i18n()->dateFormat($formSubmission->handled(), 'long', 'medium') ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+</form>
+
+<?php $this->trigger('view.browse.after'); ?>
+<div class="browse-controls">
+    <?php echo $this->pagination(); ?>
+</div>
+
+<div id="sidebar" class="sidebar">
+    <?php echo $this->hyperlink('', '#', [
+        'class' => 'sidebar-close o-icon-close',
+        'title' => $this->translate('Close'),
+    ]); ?>
+    <div class="sidebar-content"></div>
+</div>
+
+<div id="sidebar-delete-selected" class="sidebar">
+    <?php echo $this->hyperlink('', '#', [
+        'class' => 'sidebar-close o-icon-close',
+        'title' => $this->translate('Close'),
+    ]); ?>
+    <div class="sidebar-content">
+        <div id="sidebar-confirm">
+            <h3><?php echo $this->translate('Delete form submissions'); ?></h3>
+            <p><?php echo $this->translate('Are you sure you would like to delete the selected form submissions?'); ?></p>
+            <p class="error"><?php echo sprintf(
+                $this->translate('%1$s: this action will permanently delete %2$s form submissions and cannot be undone.'),
+                sprintf('<strong>%s</strong>', $this->translate('Warning')),
+                '<strong><span id="delete-selected-count"></span></strong>'
+            ); ?></p>
+            <?php echo $this->form($this->formDeleteSelected); ?>
+        </div>
+    </div>
+</div>
+<div id="sidebar-delete-all" class="sidebar">
+    <?php echo $this->hyperlink('', '#', [
+        'class' => 'sidebar-close o-icon-close',
+        'title' => $this->translate('Close'),
+    ]); ?>
+    <div class="sidebar-content">
+        <div id="sidebar-confirm">
+            <h3><?php echo $this->translate('Delete form submissions'); ?></h3>
+            <p><?php echo $this->translate('Are you sure you would like to delete all form submissions on all pages of this result?'); ?></p>
+            <p class="error"><?php echo sprintf(
+                $this->translate('%1$s: this action will permanently delete %2$s form submissions and cannot be undone.'),
+                sprintf('<strong>%s</strong>', $this->translate('Warning')),
+                sprintf('<strong>%s</strong>', number_format($this->pagination()->getPaginator()->getTotalCount()))
+            ); ?></p>
+            <label><input type="checkbox" name="confirm-delete-all-check"> <?php echo $this->translate('Are you sure?'); ?></label>
+            <?php echo $this->form($this->formDeleteAll); ?>
+        </div>
+    </div>
+</div>
+
+<script>
+// Complete the batch delete form after confirmation.
+$('#confirm-delete-selected, #confirm-delete-all').on('submit', function(e) {
+    var confirmForm = $(this);
+    if ('confirm-delete-all' === this.id) {
+        confirmForm.append($('.batch-query').clone());
+    } else {
+        $('#batch-form').find('input[name="form_submission_ids[]"]:checked').each(function() {
+            confirmForm.append($(this).clone().prop('disabled', false).attr('type', 'hidden'));
+        });
+    }
+});
+$('.delete-all').on('click', function(e) {
+    Omeka.closeSidebar($('#sidebar-delete-selected'));
+});
+$('.delete-selected').on('click', function(e) {
+    Omeka.closeSidebar($('#sidebar-delete-all'));
+    var inputs = $('input[name="form_submission_ids[]"]');
+    $('#delete-selected-count').text(inputs.filter(':checked').length);
+});
+$('#sidebar-delete-all').on('click', 'input[name="confirm-delete-all-check"]', function(e) {
+    $('#confirm-delete-all input[type="submit"]').prop('disabled', this.checked ? false : true);
+});
+</script>
+
+<?php else: ?>
+
+<div class="no-resources">
+    <p><?php echo $this->translate('Omeka could not find any forms.'); ?></p>
+</div>
+
+<?php endif; ?>

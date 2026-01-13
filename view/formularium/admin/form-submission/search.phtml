@@ -1,0 +1,104 @@
+<?php $this->headLink()->prependStylesheet($this->assetUrl('css/advanced-search.css', 'Omeka')); ?>
+<?php $this->headScript()->appendFile($this->assetUrl('js/advanced-search.js', 'Omeka')); ?>
+<?php $this->htmlElement('body')->appendAttribute('class', 'items search'); ?>
+
+<?= $this->pageTitle($this->translate('Advanced search'), 1, $this->translate('Form submissions')); ?>
+
+<form id="advanced-search" method="get" action="<?php echo $this->escapeHtml($this->url(null, ['action' => 'browse'], true)); ?>">
+    <?php
+    $sortConfig = $this->browse()->getBrowseService()->getSortConfig('admin', 'formularium_form_submissions');
+
+    $sortBy = new Laminas\Form\Element\Select('sort_by');
+    $sortBy->setAttribute('aria-label', 'Sort by'); // @translate
+    $sortBy->setEmptyOption('Select sort by…'); // @translate
+    $sortBy->setValueOptions($sortConfig);
+    $sortBy->setValue((!isset($query['sort_by_default']) && isset($query['sort_by'])) ? $query['sort_by'] : '');
+
+    $sortOrder = new Laminas\Form\Element\Select('sort_order');
+    $sortOrder->setAttribute('aria-label', 'Sort order'); // @translate
+    $sortOrder->setEmptyOption('Select sort order…'); // @translate
+    $sortOrder->setValueOptions([
+        'asc' => 'Ascending', // @translate
+        'desc' => 'Descending', // @translate
+    ]);
+    $sortOrder->setValue($query['sort_order'] ?? '');
+    ?>
+    <div class="field">
+        <div class="field-meta">
+            <label><?= $this->translate('Sort') ?></label>
+        </div>
+        <div class="inputs">
+            <?= $this->formSelect($sortBy) ?>
+            <?= $this->formSelect($sortOrder) ?>
+        </div>
+    </div>
+
+    <?php
+    $formulariumForms = $this->api()->search('formularium_forms')->getContent();
+    $form = new Laminas\Form\Element\Select('form_id');
+    $form->setLabel('Form'); // @translate
+    $form->setEmptyOption('');
+    $form->setValueOptions(array_map(fn ($f) => ['value' => $f->id(), 'label' => $f->name()], $formulariumForms));
+    $form->setValue($query['form_id'] ?? null);
+    echo $this->formRow($form);
+    ?>
+
+    <div class="field">
+        <div class="field-meta">
+            <label><?= $this->translate('Site') ?></label>
+        </div>
+        <div class="inputs">
+            <?= $this->siteSelect([
+                'name' => 'site_id',
+                'attributes' => [
+                    'value' => $query['site_id'] ?? null,
+                ],
+            ]) ?>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="field-meta">
+            <label><?= $this->translate('Has been submitted by') ?></label>
+        </div>
+        <div class="inputs">
+            <?= $this->userSelect([
+                'name' => 'submitter_id',
+                'attributes' => [
+                    'value' => $query['submitter_id'] ?? null,
+                ],
+            ]) ?>
+        </div>
+    </div>
+
+    <?php
+    $handled = new Laminas\Form\Element\Select('handled');
+    $handled->setLabel('Is handled'); // @translate
+    $handled->setEmptyOption('');
+    $handled->setValueOptions([
+        '0' => 'No', // @translate
+        '1' => 'Yes', // @translate
+    ]);
+    $handled->setValue($query['handled'] ?? null);
+    echo $this->formRow($handled);
+    ?>
+
+    <div class="field">
+        <div class="field-meta">
+            <label><?= $this->translate('Has been handled by') ?></label>
+        </div>
+        <div class="inputs">
+            <?= $this->userSelect([
+                'name' => 'handler_id',
+                'attributes' => [
+                    'value' => $query['handler_id'] ?? null,
+                ],
+            ]) ?>
+        </div>
+    </div>
+
+    <div id="page-actions">
+        <?= $this->hyperlink($this->translate('Reset'), $this->url(null, [], true), ['class' => 'button']) ?>
+        <input type="submit" value="<?= $this->escapeHtml($this->translate('Search')) ?>">
+    </div>
+</form>

@@ -1,0 +1,77 @@
+.action-add-group {
+    display: flex;
+    margin-bottom: 0;
+}
+
+button.actions-action-add-button {
+      margin-left: .5rem;
+}
+
+ul.actions-actions {
+    padding-left: 0;
+    list-style: none;
+}
+
+.formularium-form-action-summary {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    line-height: 1.5;
+}
+
+.formularium-form-action-settings-fieldset {
+    margin-top: 6px;
+}
+
+.actions-action {
+    .formularium-form-action-settings-fieldset {
+        display: none;
+    }
+
+    .actions-action-internal-label:not(:empty) + .actions-action-type-label {
+        font-size: 80%;
+
+        &::before {
+            content: " · ";
+        }
+    }
+
+    input[type] {
+        margin: unset;
+    }
+
+    .actions-action-restore-button,
+    .actions-action-restore,
+    .actions-action-internal-label-input {
+        display: none;
+    }
+
+    &.edit {
+        .formularium-form-action-settings-fieldset,
+        .actions-action-internal-label-input {
+            display: block;
+        }
+        .actions-action-type-label,
+        .actions-action-internal-label {
+            display: none;
+        }
+    }
+
+    &.delete {
+        .formularium-form-action-settings-fieldset,
+        .actions-action-internal-label-input,
+        .sortable-handle,
+        .actions-action-internal-label,
+        .actions-action-internal-label-input,
+        .actions-action-type-label,
+        .actions-action-remove-button,
+        .actions-action-edit-button {
+            display: none;
+        }
+
+        .actions-action-restore-button,
+        .actions-action-restore {
+            display: block;
+        }
+    }
+}

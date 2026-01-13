@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var \Laminas\View\Renderer\PhpRenderer $this
+ * @var \Laminas\Form\Element $element
+ */
+?>
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/components-form.css', 'Formularium'));
+$this->headScript()->appendFile($this->assetUrl('vendor/sortablejs/Sortable.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('js/components-form.js', 'Formularium'));
+?>
+<div class="components-form-element" data-name="<?= $this->escapeHtml($element->getName()) ?>">
+    <?php $value = $element->getValue(); ?>
+    <div class="components-components">
+        <?php if ($value): ?>
+            <?php foreach ($value as $component): ?>
+                <?= $this->partial('formularium/common/components-form-row', ['component' => $component]); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <button type="button" class="components-add-button"><?= $this->translate('Add a component') ?></button>
+</div>

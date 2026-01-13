@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var Formularium\Api\Representation\FormRepresentation $formulariumForm
+ * @var Laminas\Form\Form $form
+ */
+?>
+<?php $form->prepare(); ?>
+<?= $this->form()->openTag($form) ?>
+
+<?= $this->formRow($form->get('csrf')) ?>
+<?= $this->formRow($form->get('formularium_site_page_id')) ?>
+<?= $this->formRow($form->get('formularium_site_page_block_id')) ?>
+
+<?php $data = $this->params()->fromQuery(); ?>
+<?php foreach ($formulariumForm->components() as $formComponent): ?>
+    <div class="formularium-form-component">
+        <?php $formComponentType = $this->formularium()->getFormComponentType($formComponent['type']); ?>
+        <?php if ($formComponentType): ?>
+            <?= $formComponentType->render($this, $form, new \Formularium\FormComponent\FormComponent($formComponent), $data); ?>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+<button type="submit"><?= $this->translate('Submit') ?></button>
+
+<?= $this->form()->closeTag(); ?>

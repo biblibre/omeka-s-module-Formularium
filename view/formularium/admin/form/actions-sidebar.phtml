@@ -1,0 +1,16 @@
+<div id="action-selector" class="sidebar">
+    <a href="#" class="sidebar-close o-icon-close"><span class="screen-reader-text"><?php echo $this->translate('Close'); ?></span></a>
+
+    <div class="field">
+        <label><?= $this->translate('Add a action'); ?></label>
+        <?php foreach ($this->formularium()->getFormActionTypes() as $actionTypeName => $actionType): ?>
+            <?php $actionType->prepareForm($this); ?>
+            <button
+                type="button"
+                data-type="<?= $this->escapeHtml($actionTypeName) ?>"
+                data-template="<?= $this->escapeHtml($this->partial('formularium/common/actions-form-row', ['action' => ['type' => $actionTypeName]])) ?>"
+                class="option"
+            ><?= $this->escapeHtml($this->translate($actionType->getLabel())); ?></button>
+        <?php endforeach; ?>
+    </div>
+</div>

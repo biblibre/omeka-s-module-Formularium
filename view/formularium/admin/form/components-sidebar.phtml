@@ -1,0 +1,16 @@
+<div id="component-selector" class="sidebar">
+    <a href="#" class="sidebar-close o-icon-close"><span class="screen-reader-text"><?php echo $this->translate('Close'); ?></span></a>
+
+    <div class="field">
+        <label><?= $this->translate('Add a component'); ?></label>
+        <?php foreach ($this->formularium()->getFormComponentTypes() as $componentTypeName => $componentType): ?>
+            <?php $componentType->prepareForm($this); ?>
+            <button
+                type="button"
+                data-type="<?= $this->escapeHtml($componentTypeName) ?>"
+                data-template="<?= $this->escapeHtml($this->partial('formularium/common/components-form-row', ['component' => ['type' => $componentTypeName]])) ?>"
+                class="option"
+            ><?= $this->escapeHtml($this->translate($componentType->getLabel())); ?></button>
+        <?php endforeach; ?>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var array $component
+ */
+?>
+<?php $formComponentType = $this->formularium()->getFormComponentType($component['type']); ?>
+<?php $formComponentTypeClass = 'formularium-form-component-type-' . preg_replace('/[^a-z0-9-]+/', '-', strtolower($component['type'])); ?>
+<?php $formComponentTypeLabel = $formComponentType ? $this->translate($formComponentType->getLabel()) : $this->translate('[Unknown component type]') ?>
+<div class="formularium-form-component <?= $formComponentTypeClass ?> components-component row">
+    <div class="formularium-form-component-summary">
+        <span class="sortable-handle"></span>
+        <span class="components-component-restore"><?= $this->translate('Component to delete') ?></span>
+
+        <span>
+            <span class="components-component-internal-label"><?= $this->escapeHtml($component['internal_label'] ?? '') ?></span>
+            <span class="components-component-type-label"><?= $formComponentTypeLabel ?></span>
+        </span>
+
+        <input type="text" name="internal_label" class="components-component-internal-label-input" value="<?= $this->escapeHtml($component['internal_label'] ?? '') ?>" placeholder="<?= $this->escapeHtml($this->translate('Internal label')) ?>">
+
+        <ul class="actions">
+            <li><?= $this->hyperlink('', '', [
+                'class' => 'o-icon-edit components-component-edit-button',
+                'title' => $this->translate('Edit component'),
+            ]) ?></li>
+            <li><?= $this->hyperlink('', '', [
+                'class' => 'o-icon-delete components-component-remove-button',
+                'title' => $this->translate('Remove component'),
+            ]) ?></li>
+            <li><?= $this->hyperlink('', '', [
+                'class' => 'o-icon-undo components-component-restore-button',
+                'title' => $this->translate('Restore component'),
+            ]) ?></li>
+        </ul>
+    </div>
+
+    <input type="hidden" name="type" value="<?= $this->escapeHtml($component['type']) ?>">
+    <div class="formularium-form-component-settings-fieldset">
+        <?= $this->formularium()->formComponentSettingsForm($component) ?>
+    </div>
+</div>

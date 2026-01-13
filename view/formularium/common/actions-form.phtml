@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var \Laminas\View\Renderer\PhpRenderer $this
+ * @var \Laminas\Form\Element $element
+ */
+?>
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/actions-form.css', 'Formularium'));
+$this->headScript()->appendFile($this->assetUrl('vendor/sortablejs/Sortable.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('js/actions-form.js', 'Formularium'));
+?>
+<div class="actions-form-element" data-name="<?= $this->escapeHtml($element->getName()) ?>">
+    <?php $value = $element->getValue(); ?>
+    <div class="actions-actions">
+        <?php if ($value): ?>
+            <?php foreach ($value as $action): ?>
+                <?= $this->partial('formularium/common/actions-form-row', ['action' => $action]); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <button type="button" class="actions-add-button"><?= $this->translate('Add an action') ?></button>
+</div>

@@ -1,0 +1,10 @@
+<h3>
+    <a href="<?= $this->escapeHtml($resource->url()) ?>"><?= $this->escapeHtml($resource->name()) ?></a>
+</h3>
+
+<div class="meta-group">
+    <h4>ID</h4>
+    <div class="value"><?= $resource->id() ?></div>
+</div>
+
+<?php $this->trigger('view.details', array('entity' => $resource)); ?>

@@ -1,0 +1,7 @@
+<div id="sidebar-confirm">
+    <h3><?= $this->translate('Mark form submission as not handled') ?></h3>
+    <p><?= $this->translate('Are you sure you would like to mark this form submission as not handled ?') ?></p>
+    <?= $this->form($form) ?>
+</div>
+
+<?= $this->partial('formularium/admin/form-submission/show-details', ['resource' => $resource]) ?>

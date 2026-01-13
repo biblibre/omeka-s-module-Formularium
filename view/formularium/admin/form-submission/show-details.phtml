@@ -1,0 +1,66 @@
+<div class="meta-group">
+    <h4><?= $this->translate('ID'); ?></h4>
+    <div class="value"><?= $this->escapeHtml($resource->id()) ?></div>
+</div>
+
+<?php $form = $resource->form(); ?>
+<div class="meta-group">
+    <h4><?= $this->translate('Form'); ?></h4>
+    <div class="value"><?= $form->link($form->name(), 'edit') ?></div>
+</div>
+
+<?php if ($site = $resource->site()): ?>
+    <div class="meta-group">
+        <h4><?= $this->translate('Site'); ?></h4>
+        <div class="value"><?= $site->link($site->title()) ?></div>
+    </div>
+<?php endif; ?>
+
+<?php if ($sitePage = $resource->sitePage()): ?>
+    <div class="meta-group">
+        <h4><?= $this->translate('Page'); ?></h4>
+        <div class="value"><?= $sitePage->link($sitePage->title()) ?></div>
+    </div>
+<?php endif; ?>
+
+<div class="meta-group">
+    <h4><?= $this->translate('Submitted'); ?></h4>
+    <div class="value">
+        <?= $this->i18n()->dateFormat($resource->submitted(), 'long', 'medium') ?>
+        <?php if ($submitter = $resource->submitter()): ?>
+            <?= $this->translate('by') ?> <?= $submitter->link($submitter->name()) ?>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if ($resource->handled()): ?>
+    <div class="meta-group">
+        <h4><?= $this->translate('Handled'); ?></h4>
+        <div class="value">
+            <?= $this->i18n()->dateFormat($resource->handled(), 'long', 'medium') ?>
+            <?php if ($handler = $resource->handler()): ?>
+                <?= $this->translate('by') ?> <?= $handler->link($handler->name()) ?>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php $files = $resource->files(); ?>
+<?php if ($files): ?>
+    <div class="meta-group">
+        <h4><?= $this->translate('Files'); ?></h4>
+
+        <?php foreach ($files as $file): ?>
+            <div class="value"><?= $this->hyperlink($file->name(), $file->originalUrl()) ?></div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<?php $data = $resource->data(); ?>
+<?php if ($data): ?>
+    <div class="meta-group">
+        <h4><?= $this->translate('Data'); ?></h4>
+
+        <div class="value"><pre><?= $this->escapeHtml(json_encode($data, JSON_PRETTY_PRINT)) ?></pre></div>
+    </div>
+<?php endif; ?>

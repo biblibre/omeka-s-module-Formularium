@@ -1,0 +1,77 @@
+.component-add-group {
+    display: flex;
+    margin-bottom: 0;
+}
+
+button.components-component-add-button {
+      margin-left: .5rem;
+}
+
+ul.components-components {
+    padding-left: 0;
+    list-style: none;
+}
+
+.formularium-form-component-summary {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    line-height: 1.5;
+}
+
+.formularium-form-component-settings-fieldset {
+    margin-top: 6px;
+}
+
+.components-component {
+    .formularium-form-component-settings-fieldset {
+        display: none;
+    }
+
+    .components-component-internal-label:not(:empty) + .components-component-type-label {
+        font-size: 80%;
+
+        &::before {
+            content: " · ";
+        }
+    }
+
+    input[type] {
+        margin: unset;
+    }
+
+    .components-component-restore-button,
+    .components-component-restore,
+    .components-component-internal-label-input {
+        display: none;
+    }
+
+    &.edit {
+        .formularium-form-component-settings-fieldset,
+        .components-component-internal-label-input {
+            display: block;
+        }
+        .components-component-type-label,
+        .components-component-internal-label {
+            display: none;
+        }
+    }
+
+    &.delete {
+        .formularium-form-component-settings-fieldset,
+        .components-component-internal-label-input,
+        .sortable-handle,
+        .components-component-internal-label,
+        .components-component-internal-label-input,
+        .components-component-type-label,
+        .components-component-remove-button,
+        .components-component-edit-button {
+            display: none;
+        }
+
+        .components-component-restore-button,
+        .components-component-restore {
+            display: block;
+        }
+    }
+}

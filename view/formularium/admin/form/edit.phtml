@@ -1,0 +1,32 @@
+<?php
+$this->htmlElement('body')->appendAttribute('class', 'edit formularium formularium-form');
+$this->headScript()->appendFile($this->assetUrl('vendor/jstree/jstree.min.js', 'Omeka'));
+$this->headScript()->appendFile($this->assetUrl('js/formularium-jstree-plugins.js', 'Formularium'));
+$this->headScript()->appendFile($this->assetUrl('js/formularium-form.js', 'Formularium'));
+$this->headLink()->appendStylesheet($this->assetUrl('css/jstree.css', 'Omeka'));
+?>
+
+<?= $this->pageTitle($this->translate('Edit form'), 1, $this->translate('Formularium')) ?>
+
+<?= $this->trigger('view.edit.before') ?>
+
+<?php $form->prepare(); ?>
+<?= $this->form()->openTag($form) ?>
+
+<div id="page-actions">
+    <?= $this->hyperlink($this->translate('Cancel'), $this->url('admin/formularium/form'), ['class' => 'button']) ?>
+    <button><?= $this->translate('Save') ?></button>
+</div>
+
+<?php $this->trigger('view.edit.form.before', ['form' => $form]); ?>
+
+<?= $this->formCollection($form, false) ?>
+
+<?php $this->trigger('view.edit.form.after', ['form' => $form]); ?>
+
+<?= $this->form()->closeTag() ?>
+
+<?= $this->partial('formularium/admin/form/components-sidebar') ?>
+<?= $this->partial('formularium/admin/form/actions-sidebar') ?>
+
+<?php $this->trigger('view.edit.after'); ?>
