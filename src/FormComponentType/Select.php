@@ -72,7 +72,9 @@ class Select extends AbstractInput
             $valueOptions = $vocab->listValues();
         } else {
             $options = $formComponent->getSetting('options', '');
-            $options = explode("\n", $options);
+            $options = preg_split('/[\r\n]+/', $options);
+            $options = array_map(fn($s) => trim($s), $options);
+            $options = array_filter($options, fn($s) => $s !== '');
             $valueOptions = array_combine($options, $options);
         }
 
