@@ -1,5 +1,7 @@
 <?php
 $name = $formComponent->getSetting('name');
 $element = $form->get($name);
-$element->setAttribute('value', $data[$name] ?? '');
+if (isset($data[$name])) {
+    $element->setAttribute('value', $data[$name] ?? '');
+}
 echo $this->formRow($element);
