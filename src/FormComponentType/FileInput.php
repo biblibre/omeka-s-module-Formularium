@@ -27,6 +27,41 @@ class FileInput extends AbstractInput
         return 'File upload'; // @translate
     }
 
+    public function settingsFieldsetAddElements(Fieldset $fieldset): void
+    {
+        parent::settingsFieldsetAddElements($fieldset);
+
+        $fieldset->add([
+            'name' => 'filetype_allowlist',
+            'type' => 'Laminas\Form\Element\Text',
+            'options' => [
+                'label' => 'Accepted file types', // @translate
+                'info' => 'A comma-separated list of file types.<br>For instance: <code>image/jpeg,application/pdf</code>.', // @translate
+                'escape_info' => false,
+            ],
+        ]);
+
+        $fieldset->add([
+            'name' => 'extension_allowlist',
+            'type' => 'Laminas\Form\Element\Text',
+            'options' => [
+                'label' => 'Accepted file extensions', // @translate
+                'info' => 'A comma-separated list of file extension.<br>For instance: <code>jpg,pdf</code>.', // @translate
+                'escape_info' => false,
+            ],
+        ]);
+
+        $fieldset->add([
+            'name' => 'max_filesize',
+            'type' => 'Laminas\Form\Element\Text',
+            'options' => [
+                'label' => 'Maximum file size', // @translate
+                'info' => 'Size in bytes, or in SI notation.<br>For instance: <code>10485760</code> or <code>10MB</code>.', // @translate
+                'escape_info' => false,
+            ],
+        ]);
+    }
+
     public function render(PhpRenderer $renderer, Form $form, FormComponent $formComponent, $data = null): string
     {
         $element = $form->get($formComponent->getSetting('name'));
@@ -36,6 +71,16 @@ class FileInput extends AbstractInput
 
     public function formAddElements(Form $form, FormComponent $formComponent): void
     {
+        $filetype_allowlist = $formComponent->getSetting('filetype_allowlist', '');
+        $extension_allowlist = $formComponent->getSetting('extension_allowlist', '');
+
+        $filetypes = array_filter(array_map('trim', explode(',', $filetype_allowlist)));
+        $extensions = array_filter(array_map('trim', explode(',', $extension_allowlist)));
+
+        $accept_filetypes = array_map(fn($filetype) => str_contains($filetype, '/') ? $filetype : "$filetype/*", $filetypes);
+        $accept_extensions = array_map(fn($extension) => ".$extension", $extensions);
+        $accept = implode(',', array_merge($accept_filetypes, $accept_extensions));
+
         $form->add([
             'type' => 'Laminas\Form\Element\File',
             'name' => $formComponent->getSetting('name'),
@@ -45,6 +90,7 @@ class FileInput extends AbstractInput
             ],
             'attributes' => [
                 'required' => $formComponent->getSetting('required') ? true : false,
+                'accept' => $accept,
             ],
         ]);
     }
@@ -52,11 +98,47 @@ class FileInput extends AbstractInput
     public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void
     {
         $required = $formComponent->getSetting('required') ? true : false;
+        $filetype_allowlist = $formComponent->getSetting('filetype_allowlist', '');
+        $extension_allowlist = $formComponent->getSetting('extension_allowlist', '');
+        $max_filesize = $formComponent->getSetting('max_filesize', '');
+
+        $filetypes = array_filter(array_map('trim', explode(',', $filetype_allowlist)));
+        $extensions = array_filter(array_map('trim', explode(',', $extension_allowlist)));
+
+        $validators = [];
+
+        if ($filetypes) {
+            $validators[] = [
+                'name' => 'Laminas\Validator\File\MimeType',
+                'options' => [
+                    'mimeType' => $filetypes,
+                ],
+            ];
+        }
+
+        if ($extensions) {
+            $validators[] = [
+                'name' => 'Laminas\Validator\File\Extension',
+                'options' => [
+                    'extension' => $extensions,
+                ],
+            ];
+        }
+
+        if ($max_filesize) {
+            $validators[] = [
+                'name' => 'Laminas\Validator\File\Size',
+                'options' => [
+                    'max' => $max_filesize,
+                ],
+            ];
+        }
 
         $inputFilter->add([
             'name' => $formComponent->getSetting('name'),
             'required' => $required,
             'allow_empty' => !$required,
+            'validators' => $validators,
         ]);
     }
 
@@ -84,13 +166,6 @@ class FileInput extends AbstractInput
             }
 
             $tempFile->setSourceName($file['name']);
-
-            // TODO Validate file type
-            //$config = $this->getServiceLocator()->get('Config');
-            //$validator = new Validator($config['api_assets']['allowed_media_types'], $config['api_assets']['allowed_extensions']);
-            //if (!$validator->validate($tempFile, $errorStore)) {
-            //    return;
-            //}
 
             $formSubmissionFile = new FormulariumFormSubmissionFile;
             $formSubmissionFile->setFormSubmission($formSubmission);
