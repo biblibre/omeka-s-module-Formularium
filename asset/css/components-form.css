@@ -40,6 +40,10 @@ ul.components-components {
         margin: unset;
     }
 
+    .field-meta {
+        line-height: 24px;
+    }
+
     .components-component-restore-button,
     .components-component-restore,
     .components-component-internal-label-input {

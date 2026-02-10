@@ -40,6 +40,10 @@ ul.actions-actions {
         margin: unset;
     }
 
+    .field-meta {
+        line-height: 24px;
+    }
+
     .actions-action-restore-button,
     .actions-action-restore,
     .actions-action-internal-label-input {
