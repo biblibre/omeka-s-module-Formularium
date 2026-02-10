@@ -52,11 +52,34 @@ class Email extends AbstractFormActionType
 
     public function perform(array $action, FormSubmissionRepresentation $formSubmission, array $data): void
     {
+        $values = $formSubmission->data();
+
+        $to = $this->renderTemplate($action['settings']['to'], $values);
+        $subject = $this->renderTemplate($action['settings']['subject'], $values);
+        $body = $this->renderTemplate($action['settings']['body'], $values);
+
         $message = $this->mailer->createMessage([
-            'to' => $action['settings']['to'],
-            'subject' => $action['settings']['subject'],
-            'body' => $action['settings']['body'],
+            'to' => $to,
+            'subject' => $subject,
+            'body' => $body,
         ]);
+
         $this->mailer->send($message);
+    }
+
+    protected function renderTemplate(string $template, array $values): string
+    {
+        $output = preg_replace_callback(
+            '/\{(.+?)\}/',
+            function ($matches) use ($values) {
+                $key = $matches[1];
+                $value = $values[$key] ?? null;
+
+                return is_string($value) ? $value : $matches[0];
+            },
+            $template
+        );
+
+        return $output;
     }
 }
