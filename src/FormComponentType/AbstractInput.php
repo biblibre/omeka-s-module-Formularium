@@ -5,6 +5,7 @@ namespace Formularium\FormComponentType;
 use Formularium\FormComponent\FormComponent;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
+use Laminas\View\Renderer\PhpRenderer;
 
 abstract class AbstractInput extends AbstractFormComponentType
 {
@@ -44,5 +45,16 @@ abstract class AbstractInput extends AbstractFormComponentType
                 'label' => 'Required', // @translate
             ],
         ]);
+    }
+
+    public function render(PhpRenderer $renderer, Form $form, FormComponent $formComponent, $data = null): string
+    {
+        $name = $formComponent->getSetting('name');
+        $element = $form->get($name);
+        if (isset($data[$name])) {
+            $element->setValue($data[$name]);
+        }
+
+        return $renderer->formRow($element);
     }
 }

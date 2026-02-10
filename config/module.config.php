@@ -65,6 +65,7 @@ return [
     ],
     'formularium_form_component_types' => [
         'invokables' => [
+            'checkbox' => FormComponentType\Checkbox::class,
             'recaptcha' => FormComponentType\Recaptcha::class,
             'text_input' => FormComponentType\TextInput::class,
             'textarea' => FormComponentType\Textarea::class,
