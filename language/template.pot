@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-11 11:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: view/formularium/admin/form-submission/batch-edit.phtml:24
+msgid "Affected form submissions"
+msgstr ""
+
+#: view/formularium/admin/form-submission/batch-edit.phtml:27
+#, php-format
+msgid "You are editing the following %s form submissions:"
+msgstr ""
+
+#: view/formularium/admin/form-submission/batch-edit.phtml:34
+#, php-format
+msgid "You are editing %s form submissions."
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:12
+#: view/formularium/admin/form-submission/search.phtml:5
+msgid "Form submissions"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:12
+#: view/formularium/admin/form/add.phtml:9
+#: view/formularium/admin/form/browse.phtml:10
+#: view/formularium/admin/form/edit.phtml:9
+#: view/formularium/common/dashboard.phtml:6
+msgid "Formularium"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:57
+#: view/formularium/admin/form-submission/show-details.phtml:27
+msgid "Submitted"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:58
+msgid "Submitted by"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:59
+#: view/formularium/admin/form-submission/show-details.phtml:38
+msgid "Handled"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:67
+msgid "Select form submission"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:81
+msgid "Mark as not handled"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:88
+msgid "Mark as handled"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:155
+#: view/formularium/admin/form-submission/browse.phtml:173
+msgid "Delete form submissions"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:156
+msgid "Are you sure you would like to delete the selected form submissions?"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:158
+#: view/formularium/admin/form-submission/browse.phtml:176
+#, php-format
+msgid ""
+"%1$s: this action will permanently delete %2$s form submissions and cannot "
+"be undone."
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:174
+msgid ""
+"Are you sure you would like to delete all form submissions on all pages of "
+"this result?"
+msgstr ""
+
+#: view/formularium/admin/form-submission/browse.phtml:214
+#: view/formularium/admin/form/browse.phtml:90
+msgid "Omeka could not find any forms."
+msgstr ""
+
+#: view/formularium/admin/form-submission/mark-as-handled-confirm.phtml:2
+msgid "Mark form submission as handled"
+msgstr ""
+
+#: view/formularium/admin/form-submission/mark-as-handled-confirm.phtml:3
+msgid "Are you sure you would like to mark this form submission as handled ?"
+msgstr ""
+
+#: view/formularium/admin/form-submission/mark-as-not-handled-confirm.phtml:2
+msgid "Mark form submission as not handled"
+msgstr ""
+
+#: view/formularium/admin/form-submission/mark-as-not-handled-confirm.phtml:3
+msgid ""
+"Are you sure you would like to mark this form submission as not handled ?"
+msgstr ""
+
+#: view/formularium/admin/form-submission/search.phtml:62
+msgid "Has been submitted by"
+msgstr ""
+
+#: view/formularium/admin/form-submission/search.phtml:88
+msgid "Has been handled by"
+msgstr ""
+
+#: view/formularium/admin/form-submission/show-details.phtml:8
+msgid "Form"
+msgstr ""
+
+#: view/formularium/admin/form-submission/show-details.phtml:31
+#: view/formularium/admin/form-submission/show-details.phtml:42
+msgid "by"
+msgstr ""
+
+#: view/formularium/admin/form-submission/show-details.phtml:51
+msgid "Files"
+msgstr ""
+
+#: view/formularium/admin/form-submission/show-details.phtml:62
+msgid "Data"
+msgstr ""
+
+#: view/formularium/admin/form/actions-sidebar.phtml:5
+msgid "Add a action"
+msgstr ""
+
+#: view/formularium/admin/form/add.phtml:9
+msgid "New form"
+msgstr ""
+
+#: view/formularium/admin/form/browse.phtml:10
+msgid "Forms"
+msgstr ""
+
+#: view/formularium/admin/form/browse.phtml:21
+msgid "Add new form"
+msgstr ""
+
+#: view/formularium/admin/form/browse.phtml:32
+msgid "Submissions"
+msgstr ""
+
+#: view/formularium/admin/form/components-sidebar.phtml:5
+#: view/formularium/common/components-form.phtml:21
+msgid "Add a component"
+msgstr ""
+
+#: view/formularium/admin/form/edit.phtml:9
+msgid "Edit form"
+msgstr ""
+
+#: view/formularium/common/actions-form-row.phtml:7
+msgid "[Unknown action type]"
+msgstr ""
+
+#: view/formularium/common/actions-form-row.phtml:11
+msgid "Action to delete"
+msgstr ""
+
+#: view/formularium/common/actions-form-row.phtml:13
+#: view/formularium/common/components-form-row.phtml:19
+msgid "Internal label"
+msgstr ""
+
+#: view/formularium/common/actions-form-row.phtml:23
+msgid "Edit action"
+msgstr ""
+
+#: view/formularium/common/actions-form-row.phtml:27
+msgid "Remove action"
+msgstr ""
+
+#: view/formularium/common/actions-form-row.phtml:31
+msgid "Restore action"
+msgstr ""
+
+#: view/formularium/common/actions-form.phtml:21
+msgid "Add an action"
+msgstr ""
+
+#: view/formularium/common/components-form-row.phtml:8
+msgid "[Unknown component type]"
+msgstr ""
+
+#: view/formularium/common/components-form-row.phtml:12
+msgid "Component to delete"
+msgstr ""
+
+#: view/formularium/common/components-form-row.phtml:24
+msgid "Edit component"
+msgstr ""
+
+#: view/formularium/common/components-form-row.phtml:28
+msgid "Remove component"
+msgstr ""
+
+#: view/formularium/common/components-form-row.phtml:32
+msgid "Restore component"
+msgstr ""
+
+#: view/formularium/common/dashboard.phtml:9
+msgid "Not handled submissions:"
+msgstr ""
+
+#: view/formularium/admin/form-submission/search.phtml:76
+msgid "Is handled"
+msgstr ""
+
+#: config/module.config.php:234
+msgid "Submission date"
+msgstr ""
+
+#: config/module.config.php:235
+msgid "Handling date"
+msgstr ""
+
+#: src/FormComponentType/Checkbox.php:18
+msgid "Checkbox"
+msgstr ""
+
+#: src/FormComponentType/FileInput.php:38
+msgid "Accepted file types"
+msgstr ""
+
+#: src/FormComponentType/FileInput.php:39
+msgid ""
+"A comma-separated list of file types.<br>For instance: <code>image/jpeg,"
+"application/pdf</code>."
+msgstr ""
+
+#: src/FormComponentType/FileInput.php:48
+msgid "Accepted file extensions"
+msgstr ""
+
+#: src/FormComponentType/FileInput.php:49
+msgid ""
+"A comma-separated list of file extension.<br>For instance: <code>jpg,pdf</"
+"code>."
+msgstr ""
+
+#: src/FormComponentType/FileInput.php:58
+msgid "Maximum file size"
+msgstr ""
+
+#: src/FormComponentType/FileInput.php:59
+msgid ""
+"Size in bytes, or in SI notation.<br>For instance: <code>10485760</code> or "
+"<code>10MB</code>."
+msgstr ""
+
+#: src/FormComponentType/Recaptcha.php:18
+msgid "Recaptcha (antispam)"
+msgstr ""
+
+#: src/FormComponentType/Textarea.php:18
+msgid "Text area"
+msgstr ""
+
+#: src/FormComponentType/TextInput.php:18
+msgid "Text input"
+msgstr ""
+
+#: src/FormComponentType/Select.php:23
+msgid "Dropdown list"
+msgstr ""
+
+#: src/FormComponentType/Select.php:41
+msgid "Custom Vocab"
+msgstr ""
+
+#: src/FormComponentType/Select.php:55
+msgid "One option per line"
+msgstr ""
+
+#: src/FormComponentType/AbstractInput.php:37
+msgid "Help text"
+msgstr ""
+
+#: src/FormComponentType/UserEmail.php:23
+msgid "User e-mail address"
+msgstr ""
+
+#: src/Form/FormForm.php:42
+msgid "Actions"
+msgstr ""
+
+#: src/FormActionType/Email.php:20
+msgid "Send an email"
+msgstr ""
+
+#: src/FormActionType/Email.php:29
+msgid "To"
+msgstr ""
+
+#: src/Controller/Admin/FormController.php:41
+msgid "Form successfully created."
+msgstr ""
+
+#: src/Controller/Admin/FormController.php:78
+msgid "Form successfully updated."
+msgstr ""
+
+#: src/Controller/Admin/FormController.php:101
+msgid "form"
+msgstr ""
+
+#: src/Controller/Admin/FormController.php:115
+msgid "Form successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:122
+msgid "form submission"
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:136
+msgid "Form submission successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:155
+msgid "You must select at least one form submission to batch delete."
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:164
+msgid "Form submissions successfully deleted"
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:190
+msgid "Deleting form submissions. This may take a while."
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:217
+msgid "You must select at least one form submission to batch edit."
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:235
+msgid "Form submission successfully edited"
+msgstr ""
+
+#: src/Controller/Admin/FormSubmissionController.php:283
+msgid "Editing form submissions. This may take a while."
+msgstr ""
