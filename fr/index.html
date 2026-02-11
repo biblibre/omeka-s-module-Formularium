@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formularium documentation &mdash; Documentation Formularium </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d1a510d7"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Forms" href="forms.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Formularium
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Form submissions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Formularium</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Formularium documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="formularium-documentation">
+<h1>Formularium documentation<a class="headerlink" href="#formularium-documentation" title="Lien vers cette rubrique"></a></h1>
+<p><a class="reference external" href="https://github.com/biblibre/omeka-s-module-Formularium">Formularium</a> is a module for Omeka S. It allows administrators to build forms
+for public sites.</p>
+<p>Form submissions are saved and can be viewed from the administration interface.</p>
+<p>Submitting a form can also trigger several « actions ». There is only one kind of
+action at the moment: sending an email.</p>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Lien vers cette rubrique"></a></h2>
+<p>The primary goal of this module is to be a viable alternative for
+client-specific « contact us »-type forms.</p>
+<p>It is also extensible so that other modules can add their own form components
+and actions.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Lien vers cette rubrique"></a></h2>
+<ul class="simple">
+<li><p>Omeka S &gt;= 4.1.0</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Lien vers cette rubrique"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://omeka.org/s/docs/user-manual/modules/#adding-modules-to-omeka-s">Add the module to Omeka S</a></p></li>
+<li><p>In the administration interface, click on « Formularium » in the navigation menu</p></li>
+<li><p>Create a new form, give it a name and add « components » (form elements)</p></li>
+<li><p>Optionally, add actions</p></li>
+<li><p>Create a new page for your site, and add the « Formularium » block to this
+page. In the block settings, select the form you created.</p></li>
+</ol>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Lien vers cette rubrique"></a></h3>
+<ul class="simple">
+<li><p>Create unlimited forms with an unlimited number of components and actions</p></li>
+<li><p>Different component types: text, text area, dropdown list, checkbox, antispam
+(recaptcha), file upload, … (other modules can add their own)</p></li>
+<li><p>One action type: send an email (other modules can add their own)</p></li>
+<li><p>Form submissions are entirely saved (uploaded files included) so they can be
+viewed later. Deleting a form submission also removes the attached files.</p></li>
+<li><p>A flag can be set to mark a form submission as « handled » (whatever that means to you)</p></li>
+<li><p>Form submissions can be filtered by form, site, user (if an authenticated
+user has made a submission), and handled status</p></li>
+<li><p>Form submissions can be batch deleted and batch edited (batch edit only
+allows to change the handled status)</p></li>
+</ul>
+</section>
+</section>
+<section id="comparison-with-similar-modules">
+<h2>Comparison with similar modules<a class="headerlink" href="#comparison-with-similar-modules" title="Lien vers cette rubrique"></a></h2>
+<section id="contact-us">
+<h3>Contact Us<a class="headerlink" href="#contact-us" title="Lien vers cette rubrique"></a></h3>
+<ul class="simple">
+<li><p>Contact Us is easier to set up. Formularium is more customizable</p></li>
+<li><p>Contact Us has two antispam solutions: simple and recaptcha. Formularium has
+only recaptcha</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="table-of-contents">
+<h1>Table of contents<a class="headerlink" href="#table-of-contents" title="Lien vers cette rubrique"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Form submissions</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="forms.html" class="btn btn-neutral float-right" title="Forms" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2026, BibLibre.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
