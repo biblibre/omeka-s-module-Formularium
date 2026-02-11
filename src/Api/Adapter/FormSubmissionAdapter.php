@@ -140,6 +140,18 @@ class FormSubmissionAdapter extends AbstractEntityAdapter
         }
     }
 
+    public function preprocessBatchUpdate(array $data, Request $request)
+    {
+        $rawData = $request->getContent();
+        $data = parent::preprocessBatchUpdate($data, $request);
+
+        if (isset($rawData['o:handled'])) {
+            $data['o:handled'] = $rawData['o:handled'];
+        }
+
+        return $data;
+    }
+
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
         /** @var \Formularium\Entity\Form $entity */

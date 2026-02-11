@@ -1,0 +1,38 @@
+<?php
+$form->prepare();
+$this->htmlElement('body')->appendAttribute('class', 'batch-edit items');
+?>
+<?= $this->pageTitle($this->translate('Batch edit items')) ?>
+
+<?php $this->trigger('view.batch_edit.before'); ?>
+
+<? $this->form()->openTag($form) ?>
+
+<?php foreach ($formSubmissions as $formSubmission): ?>
+    <input type="hidden" name="form_submission_ids[]" value="<?= $formSubmission->id() ?>">
+<?php endforeach; ?>
+<input type="hidden" name="query" value="<?= $this->escapeHtml(json_encode($query)) ?>">
+
+<div id="page-actions">
+    <input type="submit" name="batch_update" value="<?= $this->escapeHtml($this->translate('Submit')) ?>">
+</div>
+
+<?= $this->formCollection($form, false) ?>
+<?= $this->form()->closeTag() ?>
+
+<div class="sidebar always-open">
+    <h3><?= $this->translate('Affected form submissions') ?></h3>
+
+    <?php if ($formSubmissions): ?>
+        <p><?= sprintf($this->translate('You are editing the following %s form submissions:'), count($formSubmissions)) ?></p>
+        <ul class="batch-selected">
+            <?php foreach ($formSubmissions as $formSubmission): ?>
+                <li><?= sprintf('#%s', $formSubmission->id()) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p><?= sprintf($this->translate('You are editing %s form submissions.'), $this->hyperlink(number_format($count), $this->url(null, ['action' => 'browse'], ['query' => $query], true), ['target' => '_blank'])); ?></p>
+    <?php endif; ?>
+</div>
+
+<?php $this->trigger('view.batch_edit.after'); ?>

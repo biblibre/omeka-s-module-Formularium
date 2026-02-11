@@ -3,6 +3,7 @@
 namespace Formularium\Controller\Admin;
 
 use Formularium\Form\FormForm;
+use Formularium\Form\FormSubmissionBatchUpdateForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Omeka\Form\ConfirmForm;
@@ -200,6 +201,98 @@ class FormSubmissionController extends AbstractActionController
         $view = new ViewModel;
         $view->setTerminal(true);
         $view->setVariable('resource', $response->getContent());
+
+        return $view;
+    }
+
+    public function batchEditAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+            return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        }
+
+        $returnQuery = $this->params()->fromQuery();
+        $formSubmissionIds = $this->params()->fromPost('form_submission_ids', []);
+        if (!$formSubmissionIds) {
+            $this->messenger()->addError('You must select at least one form submission to batch edit.'); // @translate
+            return $this->redirect()->toRoute(null, ['action' => 'browse'], ['query' => $returnQuery], true);
+        }
+
+        $form = $this->getForm(FormSubmissionBatchUpdateForm::class);
+        $form->setAttribute('id', 'batch-edit-form-submission');
+        if ($this->params()->fromPost('batch_update')) {
+            $data = $this->params()->fromPost();
+            $form->setData($data);
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $this->api($form)->batchUpdate('formularium_form_submissions', $formSubmissionIds, $data, [
+                    'continueOnError' => true,
+                    'detachEntities' => false,
+                ]);
+
+                $this->messenger()->addSuccess('Form submission successfully edited'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'browse'], ['query' => $returnQuery], true);
+            } else {
+                $this->messenger()->addFormErrors($form);
+            }
+        }
+
+        $formSubmissions = [];
+        foreach ($formSubmissionIds as $formSubmissionId) {
+            $formSubmissions[] = $this->api()->read('formularium_form_submissions', $formSubmissionId)->getContent();
+        }
+
+        $view = new ViewModel;
+        $view->setVariable('form', $form);
+        $view->setVariable('formSubmissions', $formSubmissions);
+        $view->setVariable('query', []);
+        $view->setVariable('count', null);
+
+        return $view;
+    }
+
+    public function batchEditAllAction()
+    {
+        if (!$this->getRequest()->isPost()) {
+            return $this->redirect()->toRoute(null, ['action' => 'browse'], true);
+        }
+
+        // Derive the query, removing limiting and sorting params.
+        $query = json_decode($this->params()->fromPost('query', []), true);
+        unset($query['submit'], $query['page'], $query['per_page'], $query['limit'],
+            $query['offset'], $query['sort_by'], $query['sort_order']);
+        $count = $this->api()->search('formularium_form_submissions', ['limit' => 0] + $query)->getTotalResults();
+
+        $form = $this->getForm(FormSubmissionBatchUpdateForm::class);
+        $form->setAttribute('id', 'batch-edit-form-submission');
+        if ($this->params()->fromPost('batch_update')) {
+            $data = $this->params()->fromPost();
+            $form->setData($data);
+
+            if ($form->isValid()) {
+                $data = $form->getData();
+
+                $job = $this->jobDispatcher()->dispatch('Omeka\Job\BatchUpdate', [
+                    'resource' => 'formularium_form_submissions',
+                    'query' => $query,
+                    'data' => $data ?? [],
+                ]);
+
+                $this->messenger()->addSuccess('Editing form submissions. This may take a while.'); // @translate
+                return $this->redirect()->toRoute(null, ['action' => 'browse'], ['query' => $this->params()->fromQuery()], true);
+            } else {
+                $this->messenger()->addFormErrors($form);
+            }
+        }
+
+        $view = new ViewModel;
+        $view->setTemplate('formularium/admin/form-submission/batch-edit');
+        $view->setVariable('form', $form);
+        $view->setVariable('formSubmissions', []);
+        $view->setVariable('query', $query);
+        $view->setVariable('count', $count);
 
         return $view;
     }

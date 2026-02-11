@@ -28,6 +28,10 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
         <div class="batch-inputs">
             <select class="batch-actions-select" aria-label="<?= $this->translate('Batch actions'); ?>">
                 <option value="default"><?= $this->translate('Batch actions'); ?></option>
+                <option value="update-selected" disabled><?= $this->translate('Edit selected'); ?></option>
+                <?php if ($this->userIsAllowed('Formularium\Api\Adapter\FormSubmissionAdapter', 'batch_update_all')): ?>
+                    <option value="update-all"><?= $this->translate('Edit all'); ?></option>
+                <?php endif; ?>
                 <option value="delete-selected" disabled><?= $this->translate('Delete selected'); ?></option>
                 <?php if ($this->userIsAllowed('Formularium\Api\Adapter\FormSubmissionAdapter', 'batch_delete_all')): ?>
                     <option value="delete-all"><?= $this->translate('Delete all'); ?></option>
@@ -36,6 +40,8 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
 
             <div class="batch-actions">
                 <button type="button" class="default active" disabled><?= $this->translate('Go') ?></button>
+                <input type="submit" class="update-selected" name="update_selected" value="<?= $this->translate('Go') ?>" formaction="<?= $this->escapeHtml($this->url(null, ['action' => 'batch-edit'], ['query' => $returnQuery], true)) ?>">
+                <input type="submit" class="update-all" name="update_all" value="<?= $this->translate('Go') ?>" formaction="<?= $this->escapeHtml($this->url(null, ['action' => 'batch-edit-all'], ['query' => $returnQuery], true)) ?>">
                 <input type="hidden" name="query" class="batch-query" value="<?= $this->escapeHtml(json_encode($this->params()->fromQuery())) ?>">
                 <a class="delete button sidebar-content delete-selected" data-sidebar-selector="#sidebar-delete-selected"><?= $this->translate('Go') ?></a>
                 <a class="delete button sidebar-content delete-all" data-sidebar-selector="#sidebar-delete-all"><?= $this->translate('Go'); ?></a>
