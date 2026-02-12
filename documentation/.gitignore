@@ -1,2 +1,4 @@
 /.venv
 /_build
+/screenshots-maker/cypress/screenshots
+/screenshots-maker/node_modules

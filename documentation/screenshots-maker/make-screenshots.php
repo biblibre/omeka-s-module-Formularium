@@ -1,0 +1,48 @@
+<?php
+
+$originalDir = __DIR__;
+require dirname(__DIR__, 4) . '/bootstrap.php';
+
+// Install a fresh database.
+file_put_contents('php://stdout', "Dropping test database schema...\n");
+\Omeka\Test\DbTestCase::dropSchema();
+file_put_contents('php://stdout', "Creating test database schema...\n");
+\Omeka\Test\DbTestCase::installSchema();
+
+$application = \Omeka\Test\DbTestCase::getApplication();
+$serviceLocator = $application->getServiceManager();
+$auth = $serviceLocator->get('Omeka\AuthenticationService');
+$adapter = $auth->getAdapter();
+$adapter->setIdentity('admin@example.com');
+$adapter->setCredential('root');
+$auth->authenticate();
+
+$moduleManager = $serviceLocator->get('Omeka\ModuleManager');
+$module = $moduleManager->getModule('Formularium');
+$moduleManager->install($module);
+
+$connection = $serviceLocator->get('Omeka\Connection');
+$connectionParams = $connection->getParams();
+
+$pid = pcntl_fork();
+if ($pid == -1) {
+     die('could not fork');
+} else if ($pid) {
+    sleep(1);
+    chdir($originalDir);
+    system('CYPRESS_BASE_URL=http://localhost:8001/ npx cypress run -q');
+    posix_kill($pid, SIGTERM);
+    pcntl_wait($status);
+} else {
+    $env = getenv();
+    $env['OMEKA_DB_CONNECTION_URL'] = sprintf(
+        'pdo-mysql://%s:%s@%s:%s/%s',
+        $connectionParams['user'],
+        $connectionParams['password'],
+        $connectionParams['host'] ?? 'localhost',
+        $connectionParams['port'] ?? 3306,
+        $connection->getDatabase(),
+    );
+    pcntl_exec('/usr/bin/php', ['-q', '-S', '0.0.0.0:8001'], $env);
+    die('Failed to start php built-in server');
+}
