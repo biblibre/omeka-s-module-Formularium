@@ -3,10 +3,10 @@
 $originalDir = __DIR__;
 require dirname(__DIR__, 4) . '/bootstrap.php';
 
+$opts = getopt('', ['gui']);
+
 // Install a fresh database.
-file_put_contents('php://stdout', "Dropping test database schema...\n");
 \Omeka\Test\DbTestCase::dropSchema();
-file_put_contents('php://stdout', "Creating test database schema...\n");
 \Omeka\Test\DbTestCase::installSchema();
 
 $application = \Omeka\Test\DbTestCase::getApplication();
@@ -30,7 +30,11 @@ if ($pid == -1) {
 } else if ($pid) {
     sleep(1);
     chdir($originalDir);
-    system('CYPRESS_BASE_URL=http://localhost:8001/ npx cypress run -q');
+    if (isset($opts['gui'])) {
+        system('CYPRESS_BASE_URL=http://localhost:8001/ npx cypress open', $result_code);
+    } else {
+        system('CYPRESS_BASE_URL=http://localhost:8001/ npx cypress run -q', $result_code);
+    }
     posix_kill($pid, SIGTERM);
     pcntl_wait($status);
 } else {
@@ -46,3 +50,5 @@ if ($pid == -1) {
     pcntl_exec('/usr/bin/php', ['-q', '-S', '0.0.0.0:8001'], $env);
     die('Failed to start php built-in server');
 }
+
+exit($result_code);

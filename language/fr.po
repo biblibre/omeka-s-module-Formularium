@@ -1,0 +1,388 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Julian Maurice <julian.maurice@biblibre.com>, 2026
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-11 11:44+0100\n"
+"PO-Revision-Date: 2026-02-11 10:51+0000\n"
+"Last-Translator: Julian Maurice <julian.maurice@biblibre.com>, 2026\n"
+"Language-Team: French (https://app.transifex.com/biblibre-/teams/298658/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: view/formularium/admin/form-submission/batch-edit.phtml:24
+msgid "Affected form submissions"
+msgstr "Soumissions de formulaire affectées"
+
+#: view/formularium/admin/form-submission/batch-edit.phtml:27
+#, php-format
+msgid "You are editing the following %s form submissions:"
+msgstr ""
+"Vous êtes en train de modifier les %s soumissions de formulaire suivantes:"
+
+#: view/formularium/admin/form-submission/batch-edit.phtml:34
+#, php-format
+msgid "You are editing %s form submissions."
+msgstr "Vous êtes en train de modifier %s soumissions de formulaire."
+
+#: view/formularium/admin/form-submission/browse.phtml:12
+#: view/formularium/admin/form-submission/search.phtml:5
+msgid "Form submissions"
+msgstr "Soumissions de formulaire"
+
+#: view/formularium/admin/form-submission/browse.phtml:12
+#: view/formularium/admin/form/add.phtml:9
+#: view/formularium/admin/form/browse.phtml:10
+#: view/formularium/admin/form/edit.phtml:9
+#: view/formularium/common/dashboard.phtml:6
+msgid "Formularium"
+msgstr "Formularium"
+
+#: view/formularium/admin/form-submission/browse.phtml:57
+#: view/formularium/admin/form-submission/show-details.phtml:27
+msgid "Submitted"
+msgstr "Soumis"
+
+#: view/formularium/admin/form-submission/browse.phtml:58
+msgid "Submitted by"
+msgstr "Soumis par"
+
+#: view/formularium/admin/form-submission/browse.phtml:59
+#: view/formularium/admin/form-submission/show-details.phtml:38
+msgid "Handled"
+msgstr "Traité"
+
+#: view/formularium/admin/form-submission/browse.phtml:67
+msgid "Select form submission"
+msgstr "Sélectionner la soumission de formulaire"
+
+#: view/formularium/admin/form-submission/browse.phtml:81
+msgid "Mark as not handled"
+msgstr "Marquer comme non-traité"
+
+#: view/formularium/admin/form-submission/browse.phtml:88
+msgid "Mark as handled"
+msgstr "Marquer comme traité"
+
+#: view/formularium/admin/form-submission/browse.phtml:155
+#: view/formularium/admin/form-submission/browse.phtml:173
+msgid "Delete form submissions"
+msgstr "Supprimer les soumissions de formulaire"
+
+#: view/formularium/admin/form-submission/browse.phtml:156
+msgid "Are you sure you would like to delete the selected form submissions?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer les soumissions de formulaire "
+"sélectionnées ?"
+
+#: view/formularium/admin/form-submission/browse.phtml:158
+#: view/formularium/admin/form-submission/browse.phtml:176
+#, php-format
+msgid ""
+"%1$s: this action will permanently delete %2$s form submissions and cannot "
+"be undone."
+msgstr ""
+"%1$s: cette action va supprimer définitivement %2$s soumissions de "
+"formulaire et ne peut pas être annulée."
+
+#: view/formularium/admin/form-submission/browse.phtml:174
+msgid ""
+"Are you sure you would like to delete all form submissions on all pages of "
+"this result?"
+msgstr ""
+"Êtes-vous sûr de vouloir supprimer toutes les soumissions de formulaire sur "
+"toutes les pages de ces résultats ?"
+
+#: view/formularium/admin/form-submission/browse.phtml:214
+#: view/formularium/admin/form/browse.phtml:90
+msgid "Omeka could not find any forms."
+msgstr "Omeka n'a trouvé aucun formulaire."
+
+#: view/formularium/admin/form-submission/mark-as-handled-confirm.phtml:2
+msgid "Mark form submission as handled"
+msgstr "Marquer la soumission de formulaire comme traitée"
+
+#: view/formularium/admin/form-submission/mark-as-handled-confirm.phtml:3
+msgid "Are you sure you would like to mark this form submission as handled ?"
+msgstr ""
+"Êtes-vous sûr de vouloir marquer cette soumission de formulaire comme "
+"traitée ?"
+
+#: view/formularium/admin/form-submission/mark-as-not-handled-confirm.phtml:2
+msgid "Mark form submission as not handled"
+msgstr "Marquer la soumission de formulaire comme non-traitée"
+
+#: view/formularium/admin/form-submission/mark-as-not-handled-confirm.phtml:3
+msgid ""
+"Are you sure you would like to mark this form submission as not handled ?"
+msgstr ""
+"Êtes-vous sûr de vouloir marquer cette soumission de formulaire comme non "
+"traitée ?"
+
+#: view/formularium/admin/form-submission/search.phtml:62
+msgid "Has been submitted by"
+msgstr "A été soumis par"
+
+#: view/formularium/admin/form-submission/search.phtml:88
+msgid "Has been handled by"
+msgstr "A été traité par"
+
+#: view/formularium/admin/form-submission/show-details.phtml:8
+msgid "Form"
+msgstr "Formulaire"
+
+#: view/formularium/admin/form-submission/show-details.phtml:31
+#: view/formularium/admin/form-submission/show-details.phtml:42
+msgid "by"
+msgstr "par"
+
+#: view/formularium/admin/form-submission/show-details.phtml:51
+msgid "Files"
+msgstr "Fichiers"
+
+#: view/formularium/admin/form-submission/show-details.phtml:62
+msgid "Data"
+msgstr "Données"
+
+#: view/formularium/admin/form/actions-sidebar.phtml:5
+msgid "Add a action"
+msgstr "Ajouter une action"
+
+#: view/formularium/admin/form/add.phtml:9
+msgid "New form"
+msgstr "Nouveau formulaire"
+
+#: view/formularium/admin/form/browse.phtml:10
+msgid "Forms"
+msgstr "Formulaires"
+
+#: view/formularium/admin/form/browse.phtml:21
+msgid "Add new form"
+msgstr "Ajouter un nouveau formulaire"
+
+#: view/formularium/admin/form/browse.phtml:32
+msgid "Submissions"
+msgstr "Soumissions"
+
+#: view/formularium/admin/form/components-sidebar.phtml:5
+#: view/formularium/common/components-form.phtml:21
+msgid "Add a component"
+msgstr "Ajouter un composant"
+
+#: view/formularium/admin/form/edit.phtml:9
+msgid "Edit form"
+msgstr "Modifier le formulaire"
+
+#: view/formularium/common/actions-form-row.phtml:7
+msgid "[Unknown action type]"
+msgstr "[Type d'action inconnu]"
+
+#: view/formularium/common/actions-form-row.phtml:11
+msgid "Action to delete"
+msgstr "Action à supprimer"
+
+#: view/formularium/common/actions-form-row.phtml:13
+#: view/formularium/common/components-form-row.phtml:19
+msgid "Internal label"
+msgstr "Libellé interne"
+
+#: view/formularium/common/actions-form-row.phtml:23
+msgid "Edit action"
+msgstr "Modifier l'action"
+
+#: view/formularium/common/actions-form-row.phtml:27
+msgid "Remove action"
+msgstr "Supprimer l'action"
+
+#: view/formularium/common/actions-form-row.phtml:31
+msgid "Restore action"
+msgstr "Restaurer l'action"
+
+#: view/formularium/common/actions-form.phtml:21
+msgid "Add an action"
+msgstr "Ajouter une action"
+
+#: view/formularium/common/components-form-row.phtml:8
+msgid "[Unknown component type]"
+msgstr "[Type de composant inconnu]"
+
+#: view/formularium/common/components-form-row.phtml:12
+msgid "Component to delete"
+msgstr "Composant à supprimer"
+
+#: view/formularium/common/components-form-row.phtml:24
+msgid "Edit component"
+msgstr "Modifier le composant"
+
+#: view/formularium/common/components-form-row.phtml:28
+msgid "Remove component"
+msgstr "Supprimer le composant"
+
+#: view/formularium/common/components-form-row.phtml:32
+msgid "Restore component"
+msgstr "Restaurer le composant"
+
+#: view/formularium/common/dashboard.phtml:9
+msgid "Not handled submissions:"
+msgstr "Soumissions non traitées:"
+
+#: view/formularium/admin/form-submission/search.phtml:76
+msgid "Is handled"
+msgstr "Est traitée"
+
+#: config/module.config.php:234
+msgid "Submission date"
+msgstr "Date de soumission"
+
+#: config/module.config.php:235
+msgid "Handling date"
+msgstr "Date de traitement"
+
+#: src/FormComponentType/Checkbox.php:18
+msgid "Checkbox"
+msgstr "Case à cocher"
+
+#: src/FormComponentType/FileInput.php:38
+msgid "Accepted file types"
+msgstr "Types de fichiers acceptés"
+
+#: src/FormComponentType/FileInput.php:39
+msgid ""
+"A comma-separated list of file types.<br>For instance: "
+"<code>image/jpeg,application/pdf</code>."
+msgstr ""
+"Une liste de types de fichier séparés par des virgules.<br>Par "
+"exemple:<code>image/jpeg,application/pdf</code>."
+
+#: src/FormComponentType/FileInput.php:48
+msgid "Accepted file extensions"
+msgstr "Extensions de fichier acceptées"
+
+#: src/FormComponentType/FileInput.php:49
+msgid ""
+"A comma-separated list of file extension.<br>For instance: "
+"<code>jpg,pdf</code>."
+msgstr ""
+"Une liste d'extensions de fichier séparés par des virgules.<br>Par "
+"exemple:<code>jpg,pdf</code>."
+
+#: src/FormComponentType/FileInput.php:58
+msgid "Maximum file size"
+msgstr "Taille de fichier maximale"
+
+#: src/FormComponentType/FileInput.php:59
+msgid ""
+"Size in bytes, or in SI notation.<br>For instance: <code>10485760</code> or "
+"<code>10MB</code>."
+msgstr ""
+"Taille en octets, ou en notation SI.<br>Par exemple:<code>10485760</code> ou"
+" <code>10MB</code>."
+
+#: src/FormComponentType/Recaptcha.php:18
+msgid "Recaptcha (antispam)"
+msgstr "Recaptcha (antispam)"
+
+#: src/FormComponentType/Textarea.php:18
+msgid "Text area"
+msgstr "Zone de texte"
+
+#: src/FormComponentType/TextInput.php:18
+msgid "Text input"
+msgstr "Champ texte"
+
+#: src/FormComponentType/Select.php:23
+msgid "Dropdown list"
+msgstr "Liste déroulante"
+
+#: src/FormComponentType/Select.php:41
+msgid "Custom Vocab"
+msgstr "Custom Vocab"
+
+#: src/FormComponentType/Select.php:55
+msgid "One option per line"
+msgstr "Une option par ligne"
+
+#: src/FormComponentType/AbstractInput.php:37
+msgid "Help text"
+msgstr "Texte d'aide"
+
+#: src/FormComponentType/UserEmail.php:23
+msgid "User e-mail address"
+msgstr "Adresse e-mail de l'utilisateur"
+
+#: src/Form/FormForm.php:42
+msgid "Actions"
+msgstr "Actions"
+
+#: src/FormActionType/Email.php:20
+msgid "Send an email"
+msgstr "Envoyer un e-mail"
+
+#: src/FormActionType/Email.php:29
+msgid "To"
+msgstr "À"
+
+#: src/Controller/Admin/FormController.php:41
+msgid "Form successfully created."
+msgstr "Formulaire créé avec succès."
+
+#: src/Controller/Admin/FormController.php:78
+msgid "Form successfully updated."
+msgstr "Formulaire modifié avec succès."
+
+#: src/Controller/Admin/FormController.php:101
+msgid "form"
+msgstr "formulaire"
+
+#: src/Controller/Admin/FormController.php:115
+msgid "Form successfully deleted"
+msgstr "Formulaire supprimé avec succès"
+
+#: src/Controller/Admin/FormSubmissionController.php:122
+msgid "form submission"
+msgstr "soumission de formulaire"
+
+#: src/Controller/Admin/FormSubmissionController.php:136
+msgid "Form submission successfully deleted"
+msgstr "Soumission de formulaire supprimée avec succès"
+
+#: src/Controller/Admin/FormSubmissionController.php:155
+msgid "You must select at least one form submission to batch delete."
+msgstr ""
+"Vous devez sélectionner au moins une soumission de formulaire à supprimer"
+
+#: src/Controller/Admin/FormSubmissionController.php:164
+msgid "Form submissions successfully deleted"
+msgstr "Soumissions de formulaire supprimées avec succès"
+
+#: src/Controller/Admin/FormSubmissionController.php:190
+msgid "Deleting form submissions. This may take a while."
+msgstr ""
+"Suppression des soumissions de formulaire. Cela peut prendre un certain "
+"temps."
+
+#: src/Controller/Admin/FormSubmissionController.php:217
+msgid "You must select at least one form submission to batch edit."
+msgstr ""
+"Vous devez sélectionner au moins une soumission de formulaire à modifier."
+
+#: src/Controller/Admin/FormSubmissionController.php:235
+msgid "Form submission successfully edited"
+msgstr "Soumission de formulaire modifiée avec succès"
+
+#: src/Controller/Admin/FormSubmissionController.php:283
+msgid "Editing form submissions. This may take a while."
+msgstr ""
+"Modification des soumissions de formulaire. Cela peut prendre un certain "
+"temps."

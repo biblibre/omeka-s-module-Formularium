@@ -18,7 +18,7 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
 
 <div id="page-actions">
     <?php if ($this->userIsAllowed('Formularium\Api\Adapter\FormAdapter', 'create')): ?>
-        <?= $this->hyperlink($this->translate('Add new form'), $this->url(null, ['action' => 'add'], true), ['class' => 'button']) ?>
+        <?= $this->hyperlink($this->translate('Add new form'), $this->url(null, ['action' => 'add'], true), ['class' => 'button', 'data-cy' => 'add-new-form']) ?>
     <?php endif; ?>
 </div>
 

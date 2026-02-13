@@ -18,5 +18,5 @@ $this->headScript()->appendFile($this->assetUrl('js/components-form.js', 'Formul
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
-    <button type="button" class="components-add-button"><?= $this->translate('Add a component') ?></button>
+    <button type="button" class="components-add-button" data-cy="add-component"><?= $this->translate('Add a component') ?></button>
 </div>

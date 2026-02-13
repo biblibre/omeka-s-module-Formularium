@@ -1,0 +1,584 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, BibLibre
+# This file is distributed under the same license as the Formularium package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Julian Maurice <julian.maurice@biblibre.com>, 2026
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Formularium\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-13 16:54+0100\n"
+"PO-Revision-Date: 2026-02-11 12:31+0000\n"
+"Last-Translator: Julian Maurice <julian.maurice@biblibre.com>, 2026\n"
+"Language-Team: French (https://app.transifex.com/biblibre-/teams/298658/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../form-actions.rst:2
+msgid "Form actions"
+msgstr "Actions de formulaire"
+
+#: ../../form-actions.rst:5
+msgid "Send an email"
+msgstr "Envoyer un e-mail"
+
+#: ../../form-actions.rst:7
+msgid "Send an email."
+msgstr "Envoyer un e-mail."
+
+#: ../../form-actions.rst:9
+msgid ""
+"All settings can contain special tokens that will be replaced by data from "
+"the form submission."
+msgstr ""
+"Tous les paramètres peuvent contenir des jetons spéciaux qui seront "
+"remplacés par des données venant de la soumission du formulaire."
+
+#: ../../form-actions.rst:12
+msgid ""
+"For instance, if the form contains a text input named ``email``, you can set"
+" the \"To\" parameter to ``{email}`` to send an email to the user that "
+"submitted the form."
+msgstr ""
+"Par exemple, si le formulaire contient un champ texte nommé ``email``, vous "
+"pouvez définir le paramètre \"À\" à ``{email}`` pour envoyer un e-mail à "
+"l'utilisateur qui a soumis le formulaire."
+
+#: ../../form-actions.rst:17 ../../form-components.rst:31
+#: ../../form-components.rst:41 ../../form-components.rst:58
+#: ../../form-components.rst:77 ../../form-components.rst:92
+#: ../../form-components.rst:102 ../../form-components.rst:112
+#: ../../form-components.rst:123
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../../form-actions.rst:21
+msgid "To"
+msgstr "À"
+
+#: ../../form-actions.rst:22
+msgid "The e-mail recipient"
+msgstr "Le destinataire de l'e-mail"
+
+#: ../../form-actions.rst:24
+msgid "Subject"
+msgstr "Sujet"
+
+#: ../../form-actions.rst:25
+msgid "The e-mail subject"
+msgstr "Le sujet de l'e-mail"
+
+#: ../../form-actions.rst:27
+msgid "Body"
+msgstr "Corps"
+
+#: ../../form-actions.rst:28
+msgid "The e-mail body"
+msgstr "Le corps de l'e-mail"
+
+#: ../../form-components.rst:2
+msgid "Form components"
+msgstr "Composants du formulaire"
+
+#: ../../form-components.rst:4
+msgid ""
+"Form components are the building blocks of a form. Several types of "
+"component exist. Most types share the following subset of parameters:"
+msgstr ""
+"Les composants de formulaire sont les blocs de construction d'un formulaire."
+" Plusieurs types de composant existent. La plupart des types partagent le "
+"sous-ensemble de paramètres suivants:"
+
+#: ../../form-components.rst:7
+msgid "Name"
+msgstr "Nom"
+
+#: ../../form-components.rst:8
+msgid ""
+"This should be a unique identifier of the form component. It will be used as"
+" the HTML element's ``name`` attribute value."
+msgstr ""
+"Cela doit être un identifiant unique du composant. Il sera utilisé comme "
+"valeur pour l'attribut ``name`` de l'élément HTML."
+
+#: ../../form-components.rst:11
+msgid "Label"
+msgstr "Libellé"
+
+#: ../../form-components.rst:12
+msgid "The text that will be displayed in front of the form element"
+msgstr "Le texte sera affiché devant l'élément de formulaire"
+
+#: ../../form-components.rst:14
+msgid "Help text"
+msgstr "Texte d'aide"
+
+#: ../../form-components.rst:15
+msgid ""
+"A more detailed description of the form element and what is expected from "
+"the user. It should be displayed next to the label, but depending on the "
+"theme used it could be different."
+msgstr ""
+"Une description plus détaillée de l'élément du formulaire et ce qui est "
+"attendu de l'utilisateur. Il devrait être affiché à côté du libellé, mais "
+"selon le thème utilisé cela peut être différent."
+
+#: ../../form-components.rst:19
+msgid "Required"
+msgstr "Requis"
+
+#: ../../form-components.rst:20
+msgid ""
+"Required form components prevent the form to be submitted if they are empty "
+"(not set)."
+msgstr ""
+"Les composants de formulaire requis empêchent le formulaire d'être soumis "
+"s'ils sont vides (non définis)."
+
+#: ../../form-components.rst:23
+msgid "For parameters specific to a form component type, see below."
+msgstr ""
+"Pour les paramètres spécifiques à un type de composant, voir ci-dessous."
+
+#: ../../form-components.rst:26
+msgid "Checkbox"
+msgstr "Case à cocher"
+
+#: ../../form-components.rst:28
+msgid "A simple checkbox that is unchecked by default."
+msgstr "Une simple case à cocher qui est non-cochée par défaut."
+
+#: ../../form-components.rst:36
+msgid "Dropdown list"
+msgstr "Liste déroulante"
+
+#: ../../form-components.rst:38
+msgid ""
+"A dropdown list, whose options can be set manually or be retrieved from a "
+"\"Custom Vocab\" vocabulary"
+msgstr ""
+"Une liste déroulante, dont les options peuvent être définies manuellement ou"
+" récupérées depuis un vocabulaire \"Custom Vocab\""
+
+#: ../../form-components.rst:45
+msgid "Options"
+msgstr "Options"
+
+#: ../../form-components.rst:46
+msgid "A list of options, one per line"
+msgstr "Une liste d'options, une par ligne"
+
+#: ../../form-components.rst:48
+msgid "Custom Vocab"
+msgstr "Custom Vocab"
+
+#: ../../form-components.rst:49
+msgid ""
+"This parameter is visible only if Custom Vocab module is enabled. If set, "
+"the \"Options\" parameter is ignored."
+msgstr ""
+"Ce paramètre est visible uniquement si le module Custom Vocab est activé. Si"
+" défini, le paramètre \"Options\" est ignoré."
+
+#: ../../form-components.rst:53
+msgid "File upload"
+msgstr "Chargement de fichier"
+
+#: ../../form-components.rst:55
+msgid "Allow user to upload files"
+msgstr "Permet à l'utilisateur de charger des fichiers"
+
+#: ../../form-components.rst:62
+msgid "Accepted file types"
+msgstr "Types de fichier acceptés"
+
+#: ../../form-components.rst:63
+msgid ""
+"A comma-separated list of accepted file types. If empty, all file types are "
+"accepted."
+msgstr ""
+"Une liste de types de fichier acceptés. Si vide, tous les types de fichier "
+"sont acceptés."
+
+#: ../../form-components.rst:65
+msgid "Accepted file extensions"
+msgstr "Extensions de fichier acceptées"
+
+#: ../../form-components.rst:66
+msgid ""
+"A comma-separated list of accepted file extensions. If empty, all file "
+"extensions are accepted."
+msgstr ""
+"Une liste d'extensions de fichier acceptées. Si vide, toutes les extensions "
+"de fichier sont acceptées."
+
+#: ../../form-components.rst:68
+msgid "Maximum file size"
+msgstr "Taille de fichier maximale"
+
+#: ../../form-components.rst:69
+msgid ""
+"Maximum file size in bytes or in SI notation. For instance \"10485760\" or "
+"\"10MB\"."
+msgstr ""
+"Taille de fichier maximale en octets ou en notation SI. Par exemple,  "
+"\"10485760\" ou \"10MB\"."
+
+#: ../../form-components.rst:72 ../../form-components.rst:81
+msgid "HTML"
+msgstr "HTML"
+
+#: ../../form-components.rst:74
+msgid "This component type allow to add arbitrary HTML in the form"
+msgstr ""
+"Ce type de composant permet d'ajouter du HTML arbitraire dans le formulaire"
+
+#: ../../form-components.rst:82
+msgid "The HTML code to be added to the form. A WYSIWYG editor is available."
+msgstr ""
+"Le code HTML à ajouter au formulaire. Un éditeur WYSIWYG est disponible."
+
+#: ../../form-components.rst:85
+msgid "Recaptcha (antispam)"
+msgstr "Recaptcha (antispam)"
+
+#: ../../form-components.rst:87
+msgid ""
+"Prevent spam with reCAPTCHA (Google). Requires \"reCAPTCHA site key\" and "
+"\"reCAPTCHA secret key\" to be set (see `security settings "
+"<https://omeka.org/s/docs/user-manual/admin/settings/#security>`__)"
+msgstr ""
+"Empêche le spam avec reCAPTCHA (Google). Nécessite que les paramètres \"clé "
+"du site reCAPTCHA\" et \"clé secrète reCAPTCHA\" soient définis (voir "
+"`paramètres de sécurité <https://omeka.org/s/docs/user-"
+"manual/admin/settings/#security>`__)"
+
+#: ../../form-components.rst:97
+msgid "Text area"
+msgstr "Zone de texte"
+
+#: ../../form-components.rst:99
+msgid "A multi-line text input"
+msgstr "Un champ texte multi-lignes"
+
+#: ../../form-components.rst:107
+msgid "Text input"
+msgstr "Champ texte"
+
+#: ../../form-components.rst:109
+msgid "A simple text input"
+msgstr "Un champ texte simple"
+
+#: ../../form-components.rst:117
+msgid "User e-mail address"
+msgstr "Adresse e-mail utilisateur"
+
+#: ../../form-components.rst:119
+msgid ""
+"This is like \"Text input\" but is automatically set to user's email if user"
+" is authenticated."
+msgstr ""
+"Similaire à \"Champ texte\" mais est automatiquement défini à l'adresse "
+"e-mail de l'utilisateur s'il est authentifié."
+
+#: ../../form-submissions.rst:2
+msgid "Form submissions"
+msgstr "Soumissions de formulaire"
+
+#: ../../form-submissions.rst:4
+msgid ""
+"To view form submissions, go to the admin interface and click on "
+"\"Formularium\" in the navigation menu, and then on \"Form submissions\" (in"
+" the navigation menu too)."
+msgstr ""
+"Pour consulter les soumissions de formulaire, allez sur l'interface d'admin "
+"et cliquez sur \"Formularium\" dans le menu de navigation, puis sur "
+"\"Soumissions de formulaire\" (dans le menu de navigation également)."
+
+#: ../../form-submissions.rst:10
+msgid ""
+"Details of each submission can be viewed by clicking on the \"details\" link"
+" (the three horizontal dots)."
+msgstr ""
+"Les détails de chaque soumission peuvent être consultés en cliquant sur le "
+"lien \"détails\" (les trois points horizontaux)."
+
+#: ../../form-submissions.rst:15
+msgid ""
+"Submissions can be marked as handled and deleted, one by one or by batch."
+msgstr ""
+"Les soumissions peuvent être marquées comme traitées et supprimées, une par "
+"une ou par lot."
+
+#: ../../forms.rst:2
+msgid "Forms"
+msgstr "Formulaires"
+
+#: ../../forms.rst:5
+msgid "Create a new form"
+msgstr "Créer un nouveau formulaire"
+
+#: ../../forms.rst:7
+msgid ""
+"To create a new form, go to the admin interface and click on \"Formularium\""
+" in the navigation menu."
+msgstr ""
+"Pour créer un nouveau formulaire, allez sur l'interface d'admin et cliquez "
+"sur \"Formularium\" dans le menu de navigation."
+
+#: ../../forms.rst:11
+msgid "Then click on \"Add new form\""
+msgstr "Puis cliquez sur \"Ajouter un nouveau formulaire\""
+
+#: ../../forms.rst:15
+msgid ""
+"Give it a name, then click on \"Add a component\" to add your first "
+"component."
+msgstr ""
+"Donnez lui un nom, puis cliquez sur \"Ajouter un composant\" pour ajouter "
+"votre premier composant."
+
+#: ../../forms.rst:19
+msgid ""
+"In the sidebar, select the type of component you want to add, for instance "
+"\"User e-mail address\", and complete the component's settings form."
+msgstr ""
+"Dans la barre latérale, sélectionnez le type de composant que vous souhaitez"
+" ajouter, par exemple \"Adresse e-mail utilisateur\", et complétez le "
+"formulaire de paramétrage du composant."
+
+#: ../../forms.rst:24
+msgid ""
+"You can add as many components as you want and reorder them. You may also "
+"add actions. Actions are executed after a successful form submission."
+msgstr ""
+"Vous pouvez ajouter autant de composants que vous le voulez et modifier leur"
+" ordre. Vous pouvez aussi ajouter des actions. Les actions sont exécutées "
+"après une soumission de formulaire réussie."
+
+#: ../../forms.rst:29
+msgid "Once you're done, click on \"Add\" to save the form."
+msgstr ""
+"Quand vous avez terminé, cliquer sur \"Ajouter\" pour enregistrer le "
+"formulaire."
+
+#: ../../forms.rst:33
+msgid ""
+"See :doc:`form-components` and :doc:`form-actions` to get more details about"
+" their settings."
+msgstr ""
+"Voir :doc:`form-components` et :doc:`form-actions` pour avoir plus de "
+"détails à propos de leur paramètres."
+
+#: ../../forms.rst:36
+msgid "Add the form to a site page"
+msgstr "Ajouter le formulaire à une page de site"
+
+#: ../../forms.rst:38
+msgid ""
+"To make the form visible to your users, you must add the \"Formularium\" "
+"block to a site page, and select your form in the block settings."
+msgstr ""
+"Pour rendre le formulaire visible à vos utilisateurs, vous devez ajouter le "
+"bloc \"Formularium\" à une page de site, et sélectionner votre formulaire "
+"dans les paramètres du bloc."
+
+#: ../../forms.rst:43
+msgid "The page will look like this (with the default theme):"
+msgstr "La page ressemblera à ceci (avec le thème par défaut):"
+
+#: ../../forms.rst:47
+msgid ""
+"Form submissions can be viewed and managed in :doc:`the form submissions "
+"page <form-submissions>`"
+msgstr ""
+"Les soumissions de formulaire sont consultables et gérables sur :doc:`la "
+"page des soumissions de formulaire <form-submissions>`"
+
+#: ../../index.rst:2
+msgid "Formularium documentation"
+msgstr "Documentation de Formularium"
+
+#: ../../index.rst:4
+msgid ""
+"`Formularium`_ is a module for Omeka S. It allows administrators to build "
+"forms for public sites."
+msgstr ""
+"`Formularium`_ est un module pour Omeka S. Il permet aux administrateurs de "
+"construire des formulaires pour les sites publics."
+
+#: ../../index.rst:9
+msgid ""
+"Form submissions are saved and can be viewed from the administration "
+"interface."
+msgstr ""
+"Les soumissions de formulaires sont enregistrées et sont consultables depuis"
+" l'interface d'administration."
+
+#: ../../index.rst:11
+msgid ""
+"Submitting a form can also trigger several \"actions\". There is only one "
+"kind of action at the moment: sending an email."
+msgstr ""
+"Soumettre un formulaire peut aussi déclencher plusieurs \"actions\". Il n'y "
+"a qu'un seul type d'action pour le moment: envoyer un e-mail."
+
+#: ../../index.rst:15
+msgid "Goals"
+msgstr "Objectifs"
+
+#: ../../index.rst:17
+msgid ""
+"The primary goal of this module is to be a viable alternative for client-"
+"specific \"contact us\"-type forms."
+msgstr ""
+"L'objectif principal de ce module est d'être une alternative viable aux "
+"formulaires spécifiques de type \"contactez-nous\"."
+
+#: ../../index.rst:20
+msgid ""
+"It is also extensible so that other modules can add their own form "
+"components and actions."
+msgstr ""
+"Il est aussi extensible afin que d'autres modules puissent ajouter leurs "
+"propres composants de formulaire et leurs propres actions."
+
+#: ../../index.rst:24
+msgid "Requirements"
+msgstr "Exigences"
+
+#: ../../index.rst:26
+msgid "Omeka S >= 4.1.0"
+msgstr "Omeka S >= 4.1.0"
+
+#: ../../index.rst:29
+msgid "Quick start"
+msgstr "Démarrage rapide"
+
+#: ../../index.rst:31
+msgid ""
+"`Add the module to Omeka S <https://omeka.org/s/docs/user-"
+"manual/modules/#adding-modules-to-omeka-s>`__"
+msgstr ""
+"`Ajouter le module à Omeka S <https://omeka.org/s/docs/user-"
+"manual/modules/#adding-modules-to-omeka-s>`__"
+
+#: ../../index.rst:32
+msgid ""
+"In the administration interface, click on \"Formularium\" in the navigation "
+"menu"
+msgstr ""
+"Dans l'interface d'administration, cliquez sur \"Formularium\" dans le menu "
+"de navigation"
+
+#: ../../index.rst:33
+msgid "Create a new form, give it a name and add \"components\" (form elements)"
+msgstr ""
+"Créez un nouveau formulaire, donnez lui un nom et ajoutez des \"composants\""
+" (éléments de formulaire)"
+
+#: ../../index.rst:34
+msgid "Optionally, add actions"
+msgstr "Éventuellement, ajoutez des actions"
+
+#: ../../index.rst:35
+msgid ""
+"Create a new page for your site, and add the \"Formularium\" block to this "
+"page. In the block settings, select the form you created."
+msgstr ""
+"Créez une nouvelle page pour votre site, et ajoutez le bloc \"Formularium\" "
+"à cette page. Dans les paramètres du bloc, sélectionnez le formulaire que "
+"vous avez créé."
+
+#: ../../index.rst:39
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: ../../index.rst:41
+msgid ""
+"Create unlimited forms with an unlimited number of components and actions"
+msgstr ""
+"Créez une infinité de formulaires avec une infinité de composants et "
+"d'actions"
+
+#: ../../index.rst:42
+msgid ""
+"Different component types: text, text area, dropdown list, checkbox, "
+"antispam (recaptcha), file upload, ... (other modules can add their own)"
+msgstr ""
+"Différents types de composants: texte, zone de texte, liste déroulante, case"
+" à cocher, antispam (recaptcha), chargement de fichier, ... (d'autres "
+"modules peuvent ajouter les leurs)"
+
+#: ../../index.rst:44
+msgid "One action type: send an email (other modules can add their own)"
+msgstr ""
+"Un type d'action: envoyer un e-mail (d'autres modules peuvent ajouter les "
+"leurs)"
+
+#: ../../index.rst:45
+msgid ""
+"Form submissions are entirely saved (uploaded files included) so they can be"
+" viewed later. Deleting a form submission also removes the attached files."
+msgstr ""
+"Les soumissions de formulaire sont entièrement sauvegardées (y compris les "
+"fichiers chargés) pour pouvoir être consultables ultérieurement. Supprimer "
+"une soumission de formulaire supprime également les fichiers attachés."
+
+#: ../../index.rst:47
+msgid ""
+"A flag can be set to mark a form submission as \"handled\" (whatever that "
+"means to you)"
+msgstr ""
+"Une marque peut être posée pour marquer une soumission de formulaire comme "
+"étant \"traitée\" (quoi que ça signifie pour vous)"
+
+#: ../../index.rst:48
+msgid ""
+"Form submissions can be filtered by form, site, user (if an authenticated "
+"user has made a submission), and handled status"
+msgstr ""
+"Les soumissions de formulaire peuvent être filtrées par formulaire, site, "
+"utilisateur (si un utilisateur authentifié a fait une soumission), et par "
+"status traité"
+
+#: ../../index.rst:50
+msgid ""
+"Form submissions can be batch deleted and batch edited (batch edit only "
+"allows to change the handled status)"
+msgstr ""
+"Les soumissions de formulaires peuvent être supprimées et modifiées par lot "
+"(la modification par lot permet uniquement de modifier le statut traité)"
+
+#: ../../index.rst:54
+msgid "Comparison with similar modules"
+msgstr "Comparaison avec les modules similaires"
+
+#: ../../index.rst:57
+msgid "Contact Us"
+msgstr "Contact Us"
+
+#: ../../index.rst:59
+msgid "Contact Us is easier to set up. Formularium is more customizable"
+msgstr ""
+"Contact Us est plus facile à mettre en place. Formularium est plus "
+"personnalisable"
+
+#: ../../index.rst:60
+msgid ""
+"Contact Us has two antispam solutions: simple and recaptcha. Formularium has"
+" only recaptcha"
+msgstr ""
+"Contact Us a deux solutions antispam: simple et recaptcha. Formularium a "
+"seulement recaptcha"
+
+#: ../../index.rst:64
+msgid "Table of contents"
+msgstr "Table des matières"

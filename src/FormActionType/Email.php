@@ -46,6 +46,7 @@ class Email extends AbstractFormActionType
             ],
             'attributes' => [
                 'id' => 'action-email-' . rand(),
+                'rows' => '4',
             ],
         ]);
     }

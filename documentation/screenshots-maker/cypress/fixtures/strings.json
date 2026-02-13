@@ -1,0 +1,18 @@
+{
+    "": {
+        "emailLabel": "Email address",
+        "message": "Hello !",
+        "messageLabel": "Message",
+        "sendEmailBody": "You received a message from {email}:\n\n{message}",
+        "sendEmailLabel": "Notification",
+        "sendEmailSubject": "Contact notification"
+    },
+    "fr": {
+        "emailLabel": "Adresse email",
+        "message": "Bonjour !",
+        "messageLabel": "Message",
+        "sendEmailBody": "Vous avez reçu un message de {email}:\n\n{message}",
+        "sendEmailLabel": "Notification",
+        "sendEmailSubject": "Notification de contact"
+    }
+}

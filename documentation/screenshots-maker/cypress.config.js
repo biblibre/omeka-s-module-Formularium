@@ -1,4 +1,4 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 const fs = require('node:fs');
 const path = require('node:path');
 const process = require('node:process');
@@ -19,6 +19,10 @@ module.exports = defineConfig({
         baseUrl: 'http://localhost/',
         setupNodeEvents(on, config) {
             on('after:screenshot', (details) => {
+                if (!details.name) {
+                    return;
+                }
+
                 const lang = process.env.OMEKA_LANG;
                 const filename = details.name + (lang ? `.${lang}` : '') + '.png';
                 const dest = path.join(path.dirname(__dirname), filename);

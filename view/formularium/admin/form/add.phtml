@@ -15,7 +15,7 @@ $this->headLink()->appendStylesheet($this->assetUrl('css/jstree.css', 'Omeka'));
 
 <div id="page-actions">
     <?= $this->hyperlink($this->translate('Cancel'), $this->url('admin/formularium/form'), ['class' => 'button']) ?>
-    <button><?= $this->translate('Add') ?></button>
+    <button data-cy="submit"><?= $this->translate('Add') ?></button>
 </div>
 
 <?php $this->trigger('view.add.form.before', ['form' => $form]); ?>
