@@ -6,9 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forms &mdash; Documentation Formularium </title>
+  <title>Formulaires &mdash; Documentation Formularium </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9c544c0" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Form submissions" href="form-submissions.html" />
-    <link rel="prev" title="Formularium documentation" href="index.html" /> 
+    <link rel="next" title="Composants du formulaire" href="form-components.html" />
+    <link rel="prev" title="Documentation de Formularium" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,8 +45,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Forms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Form submissions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Formulaires</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-new-form">Créer un nouveau formulaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-the-form-to-a-site-page">Ajouter le formulaire à une page de site</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="form-components.html">Composants du formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-actions.html">Actions de formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Soumissions de formulaire</a></li>
 </ul>
 
         </div>
@@ -62,7 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Forms</li>
+      <li class="breadcrumb-item active">Formulaires</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/forms.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -73,16 +80,39 @@
            <div itemprop="articleBody">
              
   <section id="forms">
-<h1>Forms<a class="headerlink" href="#forms" title="Lien vers cette rubrique"></a></h1>
-<p><em>Work in progress…</em></p>
+<h1>Formulaires<a class="headerlink" href="#forms" title="Lien vers cette rubrique"></a></h1>
+<section id="create-a-new-form">
+<h2>Créer un nouveau formulaire<a class="headerlink" href="#create-a-new-form" title="Lien vers cette rubrique"></a></h2>
+<p>Pour créer un nouveau formulaire, allez sur l’interface d’admin et cliquez sur « Formularium » dans le menu de navigation.</p>
+<img alt="_images/form-browse-empty.fr.png" src="_images/form-browse-empty.fr.png" />
+<p>Puis cliquez sur « Ajouter un nouveau formulaire »</p>
+<img alt="_images/form-add-empty.fr.png" src="_images/form-add-empty.fr.png" />
+<p>Donnez lui un nom, puis cliquez sur « Ajouter un composant » pour ajouter votre premier composant.</p>
+<img alt="_images/form-add-component-sidebar.fr.png" src="_images/form-add-component-sidebar.fr.png" />
+<p>Dans la barre latérale, sélectionnez le type de composant que vous souhaitez ajouter, par exemple « Adresse e-mail utilisateur », et complétez le formulaire de paramétrage du composant.</p>
+<img alt="_images/form-add-first-component.fr.png" src="_images/form-add-first-component.fr.png" />
+<p>Vous pouvez ajouter autant de composants que vous le voulez et modifier leur ordre. Vous pouvez aussi ajouter des actions. Les actions sont exécutées après une soumission de formulaire réussie.</p>
+<img alt="_images/form-add-complete.fr.png" src="_images/form-add-complete.fr.png" />
+<p>Quand vous avez terminé, cliquer sur « Ajouter » pour enregistrer le formulaire.</p>
+<img alt="_images/form-browse.fr.png" src="_images/form-browse.fr.png" />
+<p>Voir <a class="reference internal" href="form-components.html"><span class="doc">Composants du formulaire</span></a> et <a class="reference internal" href="form-actions.html"><span class="doc">Actions de formulaire</span></a> pour avoir plus de détails à propos de leur paramètres.</p>
+</section>
+<section id="add-the-form-to-a-site-page">
+<h2>Ajouter le formulaire à une page de site<a class="headerlink" href="#add-the-form-to-a-site-page" title="Lien vers cette rubrique"></a></h2>
+<p>Pour rendre le formulaire visible à vos utilisateurs, vous devez ajouter le bloc « Formularium » à une page de site, et sélectionner votre formulaire dans les paramètres du bloc.</p>
+<img alt="_images/site-page.fr.png" src="_images/site-page.fr.png" />
+<p>La page ressemblera à ceci (avec le thème par défaut):</p>
+<img alt="_images/site-form.fr.png" src="_images/site-form.fr.png" />
+<p>Les soumissions de formulaire sont consultables et gérables sur <a class="reference internal" href="form-submissions.html"><span class="doc">la page des soumissions de formulaire</span></a></p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="index.html" class="btn btn-neutral float-left" title="Formularium documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="form-submissions.html" class="btn btn-neutral float-right" title="Form submissions" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation de Formularium" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="form-components.html" class="btn btn-neutral float-right" title="Composants du formulaire" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

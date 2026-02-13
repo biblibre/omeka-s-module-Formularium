@@ -6,9 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formularium documentation &mdash; Documentation Formularium </title>
+  <title>Documentation de Formularium &mdash; Documentation Formularium </title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9c544c0" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
-    <link rel="next" title="Forms" href="forms.html" /> 
+    <link rel="next" title="Formulaires" href="forms.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,8 +44,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Form submissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-components.html">Composants du formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-actions.html">Actions de formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Soumissions de formulaire</a></li>
 </ul>
 
         </div>
@@ -61,7 +64,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Formularium documentation</li>
+      <li class="breadcrumb-item active">Documentation de Formularium</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
@@ -72,70 +75,79 @@
            <div itemprop="articleBody">
              
   <section id="formularium-documentation">
-<h1>Formularium documentation<a class="headerlink" href="#formularium-documentation" title="Lien vers cette rubrique"></a></h1>
-<p><a class="reference external" href="https://github.com/biblibre/omeka-s-module-Formularium">Formularium</a> is a module for Omeka S. It allows administrators to build forms
-for public sites.</p>
-<p>Form submissions are saved and can be viewed from the administration interface.</p>
-<p>Submitting a form can also trigger several « actions ». There is only one kind of
-action at the moment: sending an email.</p>
+<h1>Documentation de Formularium<a class="headerlink" href="#formularium-documentation" title="Lien vers cette rubrique"></a></h1>
+<p><a class="reference external" href="https://github.com/biblibre/omeka-s-module-Formularium">Formularium</a> est un module pour Omeka S. Il permet aux administrateurs de construire des formulaires pour les sites publics.</p>
+<p>Les soumissions de formulaires sont enregistrées et sont consultables depuis l’interface d’administration.</p>
+<p>Soumettre un formulaire peut aussi déclencher plusieurs « actions ». Il n’y a qu’un seul type d’action pour le moment: envoyer un e-mail.</p>
 <section id="goals">
-<h2>Goals<a class="headerlink" href="#goals" title="Lien vers cette rubrique"></a></h2>
-<p>The primary goal of this module is to be a viable alternative for
-client-specific « contact us »-type forms.</p>
-<p>It is also extensible so that other modules can add their own form components
-and actions.</p>
+<h2>Objectifs<a class="headerlink" href="#goals" title="Lien vers cette rubrique"></a></h2>
+<p>L’objectif principal de ce module est d’être une alternative viable aux formulaires spécifiques de type « contactez-nous ».</p>
+<p>Il est aussi extensible afin que d’autres modules puissent ajouter leurs propres composants de formulaire et leurs propres actions.</p>
 </section>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Lien vers cette rubrique"></a></h2>
+<h2>Exigences<a class="headerlink" href="#requirements" title="Lien vers cette rubrique"></a></h2>
 <ul class="simple">
 <li><p>Omeka S &gt;= 4.1.0</p></li>
 </ul>
 </section>
 <section id="quick-start">
-<h2>Quick start<a class="headerlink" href="#quick-start" title="Lien vers cette rubrique"></a></h2>
+<h2>Démarrage rapide<a class="headerlink" href="#quick-start" title="Lien vers cette rubrique"></a></h2>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://omeka.org/s/docs/user-manual/modules/#adding-modules-to-omeka-s">Add the module to Omeka S</a></p></li>
-<li><p>In the administration interface, click on « Formularium » in the navigation menu</p></li>
-<li><p>Create a new form, give it a name and add « components » (form elements)</p></li>
-<li><p>Optionally, add actions</p></li>
-<li><p>Create a new page for your site, and add the « Formularium » block to this
-page. In the block settings, select the form you created.</p></li>
+<li><p><a class="reference external" href="https://omeka.org/s/docs/user-manual/modules/#adding-modules-to-omeka-s">Ajouter le module à Omeka S</a></p></li>
+<li><p>Dans l’interface d’administration, cliquez sur « Formularium » dans le menu de navigation</p></li>
+<li><p>Créez un nouveau formulaire, donnez lui un nom et ajoutez des « composants » (éléments de formulaire)</p></li>
+<li><p>Éventuellement, ajoutez des actions</p></li>
+<li><p>Créez une nouvelle page pour votre site, et ajoutez le bloc « Formularium » à cette page. Dans les paramètres du bloc, sélectionnez le formulaire que vous avez créé.</p></li>
 </ol>
 <section id="features">
-<h3>Features<a class="headerlink" href="#features" title="Lien vers cette rubrique"></a></h3>
+<h3>Fonctionnalités<a class="headerlink" href="#features" title="Lien vers cette rubrique"></a></h3>
 <ul class="simple">
-<li><p>Create unlimited forms with an unlimited number of components and actions</p></li>
-<li><p>Different component types: text, text area, dropdown list, checkbox, antispam
-(recaptcha), file upload, … (other modules can add their own)</p></li>
-<li><p>One action type: send an email (other modules can add their own)</p></li>
-<li><p>Form submissions are entirely saved (uploaded files included) so they can be
-viewed later. Deleting a form submission also removes the attached files.</p></li>
-<li><p>A flag can be set to mark a form submission as « handled » (whatever that means to you)</p></li>
-<li><p>Form submissions can be filtered by form, site, user (if an authenticated
-user has made a submission), and handled status</p></li>
-<li><p>Form submissions can be batch deleted and batch edited (batch edit only
-allows to change the handled status)</p></li>
+<li><p>Créez une infinité de formulaires avec une infinité de composants et d’actions</p></li>
+<li><p>Différents types de composants: texte, zone de texte, liste déroulante, case à cocher, antispam (recaptcha), chargement de fichier, … (d’autres modules peuvent ajouter les leurs)</p></li>
+<li><p>Un type d’action: envoyer un e-mail (d’autres modules peuvent ajouter les leurs)</p></li>
+<li><p>Les soumissions de formulaire sont entièrement sauvegardées (y compris les fichiers chargés) pour pouvoir être consultables ultérieurement. Supprimer une soumission de formulaire supprime également les fichiers attachés.</p></li>
+<li><p>Une marque peut être posée pour marquer une soumission de formulaire comme étant « traitée » (quoi que ça signifie pour vous)</p></li>
+<li><p>Les soumissions de formulaire peuvent être filtrées par formulaire, site, utilisateur (si un utilisateur authentifié a fait une soumission), et par status traité</p></li>
+<li><p>Les soumissions de formulaires peuvent être supprimées et modifiées par lot (la modification par lot permet uniquement de modifier le statut traité)</p></li>
 </ul>
 </section>
 </section>
 <section id="comparison-with-similar-modules">
-<h2>Comparison with similar modules<a class="headerlink" href="#comparison-with-similar-modules" title="Lien vers cette rubrique"></a></h2>
+<h2>Comparaison avec les modules similaires<a class="headerlink" href="#comparison-with-similar-modules" title="Lien vers cette rubrique"></a></h2>
 <section id="contact-us">
 <h3>Contact Us<a class="headerlink" href="#contact-us" title="Lien vers cette rubrique"></a></h3>
 <ul class="simple">
-<li><p>Contact Us is easier to set up. Formularium is more customizable</p></li>
-<li><p>Contact Us has two antispam solutions: simple and recaptcha. Formularium has
-only recaptcha</p></li>
+<li><p>Contact Us est plus facile à mettre en place. Formularium est plus personnalisable</p></li>
+<li><p>Contact Us a deux solutions antispam: simple et recaptcha. Formularium a seulement recaptcha</p></li>
 </ul>
 </section>
 </section>
 </section>
 <section id="table-of-contents">
-<h1>Table of contents<a class="headerlink" href="#table-of-contents" title="Lien vers cette rubrique"></a></h1>
+<h1>Table des matières<a class="headerlink" href="#table-of-contents" title="Lien vers cette rubrique"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="forms.html">Forms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Form submissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Formulaires</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="forms.html#create-a-new-form">Créer un nouveau formulaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forms.html#add-the-form-to-a-site-page">Ajouter le formulaire à une page de site</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="form-components.html">Composants du formulaire</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#checkbox">Case à cocher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#dropdown-list">Liste déroulante</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#file-upload">Chargement de fichier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#html">HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#recaptcha-antispam">Recaptcha (antispam)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#text-area">Zone de texte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#text-input">Champ texte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form-components.html#user-e-mail-address">Adresse e-mail utilisateur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="form-actions.html">Actions de formulaire</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="form-actions.html#send-an-email">Envoyer un e-mail</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Soumissions de formulaire</a></li>
 </ul>
 </div>
 </section>
@@ -144,7 +156,7 @@ only recaptcha</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="forms.html" class="btn btn-neutral float-right" title="Forms" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="forms.html" class="btn btn-neutral float-right" title="Formulaires" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

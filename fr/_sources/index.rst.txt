@@ -67,4 +67,6 @@ Table of contents
    :maxdepth: 2
 
    forms
+   form-components
+   form-actions
    form-submissions

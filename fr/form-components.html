@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Composants du formulaire &mdash; Documentation Formularium </title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e9c544c0" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d1a510d7"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Actions de formulaire" href="form-actions.html" />
+    <link rel="prev" title="Formulaires" href="forms.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Formularium
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="forms.html">Formulaires</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Composants du formulaire</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#checkbox">Case à cocher</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dropdown-list">Liste déroulante</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file-upload">Chargement de fichier</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#html">HTML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#recaptcha-antispam">Recaptcha (antispam)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#text-area">Zone de texte</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#text-input">Champ texte</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Paramètres</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#user-e-mail-address">Adresse e-mail utilisateur</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Paramètres</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="form-actions.html">Actions de formulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="form-submissions.html">Soumissions de formulaire</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Formularium</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Composants du formulaire</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/form-components.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="form-components">
+<h1>Composants du formulaire<a class="headerlink" href="#form-components" title="Lien vers cette rubrique"></a></h1>
+<p>Les composants de formulaire sont les blocs de construction d’un formulaire. Plusieurs types de composant existent. La plupart des types partagent le sous-ensemble de paramètres suivants:</p>
+<dl class="simple">
+<dt>Nom</dt><dd><p>Cela doit être un identifiant unique du composant. Il sera utilisé comme valeur pour l’attribut <code class="docutils literal notranslate"><span class="pre">name</span></code> de l’élément HTML.</p>
+</dd>
+<dt>Libellé</dt><dd><p>Le texte sera affiché devant l’élément de formulaire</p>
+</dd>
+<dt>Texte d’aide</dt><dd><p>Une description plus détaillée de l’élément du formulaire et ce qui est attendu de l’utilisateur. Il devrait être affiché à côté du libellé, mais selon le thème utilisé cela peut être différent.</p>
+</dd>
+<dt>Requis</dt><dd><p>Les composants de formulaire requis empêchent le formulaire d’être soumis s’ils sont vides (non définis).</p>
+</dd>
+</dl>
+<p>Pour les paramètres spécifiques à un type de composant, voir ci-dessous.</p>
+<section id="checkbox">
+<h2>Case à cocher<a class="headerlink" href="#checkbox" title="Lien vers cette rubrique"></a></h2>
+<p>Une simple case à cocher qui est non-cochée par défaut.</p>
+<section id="settings">
+<h3>Paramètres<a class="headerlink" href="#settings" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/checkbox.fr.png" src="_images/checkbox.fr.png" />
+</section>
+</section>
+<section id="dropdown-list">
+<h2>Liste déroulante<a class="headerlink" href="#dropdown-list" title="Lien vers cette rubrique"></a></h2>
+<p>Une liste déroulante, dont les options peuvent être définies manuellement ou récupérées depuis un vocabulaire « Custom Vocab »</p>
+<section id="id1">
+<h3>Paramètres<a class="headerlink" href="#id1" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/select.fr.png" src="_images/select.fr.png" />
+<dl class="simple">
+<dt>Options</dt><dd><p>Une liste d’options, une par ligne</p>
+</dd>
+<dt>Custom Vocab</dt><dd><p>Ce paramètre est visible uniquement si le module Custom Vocab est activé. Si défini, le paramètre « Options » est ignoré.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="file-upload">
+<h2>Chargement de fichier<a class="headerlink" href="#file-upload" title="Lien vers cette rubrique"></a></h2>
+<p>Permet à l’utilisateur de charger des fichiers</p>
+<section id="id2">
+<h3>Paramètres<a class="headerlink" href="#id2" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/file_input.fr.png" src="_images/file_input.fr.png" />
+<dl class="simple">
+<dt>Types de fichier acceptés</dt><dd><p>Une liste de types de fichier acceptés. Si vide, tous les types de fichier sont acceptés.</p>
+</dd>
+<dt>Extensions de fichier acceptées</dt><dd><p>Une liste d’extensions de fichier acceptées. Si vide, toutes les extensions de fichier sont acceptées.</p>
+</dd>
+<dt>Taille de fichier maximale</dt><dd><p>Taille de fichier maximale en octets ou en notation SI. Par exemple,  « 10485760 » ou « 10MB ».</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="html">
+<h2>HTML<a class="headerlink" href="#html" title="Lien vers cette rubrique"></a></h2>
+<p>Ce type de composant permet d’ajouter du HTML arbitraire dans le formulaire</p>
+<section id="id3">
+<h3>Paramètres<a class="headerlink" href="#id3" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/html.fr.png" src="_images/html.fr.png" />
+<dl class="simple">
+<dt>HTML</dt><dd><p>Le code HTML à ajouter au formulaire. Un éditeur WYSIWYG est disponible.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="recaptcha-antispam">
+<h2>Recaptcha (antispam)<a class="headerlink" href="#recaptcha-antispam" title="Lien vers cette rubrique"></a></h2>
+<p>Empêche le spam avec reCAPTCHA (Google). Nécessite que les paramètres « clé du site reCAPTCHA » et « clé secrète reCAPTCHA » soient définis (voir <a class="reference external" href="https://omeka.org/s/docs/user-manual/admin/settings/#security">paramètres de sécurité</a>)</p>
+<section id="id4">
+<h3>Paramètres<a class="headerlink" href="#id4" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/recaptcha.fr.png" src="_images/recaptcha.fr.png" />
+</section>
+</section>
+<section id="text-area">
+<h2>Zone de texte<a class="headerlink" href="#text-area" title="Lien vers cette rubrique"></a></h2>
+<p>Un champ texte multi-lignes</p>
+<section id="id5">
+<h3>Paramètres<a class="headerlink" href="#id5" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/textarea.fr.png" src="_images/textarea.fr.png" />
+</section>
+</section>
+<section id="text-input">
+<h2>Champ texte<a class="headerlink" href="#text-input" title="Lien vers cette rubrique"></a></h2>
+<p>Un champ texte simple</p>
+<section id="id6">
+<h3>Paramètres<a class="headerlink" href="#id6" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/text_input.fr.png" src="_images/text_input.fr.png" />
+</section>
+</section>
+<section id="user-e-mail-address">
+<h2>Adresse e-mail utilisateur<a class="headerlink" href="#user-e-mail-address" title="Lien vers cette rubrique"></a></h2>
+<p>Similaire à « Champ texte » mais est automatiquement défini à l’adresse e-mail de l’utilisateur s’il est authentifié.</p>
+<section id="id7">
+<h3>Paramètres<a class="headerlink" href="#id7" title="Lien vers cette rubrique"></a></h3>
+<img alt="_images/user_email.fr.png" src="_images/user_email.fr.png" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="forms.html" class="btn btn-neutral float-left" title="Formulaires" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="form-actions.html" class="btn btn-neutral float-right" title="Actions de formulaire" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2026, BibLibre.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
