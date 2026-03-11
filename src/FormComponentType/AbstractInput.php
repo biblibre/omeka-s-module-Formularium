@@ -15,7 +15,8 @@ abstract class AbstractInput extends AbstractFormComponentType
             'name' => 'name',
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
-                'label' => 'Name', // @translate
+                'label' => 'HTML element name', // @translate
+                'info' => "Value of the HTML element's name attribute. It should be unique. This name can then be used to reference this component in form actions.", // @translate
             ],
             'attributes' => [
                 'required' => true,
