@@ -25,11 +25,13 @@ class Textarea extends AbstractInput
 
     public function formAddElements(Form $form, FormComponent $formComponent): void
     {
+        $label = trim($formComponent->getSetting('label', ''));
+
         $form->add([
             'type' => 'Laminas\Form\Element\Textarea',
             'name' => $formComponent->getSetting('name'),
             'options' => [
-                'label' => $formComponent->getSetting('label'),
+                'label' => $label !== '' ? $label : null,
                 'info' => $formComponent->getSetting('info'),
             ],
             'attributes' => [

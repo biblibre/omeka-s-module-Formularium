@@ -78,11 +78,13 @@ class Select extends AbstractInput
             $valueOptions = array_combine($options, $options);
         }
 
+        $label = trim($formComponent->getSetting('label', ''));
+
         $form->add([
             'type' => 'Laminas\Form\Element\Select',
             'name' => $formComponent->getSetting('name'),
             'options' => [
-                'label' => $formComponent->getSetting('label'),
+                'label' => $label !== '' ? $label : null,
                 'info' => $formComponent->getSetting('info'),
                 'value_options' => $valueOptions,
                 'empty_option' => '',

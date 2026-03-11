@@ -32,11 +32,13 @@ class UserEmail extends AbstractInput
     {
         $user = $this->authenticationService->getIdentity();
 
+        $label = trim($formComponent->getSetting('label', ''));
+
         $form->add([
             'type' => 'Laminas\Form\Element\Email',
             'name' => $formComponent->getSetting('name'),
             'options' => [
-                'label' => $formComponent->getSetting('label'),
+                'label' => $label !== '' ? $label : null,
                 'info' => $formComponent->getSetting('info'),
             ],
             'attributes' => [

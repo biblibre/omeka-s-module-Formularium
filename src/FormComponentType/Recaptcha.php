@@ -36,10 +36,12 @@ class Recaptcha extends AbstractFormComponentType
 
     public function formAddElements(Form $form, FormComponent $formComponent): void
     {
+        $label = trim($formComponent->getSetting('label', ''));
+
         $form->add([
             'type' => 'Omeka\Form\Element\Recaptcha',
             'options' => [
-                'label' => $formComponent->getSetting('label'),
+                'label' => $label !== '' ? $label : null,
             ],
         ]);
     }

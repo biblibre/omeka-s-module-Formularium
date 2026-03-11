@@ -81,11 +81,13 @@ class FileInput extends AbstractInput
         $accept_extensions = array_map(fn($extension) => ".$extension", $extensions);
         $accept = implode(',', array_merge($accept_filetypes, $accept_extensions));
 
+        $label = trim($formComponent->getSetting('label', ''));
+
         $form->add([
             'type' => 'Laminas\Form\Element\File',
             'name' => $formComponent->getSetting('name'),
             'options' => [
-                'label' => $formComponent->getSetting('label'),
+                'label' => $label !== '' ? $label : null,
                 'info' => $formComponent->getSetting('info'),
             ],
             'attributes' => [
