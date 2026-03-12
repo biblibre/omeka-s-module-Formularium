@@ -13,6 +13,9 @@ $hasMessages = !empty($messages);
     <div class="field formularium-field <?= $isRequired ? 'required' : '' ?> <?= $hasMessages ? 'formularium-error' : '' ?>">
         <div class="field-meta">
             <?= $this->formLabel($element) ?>
+            <?php if ($isRequired): ?>
+                <span class="formularium-required-text"><?= $this->translate('(required)') ?></span>
+            <?php endif; ?>
 
             <?php if ($info = $element->getOption('info')): ?>
                 <a href="#" class="<?= $hideInfo ? 'expand' : 'collapse' ?>" aria-label="<?= $this->escapeHtml($hideInfo ? $this->translate('Expand') : $this->translate('Collapse')); ?>"></a>
