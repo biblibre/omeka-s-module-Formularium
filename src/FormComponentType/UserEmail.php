@@ -51,6 +51,8 @@ class UserEmail extends AbstractInput
             $formSubmissionData = $formSubmission->getData();
             $formSubmissionData[$name] = $formData[$name];
             $formSubmission->setData($formSubmissionData);
+
+            $formSubmission->setSubmitterEmail($formData[$name]);
         }
     }
 }

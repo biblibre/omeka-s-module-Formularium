@@ -59,7 +59,7 @@
 
     <div class="field">
         <div class="field-meta">
-            <label><?= $this->translate('Has been submitted by') ?></label>
+            <label><?= $this->translate('Has been submitted by (Omeka user)') ?></label>
         </div>
         <div class="inputs">
             <?= $this->formulariumSubmitterSelect([
@@ -68,6 +68,19 @@
                     'value' => $query['submitter_id'] ?? null,
                 ],
             ]) ?>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="field-meta">
+            <label><?= $this->translate('Has been submitted by (email)') ?></label>
+        </div>
+        <div class="inputs">
+            <?php
+            $submitterEmail = new \Laminas\Form\Element\Text('submitter_email');
+            $submitterEmail->setAttribute('value', $query['submitter_email'] ?? '');
+            echo $this->formText($submitterEmail);
+            ?>
         </div>
     </div>
 

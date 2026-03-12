@@ -74,6 +74,11 @@ class FormSubmissionRepresentation extends AbstractEntityRepresentation
         return $handler ? $this->getAdapter('users')->getRepresentation($handler) : null;
     }
 
+    public function submitterEmail(): ?string
+    {
+        return $this->resource->getSubmitterEmail();
+    }
+
     public function data(): array
     {
         return $this->resource->getData();

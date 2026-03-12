@@ -119,6 +119,8 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
                 <td>
                     <?php if ($submitter = $formSubmission->submitter()): ?>
                         <?= $submitter->link($submitter->name()) ?>
+                    <?php elseif ($submitterEmail = $formSubmission->submitterEmail()): ?>
+                        <?= $this->escapeHtml($submitterEmail) ?>
                     <?php endif; ?>
                 </td>
                 <td>

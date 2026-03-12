@@ -2,6 +2,7 @@
 
 namespace Formularium;
 
+use Composer\Semver\Comparator;
 use Omeka\Module\AbstractModule;
 use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\EventManager\Event;
@@ -48,6 +49,7 @@ class Module extends AbstractModule
             handler_id INT DEFAULT NULL,
             submitted DATETIME NOT NULL,
             handled DATETIME DEFAULT NULL,
+            submitter_email VARCHAR(255) DEFAULT NULL,
             data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
             INDEX IDX_26C0C2F45FF69B7D (form_id),
             INDEX IDX_26C0C2F4F6BD1646 (site_id),
@@ -133,6 +135,18 @@ class Module extends AbstractModule
         $connection->executeStatement('DROP TABLE formularium_form');
     }
 
+    public function upgrade($oldVersion, $newVersion, ServiceLocatorInterface $serviceLocator)
+    {
+        $connection = $serviceLocator->get('Omeka\Connection');
+
+        if (Comparator::lessThan($oldVersion, '0.2.0')) {
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form_submission
+            ADD submitter_email VARCHAR(255) DEFAULT NULL AFTER handled
+            SQL);
+        }
+    }
+
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
     {
         $sharedEventManager->attach(
@@ -193,8 +207,12 @@ class Module extends AbstractModule
         if (isset($query['submitter_id']) && $query['submitter_id']) {
             $user = $view->api()->read('users', $query['submitter_id'])->getContent();
             if ($user) {
-                $filters[$view->translate('Submitted by')][] = $user->name();
+                $filters[$view->translate('Submitted by (user)')][] = $user->name();
             }
+        }
+
+        if (!empty($query['submitter_email'])) {
+            $filters[$view->translate('Submitted by (email)')][] = $query['submitter_email'];
         }
 
         if (isset($query['handled']) && $query['handled'] !== '') {

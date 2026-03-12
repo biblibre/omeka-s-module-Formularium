@@ -70,7 +70,17 @@ class FormSubmissionAdapter extends AbstractEntityAdapter
         }
 
         if (!empty($query['submitter_id'])) {
-            $qb->andWhere($qb->expr()->eq('omeka_root.submitter', $query['submitter_id']));
+            $qb->andWhere($qb->expr()->eq(
+                'omeka_root.submitter',
+                $this->createNamedParameter($qb, $query['submitter_id'])
+            ));
+        }
+
+        if (!empty($query['submitter_email'])) {
+            $qb->andWhere($qb->expr()->eq(
+                'omeka_root.submitterEmail',
+                $this->createNamedParameter($qb, $query['submitter_email'])
+            ));
         }
 
         if (isset($query['handled']) && $query['handled'] !== '') {

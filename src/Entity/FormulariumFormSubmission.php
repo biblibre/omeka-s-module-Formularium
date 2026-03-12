@@ -69,6 +69,11 @@ class FormulariumFormSubmission extends AbstractEntity
     protected ?DateTime $handled;
 
     /**
+     * @Column(nullable=true)
+     */
+    protected ?string $submitterEmail;
+
+    /**
      * @Column(type="json")
      */
     protected array $data;
@@ -172,6 +177,16 @@ class FormulariumFormSubmission extends AbstractEntity
     public function setHandled(?DateTime $handled): void
     {
         $this->handled = $handled;
+    }
+
+    public function setSubmitterEmail(?string $submitterEmail): void
+    {
+        $this->submitterEmail = $submitterEmail;
+    }
+
+    public function getSubmitterEmail(): ?string
+    {
+        return $this->submitterEmail;
     }
 
     public function getData(): array

@@ -67,10 +67,10 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'submitter', 'handler', 'submitted', 'handled', 'data', 'files'];
+            return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
         }
 
-        return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'submitter', 'handler', 'submitted', 'handled', 'data', 'files'];
+        return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
     }
 
     /**

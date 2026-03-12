@@ -29,6 +29,8 @@
         <?= $this->i18n()->dateFormat($resource->submitted(), 'long', 'medium') ?>
         <?php if ($submitter = $resource->submitter()): ?>
             <?= $this->translate('by') ?> <?= $submitter->link($submitter->name()) ?>
+        <?php elseif ($submitterEmail = $resource->submitterEmail()): ?>
+            <?= $this->translate('by') ?> <?= $this->escapeHtml($submitterEmail) ?>
         <?php endif; ?>
     </div>
 </div>
