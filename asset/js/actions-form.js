@@ -16,17 +16,14 @@
 
             actionsFormElement.closest('form').addEventListener('submit', function (ev) {
                 renameFormElements(actionsFormElement);
-                for (const deletedAction of actionsFormElement.querySelectorAll('.actions-action.delete')) {
-                    for (const el of deletedAction.querySelectorAll('input,select,textarea,button')) {
-                        el.setAttribute('disabled', true);
-                    }
-                }
             });
         });
 
         $('.actions-add-button').on('click', function () {
             Omeka.openSidebar($('#action-selector'));
         });
+
+        $('.actions-action :is(input, select, textarea)').on('invalid', onInvalid);
     });
 
     // Handle action edit button.
@@ -38,13 +35,25 @@
     // Handle action remove button.
     $(document).on('click', '.actions-action-remove-button', function(e) {
         e.preventDefault();
-        this.closest('.actions-action').classList.add('delete');
+        const action = this.closest('.actions-action');
+        action.classList.add('delete');
+
+        // Disable all form controls so they are excluded from form validation
+        for (const el of action.querySelectorAll('input,select,textarea')) {
+            el.formulariumInitialDisabledState = el.disabled;
+            el.disabled = true;
+        }
     });
 
     // Handle action restore button.
     $(document).on('click', '.actions-action-restore-button', function(e) {
         e.preventDefault();
-        this.closest('.actions-action').classList.remove('delete');
+        const action = this.closest('.actions-action');
+        action.classList.remove('delete');
+
+        for (const el of action.querySelectorAll('input,select,textarea')) {
+            el.disabled = el.formulariumInitialDisabledState ?? false;
+        }
     });
 
     $(document).on('change keyup focusout', '.actions-action-internal-label-input', function(e) {
@@ -68,8 +77,18 @@
         const internalLabelInput = action.querySelector('[name="internal_label"]');
         internalLabelInput.focus();
         internalLabelInput.select();
+
+        action.querySelectorAll('input,select,textarea').forEach(el => {
+            el.addEventListener('invalid', onInvalid);
+        });
     });
 
+    function onInvalid (e) {
+        const action = e.target.closest('.actions-action');
+        if (action) {
+            action.classList.add('edit');
+        }
+    }
 
     function renameFormElements(formElement) {
         const elementName = formElement.dataset.name;

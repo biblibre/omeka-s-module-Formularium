@@ -24,9 +24,12 @@ class Email extends AbstractFormActionType
     {
         $fieldset->add([
             'name' => 'to',
-            'type' => 'Laminas\Form\Element\Email',
+            'type' => 'Laminas\Form\Element\Text',
             'options' => [
                 'label' => 'To', // @translate
+            ],
+            'attributes' => [
+                'required' => true,
             ],
         ]);
 
@@ -35,6 +38,9 @@ class Email extends AbstractFormActionType
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
                 'label' => 'Subject', // @translate
+            ],
+            'attributes' => [
+                'required' => true,
             ],
         ]);
 
@@ -45,8 +51,8 @@ class Email extends AbstractFormActionType
                 'label' => 'Body', // @translate
             ],
             'attributes' => [
-                'id' => 'action-email-' . rand(),
                 'rows' => '4',
+                'required' => true,
             ],
         ]);
     }

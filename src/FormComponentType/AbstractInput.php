@@ -17,10 +17,12 @@ abstract class AbstractInput extends AbstractFormComponentType
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
                 'label' => 'HTML element name', // @translate
-                'info' => "Value of the HTML element's name attribute. It should be unique. This name can then be used to reference this component in form actions.", // @translate
+                'info' => "Value of the HTML element's name attribute. It should be unique. This name can then be used to reference this component in form actions. It must contain only alphanumeric characters and underscores.", // @translate
             ],
             'attributes' => [
                 'required' => true,
+                'pattern' => '[A-Za-z0-9_]+',
+                'title' => 'The name must contain only alphanumeric characters (A-Z, a-z, 0-9) and underscores (_)', // @title
             ],
         ]);
 

@@ -10,8 +10,6 @@ class FormForm extends Form
 {
     public function init()
     {
-        $this->setAttribute('novalidate', true);
-
         $this->add([
             'name' => 'o:name',
             'type' => 'Laminas\Form\Element\Text',

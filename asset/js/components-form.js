@@ -16,18 +16,14 @@
 
             componentsFormElement.closest('form').addEventListener('submit', function (ev) {
                 renameFormElements(componentsFormElement);
-                // FIXME Deleted required element trigger browser validation and the form wont submit
-                componentsFormElement.querySelectorAll('.components-component.delete').forEach(function (el) {
-                    el.querySelectorAll('input,select,textarea,button').forEach(el => {
-                        el.setAttribute('disabled', true);
-                    });
-                })
             });
         });
 
         $('.components-add-button').on('click', function () {
             Omeka.openSidebar($('#component-selector'));
         });
+
+        $('.components-component :is(input, select, textarea)').on('invalid', onInvalid);
     });
 
     // Handle component edit button.
@@ -39,13 +35,25 @@
     // Handle component remove button.
     $(document).on('click', '.components-component-remove-button', function(e) {
         e.preventDefault();
-        this.closest('.components-component').classList.add('delete');
+        const component = this.closest('.components-component');
+        component.classList.add('delete');
+
+        // Disable all form controls so they are excluded from form validation
+        for (const el of component.querySelectorAll('input,select,textarea')) {
+            el.formulariumInitialDisabledState = el.disabled;
+            el.disabled = true;
+        }
     });
 
     // Handle component restore button.
     $(document).on('click', '.components-component-restore-button', function(e) {
         e.preventDefault();
-        this.closest('.components-component').classList.remove('delete');
+        const component = this.closest('.components-component');
+        component.classList.remove('delete');
+
+        for (const el of component.querySelectorAll('input,select,textarea')) {
+            el.disabled = el.formulariumInitialDisabledState ?? false;
+        }
     });
 
     $(document).on('change keyup focusout', '.components-component-internal-label-input', function(e) {
@@ -71,8 +79,18 @@
         const internalLabelInput = component.querySelector('[name="internal_label"]');
         internalLabelInput.focus();
         internalLabelInput.select();
+
+        component.querySelectorAll('input,select,textarea').forEach(el => {
+            el.addEventListener('invalid', onInvalid);
+        });
     });
 
+    function onInvalid (e) {
+        const component = e.target.closest('.components-component');
+        if (component) {
+            component.classList.add('edit');
+        }
+    }
 
     function renameFormElements(formElement) {
         const elementName = formElement.dataset.name;
