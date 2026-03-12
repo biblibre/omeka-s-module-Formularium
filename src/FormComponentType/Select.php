@@ -55,6 +55,14 @@ class Select extends AbstractInput
                 'info' => 'One option per line', // @translate
             ],
         ]);
+
+        $fieldset->add([
+            'type' => 'Laminas\Form\Element\Text',
+            'name' => 'empty_option',
+            'options' => [
+                'label' => 'Empty option text', // @translate
+            ],
+        ]);
     }
 
     public function render(PhpRenderer $renderer, Form $form, FormComponent $formComponent, $data = null): string
@@ -84,7 +92,7 @@ class Select extends AbstractInput
         }
 
         $spec['options']['value_options'] = $valueOptions;
-        $spec['options']['empty_option'] = '';
+        $spec['options']['empty_option'] = $formComponent->getSetting('empty_option', '');
 
         return $spec;
     }
