@@ -45,7 +45,7 @@ class FormController extends AbstractActionController
                         $formActionType->perform($action, $formSubmission, $formData);
                     }
 
-                    $this->messenger()->addSuccess('Form sent sucessfully');
+                    $this->messenger()->addSuccess('Form sent successfully'); // @translate
 
                     if ($site_page_id) {
                         $page = $this->api()->read('site_pages', $site_page_id)->getContent();
