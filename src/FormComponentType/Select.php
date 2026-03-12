@@ -62,8 +62,13 @@ class Select extends AbstractInput
         return $renderer->partial('formularium/form-component-type/select', ['form' => $form, 'formComponent' => $formComponent, 'data' => $data]);
     }
 
-    public function formAddElements(Form $form, FormComponent $formComponent): void
+
+    protected function getFormElementSpec(FormComponent $formComponent): array
     {
+        $spec = parent::getFormElementSpec($formComponent);
+
+        $spec['type'] = 'Laminas\Form\Element\Select';
+
         $valueOptions = [];
 
         $custom_vocab_id = $formComponent->getSetting('custom_vocab_id');
@@ -78,32 +83,10 @@ class Select extends AbstractInput
             $valueOptions = array_combine($options, $options);
         }
 
-        $label = trim($formComponent->getSetting('label', ''));
+        $spec['options']['value_options'] = $valueOptions;
+        $spec['options']['empty_option'] = '';
 
-        $form->add([
-            'type' => 'Laminas\Form\Element\Select',
-            'name' => $formComponent->getSetting('name'),
-            'options' => [
-                'label' => $label !== '' ? $label : null,
-                'info' => $formComponent->getSetting('info'),
-                'value_options' => $valueOptions,
-                'empty_option' => '',
-            ],
-            'attributes' => [
-                'required' => $formComponent->getSetting('required') ? true : false,
-            ],
-        ]);
-    }
-
-    public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void
-    {
-        $required = $formComponent->getSetting('required') ? true : false;
-
-        $inputFilter->add([
-            'name' => $formComponent->getSetting('name'),
-            'required' => $required,
-            'allow_empty' => !$required,
-        ]);
+        return $spec;
     }
 
     public function hydrateFormSubmission(FormComponent $formComponent, Request $request, FormulariumFormSubmission $formSubmission, ErrorStore $errorStore)

@@ -5,6 +5,7 @@ namespace Formularium\FormComponentType;
 use Formularium\FormComponent\FormComponent;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
+use Laminas\InputFilter\InputFilterInterface;
 use Laminas\View\Renderer\PhpRenderer;
 
 abstract class AbstractInput extends AbstractFormComponentType
@@ -40,11 +41,52 @@ abstract class AbstractInput extends AbstractFormComponentType
         ]);
 
         $fieldset->add([
+            'name' => 'hide_info', // @translate
+            'type' => 'Laminas\Form\Element\Checkbox',
+            'options' => [
+                'label' => 'Hide help text by default', // @translate
+            ],
+        ]);
+
+        $fieldset->add([
             'name' => 'required',
             'type' => 'Laminas\Form\Element\Checkbox',
             'options' => [
                 'label' => 'Required', // @translate
             ],
+        ]);
+    }
+
+    protected function getFormElementSpec(FormComponent $formComponent): array
+    {
+        $label = trim($formComponent->getSetting('label', ''));
+
+        return [
+            'name' => $formComponent->getSetting('name'),
+            'options' => [
+                'label' => $label !== '' ? $label : null,
+                'info' => $formComponent->getSetting('info'),
+                'hide_info' => $formComponent->getSetting('hide_info') ? true : false,
+            ],
+            'attributes' => [
+                'required' => $formComponent->getSetting('required') ? true : false,
+            ],
+        ];
+    }
+
+    public function formAddElements(Form $form, FormComponent $formComponent): void
+    {
+        $form->add($this->getFormElementSpec($formComponent));
+    }
+
+    public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void
+    {
+        $required = $formComponent->getSetting('required') ? true : false;
+
+        $inputFilter->add([
+            'name' => $formComponent->getSetting('name'),
+            'required' => $required,
+            'allow_empty' => !$required,
         ]);
     }
 
@@ -56,6 +98,6 @@ abstract class AbstractInput extends AbstractFormComponentType
             $element->setValue($data[$name]);
         }
 
-        return $renderer->formRow($element);
+        return $renderer->formRow($element, null, null, 'formularium/common/form-row');
     }
 }

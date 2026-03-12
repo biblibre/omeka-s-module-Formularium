@@ -1,0 +1,34 @@
+<?php
+$required = $element->getAttribute('required');
+$showRequired = $element->getOption('show_required');
+$hideInfo = $element->getOption('hide_info');
+$isRequired = null === $showRequired ? $required : $showRequired;
+$escapeInfo = (false !== $element->getOption('escape_info'));
+$messages = $element->getMessages();
+$hasMessages = !empty($messages);
+?>
+<?php if (null === $label || 'hidden' === $element->getAttribute('type')): ?>
+    <?= $this->formElement($element) ?>
+<?php else: ?>
+    <div class="field formularium-field <?= $isRequired ? 'required' : '' ?> <?= $hasMessages ? 'formularium-error' : '' ?>">
+        <div class="field-meta">
+            <?= $this->formLabel($element) ?>
+
+            <?php if ($info = $element->getOption('info')): ?>
+                <a href="#" class="<?= $hideInfo ? 'expand' : 'collapse' ?>" aria-label="<?= $this->escapeHtml($hideInfo ? $this->translate('Expand') : $this->translate('Collapse')); ?>"></a>
+                <div class="collapsible">
+                    <div class="field-description"><?= $escapeInfo ? $this->escapeHtml($this->translate($info)) : $this->translate($info) ?></div>
+                    <?php if ($documentation = $element->getOption('documentation')): ?>
+                        <a href="<?php echo $documentation; ?>" class="docs-link"><?= $this->translate('Learn more') ?></a>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="inputs">
+            <?php echo $this->formElement($element); ?>
+        </div>
+
+        <?php echo $this->formElementErrors($element, ['class' => 'messages formularium-messages']); ?>
+    </div>
+<?php endif; ?>

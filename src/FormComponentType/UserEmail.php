@@ -28,35 +28,18 @@ class UserEmail extends AbstractInput
         return $renderer->partial('formularium/form-component-type/user-email', ['form' => $form, 'formComponent' => $formComponent, 'data' => $data]);
     }
 
-    public function formAddElements(Form $form, FormComponent $formComponent): void
+    protected function getFormElementSpec(FormComponent $formComponent): array
     {
+        $spec = parent::getFormElementSpec($formComponent);
+
+        $spec['type'] = 'Laminas\Form\Element\Text';
+
         $user = $this->authenticationService->getIdentity();
+        if ($user) {
+            $spec['attributes']['value'] = $user->getEmail();
+        }
 
-        $label = trim($formComponent->getSetting('label', ''));
-
-        $form->add([
-            'type' => 'Laminas\Form\Element\Email',
-            'name' => $formComponent->getSetting('name'),
-            'options' => [
-                'label' => $label !== '' ? $label : null,
-                'info' => $formComponent->getSetting('info'),
-            ],
-            'attributes' => [
-                'required' => $formComponent->getSetting('required') ? true : false,
-                'value' => $user ? $user->getEmail() : '',
-            ],
-        ]);
-    }
-
-    public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void
-    {
-        $required = $formComponent->getSetting('required') ? true : false;
-
-        $inputFilter->add([
-            'name' => $formComponent->getSetting('name'),
-            'required' => $required,
-            'allow_empty' => !$required,
-        ]);
+        return $spec;
     }
 
     public function hydrateFormSubmission(FormComponent $formComponent, Request $request, FormulariumFormSubmission $formSubmission, ErrorStore $errorStore)

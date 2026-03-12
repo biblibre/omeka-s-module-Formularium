@@ -18,32 +18,13 @@ class Checkbox extends AbstractInput
         return 'Checkbox'; // @translate
     }
 
-    public function formAddElements(Form $form, FormComponent $formComponent): void
+    protected function getFormElementSpec(FormComponent $formComponent): array
     {
-        $label = trim($formComponent->getSetting('label', ''));
+        $spec = parent::getFormElementSpec($formComponent);
 
-        $form->add([
-            'type' => 'Laminas\Form\Element\Checkbox',
-            'name' => $formComponent->getSetting('name'),
-            'options' => [
-                'label' => $label !== '' ? $label : null,
-                'info' => $formComponent->getSetting('info'),
-            ],
-            'attributes' => [
-                'required' => $formComponent->getSetting('required') ? true : false,
-            ],
-        ]);
-    }
+        $spec['type'] = 'Laminas\Form\Element\Checkbox';
 
-    public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void
-    {
-        $required = $formComponent->getSetting('required') ? true : false;
-
-        $inputFilter->add([
-            'name' => $formComponent->getSetting('name'),
-            'required' => $required,
-            'allow_empty' => !$required,
-        ]);
+        return $spec;
     }
 
     public function hydrateFormSubmission(FormComponent $formComponent, Request $request, FormulariumFormSubmission $formSubmission, ErrorStore $errorStore)

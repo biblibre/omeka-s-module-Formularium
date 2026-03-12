@@ -23,21 +23,13 @@ class TextInput extends AbstractInput
         return $renderer->partial('formularium/form-component-type/text-input', ['form' => $form, 'formComponent' => $formComponent, 'data' => $data]);
     }
 
-    public function formAddElements(Form $form, FormComponent $formComponent): void
+    protected function getFormElementSpec(FormComponent $formComponent): array
     {
-        $label = trim($formComponent->getSetting('label', ''));
+        $spec = parent::getFormElementSpec($formComponent);
 
-        $form->add([
-            'type' => 'Laminas\Form\Element\Text',
-            'name' => $formComponent->getSetting('name'),
-            'options' => [
-                'label' => $label !== '' ? $label : null,
-                'info' => $formComponent->getSetting('info'),
-            ],
-            'attributes' => [
-                'required' => $formComponent->getSetting('required') ? true : false,
-            ],
-        ]);
+        $spec['type'] = 'Laminas\Form\Element\Text';
+
+        return $spec;
     }
 
     public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void

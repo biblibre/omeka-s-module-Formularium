@@ -4,4 +4,4 @@ $element = $form->get($name);
 if (isset($data[$name])) {
     $element->setAttribute('value', $data[$name] ?? '');
 }
-echo $this->formRow($element);
+echo $this->formRow($element, null, null, 'formularium/common/form-row');

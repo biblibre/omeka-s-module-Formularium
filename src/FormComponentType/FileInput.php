@@ -69,8 +69,12 @@ class FileInput extends AbstractInput
         return $renderer->formRow($element);
     }
 
-    public function formAddElements(Form $form, FormComponent $formComponent): void
+    protected function getFormElementSpec(FormComponent $formComponent): array
     {
+        $spec = parent::getFormElementSpec($formComponent);
+
+        $spec['type'] = 'Laminas\Form\Element\File';
+
         $filetype_allowlist = $formComponent->getSetting('filetype_allowlist', '');
         $extension_allowlist = $formComponent->getSetting('extension_allowlist', '');
 
@@ -81,20 +85,9 @@ class FileInput extends AbstractInput
         $accept_extensions = array_map(fn($extension) => ".$extension", $extensions);
         $accept = implode(',', array_merge($accept_filetypes, $accept_extensions));
 
-        $label = trim($formComponent->getSetting('label', ''));
+        $spec['attributes']['accept'] = $accept;
 
-        $form->add([
-            'type' => 'Laminas\Form\Element\File',
-            'name' => $formComponent->getSetting('name'),
-            'options' => [
-                'label' => $label !== '' ? $label : null,
-                'info' => $formComponent->getSetting('info'),
-            ],
-            'attributes' => [
-                'required' => $formComponent->getSetting('required') ? true : false,
-                'accept' => $accept,
-            ],
-        ]);
+        return $spec;
     }
 
     public function formAddInputFilters(InputFilterInterface $inputFilter, FormComponent $formComponent): void
