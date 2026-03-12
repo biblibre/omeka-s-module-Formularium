@@ -68,6 +68,7 @@ return [
             'checkbox' => FormComponentType\Checkbox::class,
             'recaptcha' => FormComponentType\Recaptcha::class,
             'text_input' => FormComponentType\TextInput::class,
+            'email' => FormComponentType\Email::class,
             'textarea' => FormComponentType\Textarea::class,
         ],
         'factories' => [
