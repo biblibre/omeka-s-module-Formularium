@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var Laminas\Form\Form $form
+ */
+?>
+<?php if ($form->hasValidated() && !$form->isValid()): ?>
+    <div class="formularium-form-errors">
+        <p><?= $this->translate('The form cannot be sent because of the following errors:') ?></p>
+        <ul class="messages">
+            <?php foreach ($form->getIterator() as $element): ?>
+                <?php foreach ($element->getMessages() as $message): ?>
+                    <li>
+                        <?php if ($label = $element->getLabel()): ?>
+                            <span class="formularium-error-label"><?= $this->escapeHtml($this->translate($label)) ?>:</span>
+                        <?php endif; ?>
+
+                        <span class="formularium-error-message">
+                            <?= $this->escapeHtml($this->translate($message)) ?>
+                        </span>
+                    </li>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>

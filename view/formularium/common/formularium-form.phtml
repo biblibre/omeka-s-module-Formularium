@@ -4,6 +4,8 @@
  * @var Laminas\Form\Form $form
  */
 ?>
+<?= $this->partial('formularium/common/formularium-form-errors', ['form' => $form]) ?>
+
 <?php $form->prepare(); ?>
 <?= $this->form()->openTag($form) ?>
 

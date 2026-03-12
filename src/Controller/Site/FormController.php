@@ -55,8 +55,6 @@ class FormController extends AbstractActionController
 
                     return $this->redirect()->toRoute('site/formularium/form-id', ['id' => $formularium_form->id(), 'site-slug' => $this->currentSite()->slug()]);
                 }
-            } else {
-                $this->messenger()->addFormErrors($form);
             }
         }
 
