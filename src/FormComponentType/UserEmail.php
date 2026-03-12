@@ -32,7 +32,7 @@ class UserEmail extends AbstractInput
     {
         $spec = parent::getFormElementSpec($formComponent);
 
-        $spec['type'] = 'Laminas\Form\Element\Text';
+        $spec['type'] = 'Laminas\Form\Element\Email';
 
         $user = $this->authenticationService->getIdentity();
         if ($user) {
