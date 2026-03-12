@@ -56,6 +56,8 @@ return [
         'factories' => [
             'Formularium\Form\FormForm' => Service\Form\FormFormFactory::class,
             'Formularium\Form\FormulariumForm' => Service\Form\FormulariumFormFactory::class,
+            'Formularium\Form\Element\SubmitterSelect' => Service\Form\Element\SubmitterSelectFactory::class,
+            'Formularium\Form\Element\HandlerSelect' => Service\Form\Element\HandlerSelectFactory::class,
         ],
     ],
     'formularium_form_action_types' => [
@@ -254,6 +256,8 @@ return [
         ],
         'factories' => [
             'formularium' => Service\View\Helper\FormulariumFactory::class,
+            'formulariumSubmitterSelect' => Service\View\Helper\FormulariumSubmitterSelectFactory::class,
+            'formulariumHandlerSelect' => Service\View\Helper\FormulariumHandlerSelectFactory::class,
         ],
         'delegators' => [
             'Laminas\Form\View\Helper\FormElement' => [

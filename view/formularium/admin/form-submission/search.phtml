@@ -62,7 +62,7 @@
             <label><?= $this->translate('Has been submitted by') ?></label>
         </div>
         <div class="inputs">
-            <?= $this->userSelect([
+            <?= $this->formulariumSubmitterSelect([
                 'name' => 'submitter_id',
                 'attributes' => [
                     'value' => $query['submitter_id'] ?? null,
@@ -88,7 +88,7 @@
             <label><?= $this->translate('Has been handled by') ?></label>
         </div>
         <div class="inputs">
-            <?= $this->userSelect([
+            <?= $this->formulariumHandlerSelect([
                 'name' => 'handler_id',
                 'attributes' => [
                     'value' => $query['handler_id'] ?? null,
