@@ -1,10 +1,17 @@
 (function () {
     'use strict';
 
+    const byteToHex = [];
+    for (let i = 0; i < 256; ++i) {
+        byteToHex[i] = (i + 0x100).toString(16).substr(1);
+    }
+
     // CKEditor needs a unique id for each textarea
     function getRandomId () {
-        const u8array = new Uint8Array(4);
-        const randomString = crypto.getRandomValues(u8array).toHex();
+
+        const bytes = new Uint8Array(4);
+        crypto.getRandomValues(bytes);
+        const randomString = byteToHex[bytes[0]] + byteToHex[bytes[1]] + byteToHex[bytes[2]] + byteToHex[bytes[3]];
 
         return `formularium-html-${randomString}`;
     }
