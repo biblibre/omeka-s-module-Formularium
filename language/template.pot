@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 11:44+0100\n"
+"POT-Creation-Date: 2026-03-13 11:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgid "Submitted by"
 msgstr ""
 
 #: view/formularium/admin/form-submission/browse.phtml:59
-#: view/formularium/admin/form-submission/show-details.phtml:38
+#: view/formularium/admin/form-submission/show-details.phtml:40
 msgid "Handled"
 msgstr ""
 
@@ -70,30 +70,30 @@ msgstr ""
 msgid "Mark as handled"
 msgstr ""
 
-#: view/formularium/admin/form-submission/browse.phtml:155
-#: view/formularium/admin/form-submission/browse.phtml:173
+#: view/formularium/admin/form-submission/browse.phtml:158
+#: view/formularium/admin/form-submission/browse.phtml:176
 msgid "Delete form submissions"
 msgstr ""
 
-#: view/formularium/admin/form-submission/browse.phtml:156
+#: view/formularium/admin/form-submission/browse.phtml:159
 msgid "Are you sure you would like to delete the selected form submissions?"
 msgstr ""
 
-#: view/formularium/admin/form-submission/browse.phtml:158
-#: view/formularium/admin/form-submission/browse.phtml:176
+#: view/formularium/admin/form-submission/browse.phtml:161
+#: view/formularium/admin/form-submission/browse.phtml:179
 #, php-format
 msgid ""
 "%1$s: this action will permanently delete %2$s form submissions and cannot "
 "be undone."
 msgstr ""
 
-#: view/formularium/admin/form-submission/browse.phtml:174
+#: view/formularium/admin/form-submission/browse.phtml:177
 msgid ""
 "Are you sure you would like to delete all form submissions on all pages of "
 "this result?"
 msgstr ""
 
-#: view/formularium/admin/form-submission/browse.phtml:214
+#: view/formularium/admin/form-submission/browse.phtml:217
 #: view/formularium/admin/form/browse.phtml:90
 msgid "Omeka could not find any forms."
 msgstr ""
@@ -116,10 +116,14 @@ msgid ""
 msgstr ""
 
 #: view/formularium/admin/form-submission/search.phtml:62
-msgid "Has been submitted by"
+msgid "Has been submitted by (Omeka user)"
 msgstr ""
 
-#: view/formularium/admin/form-submission/search.phtml:88
+#: view/formularium/admin/form-submission/search.phtml:76
+msgid "Has been submitted by (email)"
+msgstr ""
+
+#: view/formularium/admin/form-submission/search.phtml:101
 msgid "Has been handled by"
 msgstr ""
 
@@ -128,15 +132,16 @@ msgid "Form"
 msgstr ""
 
 #: view/formularium/admin/form-submission/show-details.phtml:31
-#: view/formularium/admin/form-submission/show-details.phtml:42
+#: view/formularium/admin/form-submission/show-details.phtml:33
+#: view/formularium/admin/form-submission/show-details.phtml:44
 msgid "by"
 msgstr ""
 
-#: view/formularium/admin/form-submission/show-details.phtml:51
+#: view/formularium/admin/form-submission/show-details.phtml:53
 msgid "Files"
 msgstr ""
 
-#: view/formularium/admin/form-submission/show-details.phtml:62
+#: view/formularium/admin/form-submission/show-details.phtml:64
 msgid "Data"
 msgstr ""
 
@@ -222,15 +227,23 @@ msgstr ""
 msgid "Not handled submissions:"
 msgstr ""
 
-#: view/formularium/admin/form-submission/search.phtml:76
+#: view/formularium/common/form-row.phtml:17
+msgid "(required)"
+msgstr ""
+
+#: view/formularium/common/formularium-form-errors.phtml:8
+msgid "The form cannot be sent because of the following errors:"
+msgstr ""
+
+#: view/formularium/admin/form-submission/search.phtml:89
 msgid "Is handled"
 msgstr ""
 
-#: config/module.config.php:234
+#: config/module.config.php:237
 msgid "Submission date"
 msgstr ""
 
-#: config/module.config.php:235
+#: config/module.config.php:238
 msgid "Handling date"
 msgstr ""
 
@@ -292,15 +305,38 @@ msgstr ""
 msgid "One option per line"
 msgstr ""
 
-#: src/FormComponentType/AbstractInput.php:37
+#: src/FormComponentType/Select.php:63
+msgid "Empty option text"
+msgstr ""
+
+#: src/FormComponentType/AbstractInput.php:19
+msgid "HTML element name"
+msgstr ""
+
+#: src/FormComponentType/AbstractInput.php:20
+msgid ""
+"Value of the HTML element's name attribute. It should be unique. This name "
+"can then be used to reference this component in form actions. It must "
+"contain only alphanumeric characters and underscores."
+msgstr ""
+
+#: src/FormComponentType/AbstractInput.php:41
 msgid "Help text"
+msgstr ""
+
+#: src/FormComponentType/AbstractInput.php:49
+msgid "Hide help text by default"
+msgstr ""
+
+#: src/FormComponentType/Email.php:17
+msgid "Email address"
 msgstr ""
 
 #: src/FormComponentType/UserEmail.php:23
 msgid "User e-mail address"
 msgstr ""
 
-#: src/Form/FormForm.php:42
+#: src/Form/FormForm.php:40
 msgid "Actions"
 msgstr ""
 
@@ -358,4 +394,8 @@ msgstr ""
 
 #: src/Controller/Admin/FormSubmissionController.php:283
 msgid "Editing form submissions. This may take a while."
+msgstr ""
+
+#: src/Controller/Site/FormController.php:48
+msgid "Form sent successfully"
 msgstr ""

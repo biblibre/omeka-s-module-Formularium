@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-11 11:44+0100\n"
+"POT-Creation-Date: 2026-03-13 11:32+0100\n"
 "PO-Revision-Date: 2026-02-11 10:51+0000\n"
 "Last-Translator: Julian Maurice <julian.maurice@biblibre.com>, 2026\n"
 "Language-Team: French (https://app.transifex.com/biblibre-/teams/298658/fr/)\n"
@@ -59,7 +59,7 @@ msgid "Submitted by"
 msgstr "Soumis par"
 
 #: view/formularium/admin/form-submission/browse.phtml:59
-#: view/formularium/admin/form-submission/show-details.phtml:38
+#: view/formularium/admin/form-submission/show-details.phtml:40
 msgid "Handled"
 msgstr "Traité"
 
@@ -75,19 +75,19 @@ msgstr "Marquer comme non-traité"
 msgid "Mark as handled"
 msgstr "Marquer comme traité"
 
-#: view/formularium/admin/form-submission/browse.phtml:155
-#: view/formularium/admin/form-submission/browse.phtml:173
+#: view/formularium/admin/form-submission/browse.phtml:158
+#: view/formularium/admin/form-submission/browse.phtml:176
 msgid "Delete form submissions"
 msgstr "Supprimer les soumissions de formulaire"
 
-#: view/formularium/admin/form-submission/browse.phtml:156
+#: view/formularium/admin/form-submission/browse.phtml:159
 msgid "Are you sure you would like to delete the selected form submissions?"
 msgstr ""
 "Êtes-vous sûr de vouloir supprimer les soumissions de formulaire "
 "sélectionnées ?"
 
-#: view/formularium/admin/form-submission/browse.phtml:158
-#: view/formularium/admin/form-submission/browse.phtml:176
+#: view/formularium/admin/form-submission/browse.phtml:161
+#: view/formularium/admin/form-submission/browse.phtml:179
 #, php-format
 msgid ""
 "%1$s: this action will permanently delete %2$s form submissions and cannot "
@@ -96,7 +96,7 @@ msgstr ""
 "%1$s: cette action va supprimer définitivement %2$s soumissions de "
 "formulaire et ne peut pas être annulée."
 
-#: view/formularium/admin/form-submission/browse.phtml:174
+#: view/formularium/admin/form-submission/browse.phtml:177
 msgid ""
 "Are you sure you would like to delete all form submissions on all pages of "
 "this result?"
@@ -104,7 +104,7 @@ msgstr ""
 "Êtes-vous sûr de vouloir supprimer toutes les soumissions de formulaire sur "
 "toutes les pages de ces résultats ?"
 
-#: view/formularium/admin/form-submission/browse.phtml:214
+#: view/formularium/admin/form-submission/browse.phtml:217
 #: view/formularium/admin/form/browse.phtml:90
 msgid "Omeka could not find any forms."
 msgstr "Omeka n'a trouvé aucun formulaire."
@@ -131,10 +131,14 @@ msgstr ""
 "traitée ?"
 
 #: view/formularium/admin/form-submission/search.phtml:62
-msgid "Has been submitted by"
-msgstr "A été soumis par"
+msgid "Has been submitted by (Omeka user)"
+msgstr "A été soumis par (utilisateur Omeka)"
 
-#: view/formularium/admin/form-submission/search.phtml:88
+#: view/formularium/admin/form-submission/search.phtml:76
+msgid "Has been submitted by (email)"
+msgstr "A été soumis par (e-mail)"
+
+#: view/formularium/admin/form-submission/search.phtml:101
 msgid "Has been handled by"
 msgstr "A été traité par"
 
@@ -143,15 +147,16 @@ msgid "Form"
 msgstr "Formulaire"
 
 #: view/formularium/admin/form-submission/show-details.phtml:31
-#: view/formularium/admin/form-submission/show-details.phtml:42
+#: view/formularium/admin/form-submission/show-details.phtml:33
+#: view/formularium/admin/form-submission/show-details.phtml:44
 msgid "by"
 msgstr "par"
 
-#: view/formularium/admin/form-submission/show-details.phtml:51
+#: view/formularium/admin/form-submission/show-details.phtml:53
 msgid "Files"
 msgstr "Fichiers"
 
-#: view/formularium/admin/form-submission/show-details.phtml:62
+#: view/formularium/admin/form-submission/show-details.phtml:64
 msgid "Data"
 msgstr "Données"
 
@@ -237,15 +242,23 @@ msgstr "Restaurer le composant"
 msgid "Not handled submissions:"
 msgstr "Soumissions non traitées:"
 
-#: view/formularium/admin/form-submission/search.phtml:76
+#: view/formularium/common/form-row.phtml:17
+msgid "(required)"
+msgstr "(obligatoire)"
+
+#: view/formularium/common/formularium-form-errors.phtml:8
+msgid "The form cannot be sent because of the following errors:"
+msgstr "Le formulaire ne peut pas être envoyé à cause des erreurs suivantes:"
+
+#: view/formularium/admin/form-submission/search.phtml:89
 msgid "Is handled"
 msgstr "Est traitée"
 
-#: config/module.config.php:234
+#: config/module.config.php:237
 msgid "Submission date"
 msgstr "Date de soumission"
 
-#: config/module.config.php:235
+#: config/module.config.php:238
 msgid "Handling date"
 msgstr "Date de traitement"
 
@@ -313,15 +326,42 @@ msgstr "Custom Vocab"
 msgid "One option per line"
 msgstr "Une option par ligne"
 
-#: src/FormComponentType/AbstractInput.php:37
+#: src/FormComponentType/Select.php:63
+msgid "Empty option text"
+msgstr "Texte de l'option vide"
+
+#: src/FormComponentType/AbstractInput.php:19
+msgid "HTML element name"
+msgstr "Nom de l'élément HTML"
+
+#: src/FormComponentType/AbstractInput.php:20
+msgid ""
+"Value of the HTML element's name attribute. It should be unique. This name "
+"can then be used to reference this component in form actions. It must "
+"contain only alphanumeric characters and underscores."
+msgstr ""
+"La valeur de l'attribut name de l'élément HTML. Il doit être unique. Ce nom "
+"peut ensuite être utilisé pour faire référence à ce composant dans les "
+"actions de formulaire. Il doit contenir uniquement des caractères "
+"alphanumériques et des tirets bas."
+
+#: src/FormComponentType/AbstractInput.php:41
 msgid "Help text"
 msgstr "Texte d'aide"
+
+#: src/FormComponentType/AbstractInput.php:49
+msgid "Hide help text by default"
+msgstr "Cacher le texte d'aide par défaut"
+
+#: src/FormComponentType/Email.php:17
+msgid "Email address"
+msgstr "Adresse e-mail"
 
 #: src/FormComponentType/UserEmail.php:23
 msgid "User e-mail address"
 msgstr "Adresse e-mail de l'utilisateur"
 
-#: src/Form/FormForm.php:42
+#: src/Form/FormForm.php:40
 msgid "Actions"
 msgstr "Actions"
 
@@ -386,3 +426,7 @@ msgid "Editing form submissions. This may take a while."
 msgstr ""
 "Modification des soumissions de formulaire. Cela peut prendre un certain "
 "temps."
+
+#: src/Controller/Site/FormController.php:48
+msgid "Form sent successfully"
+msgstr "Formulaire envoyé avec succès"
