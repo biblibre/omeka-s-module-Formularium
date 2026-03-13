@@ -43,7 +43,7 @@ abstract class AbstractInput extends AbstractFormComponentType
         ]);
 
         $fieldset->add([
-            'name' => 'hide_info', // @translate
+            'name' => 'hide_info',
             'type' => 'Laminas\Form\Element\Checkbox',
             'options' => [
                 'label' => 'Hide help text by default', // @translate
