@@ -102,7 +102,9 @@ describe('screenshots', () => {
         cy.visit('/admin/formularium/form-submission');
         cy.screenshot('images/form-submission-browse');
 
+        cy.intercept('/admin/formularium/form-submission/*/show-details').as('showDetails');
         cy.get('[data-cy="details"]').click();
+        cy.wait('@showDetails');
         cy.screenshot('images/form-submission-browse-show-details');
     });
 

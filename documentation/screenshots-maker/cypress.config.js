@@ -29,7 +29,16 @@ module.exports = defineConfig({
                 const dirname = path.dirname(dest);
                 fs.mkdirSync(dirname, { recursive: true });
                 fs.copyFileSync(details.path, dest);
-            })
+            });
+
+            on('before:browser:launch', (browser, launchOptions) => {
+                if (browser.name === 'electron' && browser.isHeadless) {
+                  launchOptions.preferences.width = 1920
+                  launchOptions.preferences.height = 1080
+                }
+
+                return launchOptions
+            });
         },
     },
 });
