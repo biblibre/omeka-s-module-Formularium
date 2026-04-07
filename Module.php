@@ -24,10 +24,10 @@ class Module extends AbstractModule
         $acl->allow(null, 'Formularium\Entity\FormulariumForm', 'read');
 
         $resourcePageBlockLayoutManager = $services->get('Omeka\ResourcePageBlockLayoutManager');
-        $api = $services->get('Omeka\ApiManager');
-        $formulariumForms = $api->search('formularium_forms')->getContent();
+        $em = $services->get('Omeka\EntityManager');
+        $formulariumForms = $em->getRepository('Formularium\Entity\FormulariumForm')->findAll();
         foreach ($formulariumForms as $formulariumForm) {
-            $name = sprintf('formulariumForm:%d', $formulariumForm->id());
+            $name = sprintf('formulariumForm:%d', $formulariumForm->getId());
             $factory = Service\Site\ResourcePageBlockLayout\FormulariumFormFactory::class;
             $resourcePageBlockLayoutManager->setFactory($name, $factory);
         }
