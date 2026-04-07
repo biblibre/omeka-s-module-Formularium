@@ -24,6 +24,12 @@ class FormulariumForm extends Form
             'type' => 'Laminas\Form\Element\Hidden',
         ]);
 
+        // The value attribute will be populated by the resource page block layout
+        $this->add([
+            'name' => 'formularium_resource_id',
+            'type' => 'Laminas\Form\Element\Hidden',
+        ]);
+
         foreach ($formulariumForm->components() as $formComponent) {
             $formComponentType = $this->formComponentTypeManager->get($formComponent['type']);
             $formComponentType->formAddElements($this, new FormComponent($formComponent));

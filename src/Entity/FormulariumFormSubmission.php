@@ -6,6 +6,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Omeka\Entity\AbstractEntity;
 use Omeka\Entity\User;
+use Omeka\Entity\Resource;
 use Omeka\Entity\Site;
 use Omeka\Entity\SitePage;
 use Omeka\Entity\SitePageBlock;
@@ -45,6 +46,12 @@ class FormulariumFormSubmission extends AbstractEntity
      * @JoinColumn(onDelete="SET NULL")
      */
     protected ?SitePageBlock $sitePageBlock;
+
+    /**
+     * @ManyToOne(targetEntity="Omeka\Entity\Resource")
+     * @JoinColumn(onDelete="SET NULL")
+     */
+    protected ?Resource $resource;
 
     /**
      * @ManyToOne(targetEntity="Omeka\Entity\User")
@@ -137,6 +144,16 @@ class FormulariumFormSubmission extends AbstractEntity
     public function setSitePageBlock(SitePageBlock $sitePageBlock): void
     {
         $this->sitePageBlock = $sitePageBlock;
+    }
+
+    public function getResource(): ?Resource
+    {
+        return $this->resource;
+    }
+
+    public function setResource(Resource $resource): void
+    {
+        $this->resource = $resource;
     }
 
     public function getSubmitter(): ?User

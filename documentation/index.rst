@@ -34,6 +34,8 @@ Quick start
 4. Optionally, add actions
 5. Create a new page for your site, and add the "Formularium" block to this
    page. In the block settings, select the form you created.
+   Or you can add the corresponding resource page block to the resource (item,
+   media or item set) pages in the theme settings.
 
 Features
 ________
@@ -42,10 +44,11 @@ ________
 * Different component types: text, text area, dropdown list, checkbox, antispam
   (recaptcha), file upload, ... (other modules can add their own)
 * One action type: send an email (other modules can add their own)
+* Forms can be displayed on site pages or on site resource pages
 * Form submissions are entirely saved (uploaded files included) so they can be
   viewed later. Deleting a form submission also removes the attached files.
 * A flag can be set to mark a form submission as "handled" (whatever that means to you)
-* Form submissions can be filtered by form, site, user (if an authenticated
+* Form submissions can be filtered by form, site, resource, user (if an authenticated
   user has made a submission), and handled status
 * Form submissions can be batch deleted and batch edited (batch edit only
   allows to change the handled status)

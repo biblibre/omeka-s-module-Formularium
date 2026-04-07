@@ -12,6 +12,7 @@
 <?= $this->formRow($form->get('csrf')) ?>
 <?= $this->formRow($form->get('formularium_site_page_id')) ?>
 <?= $this->formRow($form->get('formularium_site_page_block_id')) ?>
+<?= $this->formRow($form->get('formularium_resource_id')) ?>
 
 <?php $data = $this->params()->fromQuery(); ?>
 <?php foreach ($formulariumForm->components() as $formComponent): ?>

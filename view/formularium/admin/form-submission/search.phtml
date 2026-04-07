@@ -59,6 +59,15 @@
 
     <div class="field">
         <div class="field-meta">
+            <label><?= $this->translate('Resource ID') ?></label>
+        </div>
+        <div class="inputs">
+            <input type="text" name="resource_id" value="<?= $this->escapeHtml($query['resource_id'] ?? '') ?>">
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="field-meta">
             <label><?= $this->translate('Has been submitted by (Omeka user)') ?></label>
         </div>
         <div class="inputs">

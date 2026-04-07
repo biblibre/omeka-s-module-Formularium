@@ -3,6 +3,7 @@ namespace Formularium\Api\Representation;
 
 use DateTime;
 use Omeka\Api\Representation\AbstractEntityRepresentation;
+use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
 use Omeka\Api\Representation\UserRepresentation;
 use Omeka\Api\Representation\SitePageRepresentation;
 use Omeka\Api\Representation\SiteRepresentation;
@@ -48,6 +49,11 @@ class FormSubmissionRepresentation extends AbstractEntityRepresentation
     public function sitePage(): ?SitePageRepresentation
     {
         return $this->getAdapter('site_pages')->getRepresentation($this->resource->getSitePage());
+    }
+
+    public function resource(): ?AbstractResourceEntityRepresentation
+    {
+        return $this->getAdapter('resources')->getRepresentation($this->resource->getResource());
     }
 
     public function submitted(): DateTime

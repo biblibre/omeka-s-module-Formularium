@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var Formularium\Api\Representation\FormRepresentation $formulariumForm
+ * @var Laminas\Form\Form $form
+ * @var Omeka\Api\Representation\AbstractResourceEntityRepresentation $resource
+ */
+?>
+<div class="formularium-resource-page-block-layout-formularium-form">
+    <?= $this->partial('formularium/common/formularium-form', ['form' => $form, 'formulariumForm' => $formulariumForm]); ?>
+</div>

@@ -23,6 +23,13 @@
     </div>
 <?php endif; ?>
 
+<?php if ($omekaResource = $resource->resource()): ?>
+    <div class="meta-group">
+        <h4><?= $this->translate('Resource'); ?></h4>
+        <div class="value"><?= $omekaResource->link($omekaResource->displayTitle()) ?></div>
+    </div>
+<?php endif; ?>
+
 <div class="meta-group">
     <h4><?= $this->translate('Submitted'); ?></h4>
     <div class="value">

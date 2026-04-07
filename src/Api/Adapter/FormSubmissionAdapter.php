@@ -69,6 +69,13 @@ class FormSubmissionAdapter extends AbstractEntityAdapter
             );
         }
 
+        if (!empty($query['resource_id'])) {
+            $qb->andWhere($qb->expr()->eq(
+                'omeka_root.resource',
+                $this->createNamedParameter($qb, $query['resource_id']))
+            );
+        }
+
         if (!empty($query['submitter_id'])) {
             $qb->andWhere($qb->expr()->eq(
                 'omeka_root.submitter',
@@ -124,6 +131,11 @@ class FormSubmissionAdapter extends AbstractEntityAdapter
             if (!empty($data['o:site_page_block']['o:id'])) {
                 $sitePageBlock = $this->getEntityManager()->find('Omeka\Entity\SitePageBlock', $data['o:site_page_block']['o:id']);
                 $entity->setSitePageBlock($sitePageBlock);
+            }
+
+            if (!empty($data['o:resource']['o:id'])) {
+                $resource = $this->getEntityManager()->find('Omeka\Entity\Resource', $data['o:resource']['o:id']);
+                $entity->setResource($resource);
             }
 
             $entity->setSubmitter($user);

@@ -22,6 +22,15 @@ class Module extends AbstractModule
         $acl->allow(null, 'Formularium\Api\Adapter\FormSubmissionAdapter', 'create');
         $acl->allow(null, 'Formularium\Entity\FormulariumFormSubmission', 'create');
         $acl->allow(null, 'Formularium\Entity\FormulariumForm', 'read');
+
+        $resourcePageBlockLayoutManager = $services->get('Omeka\ResourcePageBlockLayoutManager');
+        $api = $services->get('Omeka\ApiManager');
+        $formulariumForms = $api->search('formularium_forms')->getContent();
+        foreach ($formulariumForms as $formulariumForm) {
+            $name = sprintf('formulariumForm:%d', $formulariumForm->id());
+            $factory = Service\Site\ResourcePageBlockLayout\FormulariumFormFactory::class;
+            $resourcePageBlockLayoutManager->setFactory($name, $factory);
+        }
     }
 
     public function install(ServiceLocatorInterface $serviceLocator)
@@ -45,6 +54,7 @@ class Module extends AbstractModule
             site_id INT DEFAULT NULL,
             site_page_id INT DEFAULT NULL,
             site_page_block_id INT DEFAULT NULL,
+            resource_id INT DEFAULT NULL,
             submitter_id INT DEFAULT NULL,
             handler_id INT DEFAULT NULL,
             submitted DATETIME NOT NULL,
@@ -105,6 +115,13 @@ class Module extends AbstractModule
 
         $connection->executeStatement(<<<'SQL'
         ALTER TABLE formularium_form_submission
+        ADD CONSTRAINT FK_26C0C2F489329D25 FOREIGN KEY (resource_id)
+        REFERENCES resource (id)
+        ON DELETE SET NULL
+        SQL);
+
+        $connection->executeStatement(<<<'SQL'
+        ALTER TABLE formularium_form_submission
         ADD CONSTRAINT FK_26C0C2F4919E5513
         FOREIGN KEY (submitter_id) REFERENCES user (id)
         ON DELETE SET NULL
@@ -143,6 +160,20 @@ class Module extends AbstractModule
             $connection->executeStatement(<<<'SQL'
             ALTER TABLE formularium_form_submission
             ADD submitter_email VARCHAR(255) DEFAULT NULL AFTER handled
+            SQL);
+        }
+
+        if (Comparator::lessThan($oldVersion, '0.3.0')) {
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form_submission
+            ADD resource_id INT DEFAULT NULL AFTER site_page_block_id
+            SQL);
+
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form_submission
+            ADD CONSTRAINT FK_26C0C2F489329D25 FOREIGN KEY (resource_id)
+            REFERENCES resource (id)
+            ON DELETE SET NULL
             SQL);
         }
     }
@@ -202,6 +233,10 @@ class Module extends AbstractModule
 
         if (!empty($query['site_page_block_id'])) {
             $filters[$view->translate('Page block ID')][] = $query['site_page_block_id'];
+        }
+
+        if (!empty($query['resource_id'])) {
+            $filters[$view->translate('Resource ID')][] = $query['resource_id'];
         }
 
         if (isset($query['submitter_id']) && $query['submitter_id']) {

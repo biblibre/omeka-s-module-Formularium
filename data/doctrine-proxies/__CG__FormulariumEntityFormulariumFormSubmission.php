@@ -67,10 +67,10 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
+            return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'resource', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
         }
 
-        return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
+        return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'resource', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
     }
 
     /**
@@ -133,7 +133,7 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
      * {@inheritDoc}
      * @internal generated method: use only when explicitly handling proxy specific loading logic
      */
-    public function __setInitializer(\Closure $initializer = null): void
+    public function __setInitializer(?\Closure $initializer = null): void
     {
         $this->__initializer__ = $initializer;
     }
@@ -151,7 +151,7 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
      * {@inheritDoc}
      * @internal generated method: use only when explicitly handling proxy specific loading logic
      */
-    public function __setCloner(\Closure $cloner = null): void
+    public function __setCloner(?\Closure $cloner = null): void
     {
         $this->__cloner__ = $cloner;
     }
@@ -366,6 +366,28 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHandled', [$handled]);
 
         parent::setHandled($handled);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSubmitterEmail(?string $submitterEmail): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSubmitterEmail', [$submitterEmail]);
+
+        parent::setSubmitterEmail($submitterEmail);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSubmitterEmail(): ?string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSubmitterEmail', []);
+
+        return parent::getSubmitterEmail();
     }
 
     /**

@@ -23,6 +23,7 @@ class FormController extends AbstractActionController
 
                 $site_page_block_id = $formData['formularium_site_page_block_id'];
                 $site_page_id = $formData['formularium_site_page_id'];
+                $resource_id = $formData['formularium_resource_id'];
                 unset($formData['formularium_site_page_block_id']);
                 unset($formData['formularium_site_page_id']);
                 unset($formData['csrf']);
@@ -32,6 +33,7 @@ class FormController extends AbstractActionController
                     'o:site' => ['o:id' => $this->currentSite()->id()],
                     'o:site_page' => ['o:id' => $site_page_id],
                     'o:site_page_block' => ['o:id' => $site_page_block_id],
+                    'o:resource' => ['o:id' => $resource_id],
                     'form_data' => $formData,
                 ];
 
