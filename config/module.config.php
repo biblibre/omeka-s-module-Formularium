@@ -63,6 +63,7 @@ return [
     'formularium_form_action_types' => [
         'factories' => [
             'email' => Service\FormActionType\EmailFactory::class,
+            'create_user' => Service\FormActionType\CreateUserFactory::class,
         ],
     ],
     'formularium_form_component_types' => [
