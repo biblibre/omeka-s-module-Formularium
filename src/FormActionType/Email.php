@@ -2,11 +2,11 @@
 
 namespace Formularium\FormActionType;
 
-use Formularium\FormAction\FormAction;
 use Formularium\Api\Representation\FormSubmissionRepresentation;
 use Laminas\Form\Fieldset;
-use Laminas\View\Renderer\PhpRenderer;
-use Omeka\Stdlib\ErrorStore;
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Mime;
+use Laminas\Mime\Part as MimePart;
 use Omeka\Stdlib\Mailer;
 
 class Email extends AbstractFormActionType
@@ -68,8 +68,19 @@ class Email extends AbstractFormActionType
         $message = $this->mailer->createMessage([
             'to' => $to,
             'subject' => $subject,
-            'body' => $body,
         ]);
+
+        $text = new MimePart($body);
+        $text->type = Mime::TYPE_TEXT;
+        $text->charset = 'UTF-8';
+        $text->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+
+        $mimeMessage = new MimeMessage();
+        $mimeMessage->addPart($text);
+        $message->setBody($mimeMessage);
+
+        $message->setEncoding('UTF-8');
+        $message->getHeaders()->addHeaderLine('Content-Type', 'text/plain; charset=UTF-8');
 
         $this->mailer->send($message);
     }
