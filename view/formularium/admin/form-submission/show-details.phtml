@@ -26,7 +26,14 @@
 <?php if ($omekaResource = $resource->resource()): ?>
     <div class="meta-group">
         <h4><?= $this->translate('Resource'); ?></h4>
-        <div class="value"><?= $omekaResource->link($omekaResource->displayTitle()) ?></div>
+        <div class="value">
+            <a href="<?= $this->escapeHtml($omekaResource->url()) ?>">
+                <?php $resourceName = $omekaResource->resourceName(); ?>
+                <?php $iconClass = sprintf('o-icon-%s', str_replace('_', '-', $resourceName)); ?>
+                <i class="<?= $this->escapeHtml($iconClass) ?>"></i>
+                <?= $this->escapeHtml($omekaResource->displayTitle()) ?>
+            </a>
+        </div>
     </div>
 <?php endif; ?>
 
