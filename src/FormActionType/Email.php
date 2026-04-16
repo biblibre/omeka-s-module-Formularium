@@ -4,14 +4,16 @@ namespace Formularium\FormActionType;
 
 use Formularium\Api\Representation\FormSubmissionRepresentation;
 use Laminas\Form\Fieldset;
+use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Mime\Message as MimeMessage;
 use Laminas\Mime\Mime;
 use Laminas\Mime\Part as MimePart;
+use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
 use Omeka\Stdlib\Mailer;
 
 class Email extends AbstractFormActionType
 {
-    public function __construct(protected Mailer $mailer)
+    public function __construct(protected Mailer $mailer, protected TranslatorInterface $translator)
     {
     }
 
@@ -27,6 +29,8 @@ class Email extends AbstractFormActionType
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
                 'label' => 'To', // @translate
+                'info' => 'This field can contain special tokens that will be automatically replaced', // @translate
+                'documentation' => 'https://biblibre.github.io/omeka-s-module-Formularium/en/form-actions.html#send-an-email',
             ],
             'attributes' => [
                 'required' => true,
@@ -38,6 +42,8 @@ class Email extends AbstractFormActionType
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
                 'label' => 'Subject', // @translate
+                'info' => 'This field can contain special tokens that will be automatically replaced', // @translate
+                'documentation' => 'https://biblibre.github.io/omeka-s-module-Formularium/en/form-actions.html#send-an-email',
             ],
             'attributes' => [
                 'required' => true,
@@ -49,6 +55,8 @@ class Email extends AbstractFormActionType
             'type' => 'Laminas\Form\Element\Textarea',
             'options' => [
                 'label' => 'Body', // @translate
+                'info' => 'This field can contain special tokens that will be automatically replaced', // @translate
+                'documentation' => 'https://biblibre.github.io/omeka-s-module-Formularium/en/form-actions.html#send-an-email',
             ],
             'attributes' => [
                 'rows' => '4',
@@ -60,6 +68,16 @@ class Email extends AbstractFormActionType
     public function perform(array $action, FormSubmissionRepresentation $formSubmission, array $data): void
     {
         $values = $formSubmission->data();
+
+        if ($resource = $formSubmission->resource()) {
+            $values['formularium:resource:id'] = $resource->id();
+            $values['formularium:resource:title'] = $resource->displayTitle();
+            $values['formularium:resource:type'] = $this->getResourceType($resource);
+
+            if ($site = $formSubmission->site()) {
+                $values['formularium:resource:url'] = $resource->siteUrl($site->slug(), true);
+            }
+        }
 
         $to = $this->renderTemplate($action['settings']['to'], $values);
         $subject = $this->renderTemplate($action['settings']['subject'], $values);
@@ -91,13 +109,32 @@ class Email extends AbstractFormActionType
             '/\{(.+?)\}/',
             function ($matches) use ($values) {
                 $key = $matches[1];
-                $value = $values[$key] ?? null;
 
-                return is_string($value) ? $value : $matches[0];
+                if (array_key_exists($key, $values)) {
+                    $value = $values[$key];
+                    if (is_scalar($value) || $value instanceof \Stringable) {
+                        return (string) $value;
+                    }
+
+                    return '';
+                }
+
+                return $matches[0];
             },
             $template
         );
 
         return $output;
+    }
+
+    protected function getResourceType(AbstractResourceEntityRepresentation $resource): string
+    {
+        $type = match($resource->resourceName()) {
+            'item_sets' => $this->translator->translate('item set'),
+            'items' => $this->translator->translate('item'),
+            'media' => $this->translator->translate('media'),
+        };
+
+        return $type;
     }
 }
