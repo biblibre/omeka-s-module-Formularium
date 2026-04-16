@@ -36,6 +36,11 @@ class FormRepresentation extends AbstractEntityRepresentation
         return $this->resource->getName();
     }
 
+    public function resourcePageBlockTitle(): string
+    {
+        return $this->resource->getResourcePageBlockTitle();
+    }
+
     public function components(): array
     {
         return $this->resource->getComponents();

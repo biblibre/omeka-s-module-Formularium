@@ -6,5 +6,9 @@
  */
 ?>
 <div class="formularium-resource-page-block-layout-formularium-form">
+    <?php if ($title = $formulariumForm->resourcePageBlockTitle()): ?>
+        <h4 class="formularium-resource-page-block-layout-formularium-form__title"><?= $this->escapeHtml($title) ?></h4>
+    <?php endif; ?>
+
     <?= $this->partial('formularium/common/formularium-form', ['form' => $form, 'formulariumForm' => $formulariumForm]); ?>
 </div>

@@ -47,6 +47,7 @@ class Module extends AbstractModule
         CREATE TABLE formularium_form (
             id INT AUTO_INCREMENT NOT NULL,
             name VARCHAR(255) NOT NULL,
+            resource_page_block_title VARCHAR(255) NOT NULL,
             components LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
             actions LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
             PRIMARY KEY(id)
@@ -180,6 +181,13 @@ class Module extends AbstractModule
             ADD CONSTRAINT FK_26C0C2F489329D25 FOREIGN KEY (resource_id)
             REFERENCES resource (id)
             ON DELETE SET NULL
+            SQL);
+        }
+
+        if (Comparator::lessThan($oldVersion, '0.3.1')) {
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form
+            ADD resource_page_block_title VARCHAR(255) NOT NULL AFTER name
             SQL);
         }
     }

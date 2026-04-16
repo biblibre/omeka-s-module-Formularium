@@ -22,6 +22,11 @@ class FormulariumForm extends AbstractEntity
     protected string $name;
 
     /**
+     * @Column
+     */
+    protected string $resourcePageBlockTitle;
+
+    /**
      * @Column(type="json")
      */
     protected array $components;
@@ -44,6 +49,16 @@ class FormulariumForm extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getResourcePageBlockTitle(): string
+    {
+        return $this->resourcePageBlockTitle;
+    }
+
+    public function setResourcePageBlockTitle(string $resourcePageBlockTitle): void
+    {
+        $this->resourcePageBlockTitle = $resourcePageBlockTitle;
     }
 
     public function getComponents(): array

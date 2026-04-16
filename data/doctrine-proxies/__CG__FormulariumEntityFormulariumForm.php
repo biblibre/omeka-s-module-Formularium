@@ -67,10 +67,10 @@ class FormulariumForm extends \Formularium\Entity\FormulariumForm implements \Do
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'components', 'actions'];
+            return ['__isInitialized__', 'id', 'name', 'resourcePageBlockTitle', 'components', 'actions'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'components', 'actions'];
+        return ['__isInitialized__', 'id', 'name', 'resourcePageBlockTitle', 'components', 'actions'];
     }
 
     /**
@@ -212,6 +212,28 @@ class FormulariumForm extends \Formularium\Entity\FormulariumForm implements \Do
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', [$name]);
 
         parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResourcePageBlockTitle(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResourcePageBlockTitle', []);
+
+        return parent::getResourcePageBlockTitle();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setResourcePageBlockTitle(string $resourcePageBlockTitle): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResourcePageBlockTitle', [$resourcePageBlockTitle]);
+
+        parent::setResourcePageBlockTitle($resourcePageBlockTitle);
     }
 
     /**

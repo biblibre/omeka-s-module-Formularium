@@ -23,6 +23,18 @@ class FormForm extends Form
         ]);
 
         $this->add([
+            'name' => 'o:resource_page_block_title',
+            'type' => 'Laminas\Form\Element\Text',
+            'options' => [
+                'label' => 'Resource page block title', // @translate
+                'info' => 'Title used when displaying the form as a resource page block', // @translate
+            ],
+            'attributes' => [
+                'id' => 'resource_page_block_title',
+            ],
+        ]);
+
+        $this->add([
             'name' => 'o:components',
             'type' => 'Formularium\Form\Element\Components',
             'options' => [

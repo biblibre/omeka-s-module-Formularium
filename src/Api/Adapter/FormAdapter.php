@@ -58,6 +58,10 @@ class FormAdapter extends AbstractEntityAdapter
             $entity->setName($request->getValue('o:name'));
         }
 
+        if ($this->shouldHydrate($request, 'o:resource_page_block_title')) {
+            $entity->setResourcePageBlockTitle($request->getValue('o:resource_page_block_title'));
+        }
+
         if ($this->shouldHydrate($request, 'o:components')) {
             $components = $request->getValue('o:components', []);
             if (!is_array($components)) {

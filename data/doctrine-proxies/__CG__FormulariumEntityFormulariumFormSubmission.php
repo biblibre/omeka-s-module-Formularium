@@ -283,6 +283,28 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
     /**
      * {@inheritDoc}
      */
+    public function getResource(): ?\Omeka\Entity\Resource
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResource', []);
+
+        return parent::getResource();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setResource(\Omeka\Entity\Resource $resource): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResource', [$resource]);
+
+        parent::setResource($resource);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getSubmitter(): ?\Omeka\Entity\User
     {
 
