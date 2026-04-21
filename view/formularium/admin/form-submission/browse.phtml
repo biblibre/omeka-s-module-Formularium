@@ -54,6 +54,7 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
             <tr>
                 <th><input type="checkbox" class="select-all" aria-label="<?= $this->translate('Select all') ?>"><?= $this->translate('ID') ?></th>
                 <th><?= $this->translate('Site') ?></th>
+                <th><?= $this->translate('Form') ?></th>
                 <th><?= $this->translate('Submitted') ?></th>
                 <th><?= $this->translate('Submitted by') ?></th>
                 <th><?= $this->translate('Handled') ?></th>
@@ -112,6 +113,9 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
                     <?php if ($site = $formSubmission->site()): ?>
                         <?= $site->link($site->title()) ?>
                     <?php endif; ?>
+                </td>
+                <td>
+                    <?= $formSubmission->form()->link($formSubmission->form()->name(), 'edit') ?>
                 </td>
                 <td>
                     <?= $this->i18n()->dateFormat($formSubmission->submitted(), 'long', 'medium') ?>
