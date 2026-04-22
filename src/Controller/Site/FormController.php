@@ -41,7 +41,7 @@ class FormController extends AbstractActionController
                 if ($response) {
                     $formSubmission = $response->getContent();
 
-                    // TODO Perform actions
+                    // TODO add action result here
                     foreach ($formularium_form->actions() as $action) {
                         $formActionType = $this->formularium()->getFormActionType($action['type']);
                         $formActionType->perform($action, $formSubmission, $formData);
