@@ -121,7 +121,7 @@ describe('screenshots', () => {
 
     it('show action settings', () => {
         cy.loginAsAdmin();
-        for (const actionType of ['email']) {
+        for (const actionType of ['email', 'create_user']) {
             cy.visit('/admin/formularium/form/add');
             cy.get('[data-cy="add-action"]').click();
             cy.get(`#action-selector .option[data-type="${actionType}"]`).click();
