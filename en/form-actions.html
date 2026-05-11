@@ -90,6 +90,32 @@ form submission.</p>
 <p>For instance, if the form contains a text input named <code class="docutils literal notranslate"><span class="pre">email</span></code>, you can set
 the “To” parameter to <code class="docutils literal notranslate"><span class="pre">{email}</span></code> to send an email to the user that submitted
 the form.</p>
+<p>Additionally, if the submission is linked to a resource (eg. created from a
+resource page block), you can use the following tokens:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Token</p></th>
+<th class="head"><p>Replaced by</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:id}</span></code></p></td>
+<td><p>Resource’s internal id</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:url}</span></code></p></td>
+<td><p>Resource’s URL</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:title}</span></code></p></td>
+<td><p>Resource’s title (which is the title according
+to the resource template, not necessarily
+<code class="docutils literal notranslate"><span class="pre">dcterms:title</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:type}</span></code></p></td>
+<td><p>Resource’s type (“item”, “item set”, or
+“media”)</p></td>
+</tr>
+</tbody>
+</table>
 <section id="settings">
 <h3>Settings<a class="headerlink" href="#settings" title="Link to this heading"></a></h3>
 <img alt="_images/email.png" src="_images/email.png" />
