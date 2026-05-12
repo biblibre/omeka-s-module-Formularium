@@ -6,6 +6,13 @@ use Omeka\Api\Representation\AbstractEntityRepresentation;
 
 class FormActionResultRepresentation extends AbstractEntityRepresentation
 {
+
+    public const STATUSES = [ self::CREATED, self::FAILED, self::SUCCEEDED ];
+
+    public const CREATED = 'created';
+    public const FAILED = 'failed';
+    public const SUCCEEDED = 'succeeded';
+
     public function getJsonLd()
     {
         return [

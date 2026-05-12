@@ -7,6 +7,7 @@ use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
 use Omeka\Stdlib\ErrorStore;
+use Formularium\Api\Representation\FormActionResultRepresentation;
 
 class FormActionResultAdapter extends AbstractEntityAdapter
 {
@@ -35,21 +36,27 @@ class FormActionResultAdapter extends AbstractEntityAdapter
         return 'Formularium\Api\Representation\FormActionResultRepresentation';
     }
 
-
-    public function buildQuery(QueryBuilder $qb, array $query): void
+    public function validateRequest(Request $request, ErrorStore $errorStore) 
     {
-        if (!empty($query['action_internal_label'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.action_internal_label',
-                $this->createNamedParameter($qb, $query['action_internal_label']))
-            );
-        }
+        $data = $request->getContent();
 
-        if (!empty($query['status'])) {
-            $qb->andWhere($qb->expr()->eq(
-                'omeka_root.status',
-                $this->createNamedParameter($qb, $query['status']))
-            );
+        switch ($request->getOperation()) 
+        {
+            case Request::CREATE:
+                if (!array_key_exists('o:status', $data))
+                    return; // nothing to do
+                if (!in_array($data['o:status'],  FormActionResultRepresentation::STATUSES)) {
+                    $errorStore->addError("o:status", "Status is invalid. Must be one of: 'created', 'succeeded' or 'failed'");
+                }
+                break;
+            case Request::UPDATE:
+                $status = $data['o:status'] ?? FormActionResultRepresentation::CREATED;
+                if ($status === FormActionResultRepresentation::CREATED) {
+                    $errorStore->addError("o:status", "The status should have been updated.");
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -59,39 +66,38 @@ class FormActionResultAdapter extends AbstractEntityAdapter
         $data = $request->getContent();
         $serviceLocator = $this->getServiceLocator();
         $formComponentTypeManager = $serviceLocator->get('Formularium\FormComponentTypeManager');
-        if (Request::CREATE === $request->getOperation()) {
-
-            if ($this->shouldHydrate($request, 'o:action_internal_label')) {
+        switch ($request->getOperation())
+        {
+            case Request::CREATE:
                 $entity->setActionInternalLabel($request->getValue('o:action_internal_label'));
-            }
 
-            if (!empty($data['o:from_submission']['o:id'])) {
-                $formSubmission = $this
-                    ->getAdapter('formularium_form_submissions')
-                    ->findEntity($data['o:from_submission']['o:id']);
+                if (!empty($data['o:form_submission']['o:id'])) {
+                    $formSubmission = $this
+                        ->getAdapter('formularium_form_submissions')
+                        ->findEntity($data['o:form_submission']['o:id']);
 
-                $entity->setFormSubmission($formSubmission);
-            }
+                    $entity->setFormSubmission($formSubmission);
+                }
 
-            $entity->setStatus('created');
-            $entity->setData([]);
-        }
+                $entity->setStatus('created');
+                $entity->setData([]);
+                break;
 
-        if (Request::UPDATE === $request->getOperation()) {
-            $this->authorize($entity, 'update');
+            case Request::UPDATE:
+                $this->authorize($entity, 'update');
 
-            $status = $request->getValue('o:status');
-            $data = $request->getValue('o:data');
+                $status = $request->getValue('o:status');
+                $data = $request->getValue('o:data');
 
-            $entity->setStatus($status);
-            $entity->setData($data);
+                $entity->setStatus($status);
+                $entity->setData($data);
+                break;
         }
     }
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
         /** @var \Formularium\Entity\FormulariumFormActionResult $entity */
-
 
         // TODO Validate components
         // TODO Validate actions

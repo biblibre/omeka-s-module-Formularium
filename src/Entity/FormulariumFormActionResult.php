@@ -60,7 +60,7 @@ class FormulariumFormActionResult extends AbstractEntity {
 
     public function setFormSubmission(FormulariumFormSubmission $formSubmission): void
     {
-        $this->formSubmission = formSubmission;
+        $this->formSubmission = $formSubmission;
     }
     
     public function getStatus(): string

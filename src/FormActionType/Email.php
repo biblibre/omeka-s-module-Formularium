@@ -3,6 +3,7 @@
 namespace Formularium\FormActionType;
 
 use Formularium\Api\Representation\FormSubmissionRepresentation;
+use Formularium\Api\Representation\FormActionResultRepresentation;
 use Laminas\Form\Fieldset;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Mime\Message as MimeMessage;
@@ -65,8 +66,11 @@ class Email extends AbstractFormActionType
         ]);
     }
 
-    public function perform(array $action, FormSubmissionRepresentation $formSubmission, array $data): void
-    {
+    public function perform(
+        array $action,
+        FormSubmissionRepresentation $formSubmission,
+        array $data,
+    ): array {
         $values = $formSubmission->data();
 
         if ($resource = $formSubmission->resource()) {
@@ -100,7 +104,18 @@ class Email extends AbstractFormActionType
         $message->setEncoding('UTF-8');
         $message->getHeaders()->addHeaderLine('Content-Type', 'text/plain; charset=UTF-8');
 
-        $this->mailer->send($message);
+        try {
+            $this->mailer->send($message);
+        } catch (MailException $e) {
+            // TODO store action status in action result.
+            $this->logger()->err((string) $e);
+            return [
+                'o:status' => FormSubmissionRepresentation::FAILED,
+                'o:data' => 'Could not send mail.',
+            ];
+        }
+
+        return [ 'o:status' => FormSubmissionRepresentation::SUCCEEDED, 'o:data' => 'Mail sent.' ];
     }
 
     protected function renderTemplate(string $template, array $values): string

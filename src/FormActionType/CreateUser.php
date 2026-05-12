@@ -5,10 +5,13 @@ namespace Formularium\FormActionType;
 use Laminas\Form\Fieldset;
 use Omeka\Api\Representation\UserRepresentation;
 use Formularium\Api\Representation\FormSubmissionRepresentation;
+use Formularium\Api\Representation\FormActionResultRepresentation;
 use Omeka\Stdlib\Mailer;
 use Omeka\Api\Manager;
 use Omeka\Module\Manager as ModuleManger;
 use Omeka\Permissions\Acl;
+use Omeka\Api\Exception\ValidationException;
+use Laminas\Mail\Exception\ExceptionInterface as MailException;
 
 class CreateUser extends AbstractFormActionType
 {
@@ -18,11 +21,6 @@ class CreateUser extends AbstractFormActionType
         protected Acl $acl,
         protected ModuleManger $moduleManager,
     ) { }
-
-    function isGroupModuleActive() {
-        $groupModule = $this->moduleManager->getModule('Group');
-        return $groupModule && $groupModule->getState() === 'active';
-    }
 
     public function getLabel(): string
     {
@@ -77,7 +75,7 @@ class CreateUser extends AbstractFormActionType
 
             $fieldset->add([
                 'name' => 'group',
-                'type' => 'Laminas\Form\Element\MultiCheckbox', // TODO: Make the from be able to use elements initialized by factories.
+                'type' => 'Laminas\Form\Element\MultiCheckbox', 
                 'options' => [
                     'label' => 'group', // @translate
                     'value_options' => $groupOptions,
@@ -90,7 +88,7 @@ class CreateUser extends AbstractFormActionType
         array $action,
         FormSubmissionRepresentation $formSubmission,
         array $data,
-    ): void {
+    ): array {
         $formData = $formSubmission->data();
         $userRequestData = [
             'o:email' => $formData[$action['settings']['email']],
@@ -102,14 +100,46 @@ class CreateUser extends AbstractFormActionType
             $userRequestData['o-module-group:group'] = $action['settings']['group'];
         }
 
-        $response = $this->api->create('users', $userRequestData);
-
+        $reponse;
+        try {
+            $response = $this->api->create('users', $userRequestData);
+        } catch (ValidationException $e) {
+            return [
+                'o:status' => FormActionResultRepresentation::FAILED,
+                'o:data' => [ 
+                    'user' => 'creation failed',
+                    'activation_mail' => 'unsent', 
+                ],
+            ];
+        }
         $user = $response->getContent()->getEntity();
+
         try {
             $this->mailer->sendUserActivation($user);
         } catch (MailException $e) {
             $this->logger()->err((string) $e);
+            return [
+                'o:status' => FormActionResultRepresentation::FAILED,
+                'o:data' => [ 
+                    'user' => 'created',
+                    'activation_mail' => 'unsent', 
+                ],
+            ];
         }
 
+        return [
+            'o:status' => FormActionResultRepresentation::SUCCEEDED,
+            'o:data' => [
+                'user' => 'created',
+                'activation_mail' => 'sent',
+            ],
+        ];
     }
+
+    // Used to add support for the Group Module.
+    function isGroupModuleActive() {
+        $groupModule = $this->moduleManager->getModule('Group');
+        return $groupModule && $groupModule->getState() === 'active';
+    }
+
 }
