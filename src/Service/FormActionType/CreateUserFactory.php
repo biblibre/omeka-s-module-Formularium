@@ -3,6 +3,7 @@
 namespace Formularium\Service\FormActionType;
 
 use Formularium\FormActionType\CreateUser;
+use Omeka\Module\Manager as ModuleManger;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 
@@ -13,11 +14,11 @@ class CreateUserFactory implements FactoryInterface
         $requestedName,
         array $options = null,
     ) {
-        $mailer = $serviceLocator->get('Omeka\Mailer');
-        $api = $serviceLocator->get('Omeka\ApiManager');
-        $acl = $serviceLocator->get('Omeka\Acl');
-        $createUser = new CreateUser($mailer, $api, $acl);
-
-        return $createUser;
+        return new CreateUser(
+            $serviceLocator->get('Omeka\Mailer'),
+            $serviceLocator->get('Omeka\ApiManager'),
+            $serviceLocator->get('Omeka\Acl'),
+            $serviceLocator->get('Omeka\ModuleManager'),
+        );
     }
 }
