@@ -68,6 +68,7 @@ Formularium was sponsored by:
 
 * École du Louvre
 * Mines-Paris PSL
+* ENSSIB
 
 ## License
 
