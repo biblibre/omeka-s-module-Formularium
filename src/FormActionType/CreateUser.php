@@ -75,10 +75,22 @@ class CreateUser extends AbstractFormActionType
 
             $fieldset->add([
                 'name' => 'group',
-                'type' => 'Laminas\Form\Element\MultiCheckbox', 
+                // TODO: Make the from be able to use elements initialized by factories.
+                'type' => 'Laminas\Form\Element\Select', 
                 'options' => [
-                    'label' => 'group', // @translate
+                    'label' => 'Groups', // @translate
                     'value_options' => $groupOptions,
+                    'name_as_value' => true,
+                    'resource_value_options' => [
+                        'resource' => 'groups',
+                        'query' => [],
+                        'option_text_callback' => function($v) { return $v->name(); }
+                    ],
+                ],
+                'attributes' => [
+                    'multiple' => true,
+                    'class' => 'chosen-select',
+                    'data-placeholder' => 'Select groups...' // @translate
                 ],
             ]);
         }
