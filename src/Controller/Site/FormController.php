@@ -1,8 +1,10 @@
 <?php
 namespace Formularium\Controller\Site;
 
+use Formularium\Api\Representation\FormActionResultRepresentation;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use Exception;
 
 class FormController extends AbstractActionController
 {
@@ -42,17 +44,23 @@ class FormController extends AbstractActionController
                     $formSubmission = $formSubmissionResponse->getContent();
 
                     foreach ($formularium_form->actions() as $action) {
-                        $this->logger()->err($action);
-
                         $formActionType = $this->formularium()->getFormActionType($action['type']);
-                        $this->logger()->err(sprintf("form submission id: %d", $formSubmission->id()));
                         $actionResultResponse = $this->api()->create('formularium_form_action_result', [
                             'o:form_submission' => ['o:id' => $formSubmission->id() ],
-                            'o:action_internal_label' => $action['internal_label'] !== '' ? $action['internal_label'] : $formActionType.getLabel(),
+                            'o:action_label' => !empty($action['internal_label']) ? $action['internal_label'] : $formActionType->getLabel(),
                         ]);
-                        $actionResultId =  $actionResultResponse->getContent()->id();
 
-                        $actionResult = $formActionType->perform($action, $formSubmission, $formData);
+                        $actionResultId =  $actionResultResponse->getContent()->id();
+                        $actionResult = [];
+                        try {
+                            $actionResult = $formActionType->perform($action, $formSubmission, $formData);
+                        } catch (Exception $e) {
+                            $this->logger()->err($e);
+                            $actionResult = [ 
+                                'o:status' => FormActionResultRepresentation::ERROR,
+                                'o:data' => [ 'reason' => 'Uncaught execption' ],
+                            ];
+                        }
 
                         $this->api()->update('formularium_form_action_result', $actionResultId, $actionResult, ['isPartial' => true]);
                     }

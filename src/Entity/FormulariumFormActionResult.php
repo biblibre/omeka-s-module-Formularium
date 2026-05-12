@@ -19,7 +19,7 @@ class FormulariumFormActionResult extends AbstractEntity {
     /**
      * @Column(nullable=true)
      */
-    protected ?string $actionInternalLabel;
+    protected ?string $actionLabel;
 
     /**
      * @ManyToOne(targetEntity="Formularium\Entity\FormulariumFormSubmission")
@@ -43,14 +43,14 @@ class FormulariumFormActionResult extends AbstractEntity {
         return $this->id;
     }
 
-    public function getActionInternalLabel(): ?string
+    public function getActionLabel(): ?string
     {
-        return $this->actionInternalLabel;
+        return $this->actionLabel;
     }
 
-    public function setActionInternalLabel(string $label): void
+    public function setActionLabel(string $label): void
     {
-        $this->label = $label;
+        $this->actionLabel = $label;
     }
 
     public function getFormSubmission(): FormulariumFormSubmission

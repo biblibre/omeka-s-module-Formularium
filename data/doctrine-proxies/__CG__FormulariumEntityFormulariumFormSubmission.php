@@ -67,10 +67,10 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'resource', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
+            return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'resource', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files', 'actionResults'];
         }
 
-        return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'resource', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files'];
+        return ['__isInitialized__', 'id', 'form', 'site', 'sitePage', 'sitePageBlock', 'resource', 'submitter', 'handler', 'submitted', 'handled', 'submitterEmail', 'data', 'files', 'actionResults'];
     }
 
     /**
@@ -443,6 +443,17 @@ class FormulariumFormSubmission extends \Formularium\Entity\FormulariumFormSubmi
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFiles', []);
 
         return parent::getFiles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getActionResults()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActionResults', []);
+
+        return parent::getActionResults();
     }
 
     /**

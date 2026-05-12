@@ -13,12 +13,12 @@ class FormActionResultAdapter extends AbstractEntityAdapter
 {
     protected $sortFields = [
         'id' => 'id',
-        'action_internal_label' => 'action_internal_label',
+        'action_label' => 'action_label',
     ];
 
     protected $scalarFields = [
         'id' => 'id',
-        'action_internal_label' => 'action_internal_label',
+        'action_label' => 'action_label',
     ];
 
     public function getEntityClass()
@@ -34,6 +34,26 @@ class FormActionResultAdapter extends AbstractEntityAdapter
     public function getRepresentationClass()
     {
         return 'Formularium\Api\Representation\FormActionResultRepresentation';
+    }
+
+    public function buildQuery(QueryBuilder $qb, array $query): void
+    {
+        if (isset($query['form_submission_id'])) {
+            $qb->andWhere($qb->expr()->eq(
+                'omeka_root.formSubmission',
+                $this->createNamedParameter($qb, $query['form_submission_id']),
+            ));
+        }
+
+        if (isset($query['status'])) {
+            $qb->andWhere($qb->expr()->in(
+                'omeka_root.status',
+                $this->createNamedParameter($qb, $query['status']),
+            ));
+        }
+        $services = $this->getServiceLocator();
+        $logger = $services->get("Omeka\Logger");
+        $logger->debug("Query :" . $qb->getDQL());
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore) 
@@ -64,13 +84,9 @@ class FormActionResultAdapter extends AbstractEntityAdapter
     {
         /** @var \Formularium\Entity\FormulariumFormActionResult $entity */
         $data = $request->getContent();
-        $serviceLocator = $this->getServiceLocator();
-        $formComponentTypeManager = $serviceLocator->get('Formularium\FormComponentTypeManager');
         switch ($request->getOperation())
         {
             case Request::CREATE:
-                $entity->setActionInternalLabel($request->getValue('o:action_internal_label'));
-
                 if (!empty($data['o:form_submission']['o:id'])) {
                     $formSubmission = $this
                         ->getAdapter('formularium_form_submissions')
@@ -79,18 +95,26 @@ class FormActionResultAdapter extends AbstractEntityAdapter
                     $entity->setFormSubmission($formSubmission);
                 }
 
+                if (!empty($data['o:action_label'])) {
+                    $entity->setActionLabel($data['o:action_label']);
+                }
+
                 $entity->setStatus('created');
                 $entity->setData([]);
+
                 break;
 
             case Request::UPDATE:
-                $this->authorize($entity, 'update');
-
-                $status = $request->getValue('o:status');
-                $data = $request->getValue('o:data');
-
-                $entity->setStatus($status);
-                $entity->setData($data);
+                if ($this->shouldHydrate($request, 'o:status')) {
+                    $status = $request->getValue('o:status');
+                    $entity->setStatus($status);
+                }
+                if ($this->shouldHydrate($request, 'o:data')) {
+                    $data= $request->getValue('o:data');
+                    $entity->setData($data);
+                }
+                break;
+            default: 
                 break;
         }
     }
@@ -98,9 +122,7 @@ class FormActionResultAdapter extends AbstractEntityAdapter
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
         /** @var \Formularium\Entity\FormulariumFormActionResult $entity */
-
-        // TODO Validate components
-        // TODO Validate actions
+        // Nothing to do
     }
 
     public function preprocessBatchUpdate(array $data, Request $request)

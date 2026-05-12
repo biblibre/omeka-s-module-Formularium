@@ -108,7 +108,7 @@ class CreateUser extends AbstractFormActionType
                 'o:status' => FormActionResultRepresentation::FAILED,
                 'o:data' => [ 
                     'user' => 'creation failed',
-                    'activation_mail' => 'unsent', 
+                    'activation_mail' => 'not sent', 
                 ],
             ];
         }
@@ -117,12 +117,11 @@ class CreateUser extends AbstractFormActionType
         try {
             $this->mailer->sendUserActivation($user);
         } catch (MailException $e) {
-            $this->logger()->err((string) $e);
             return [
                 'o:status' => FormActionResultRepresentation::FAILED,
                 'o:data' => [ 
                     'user' => 'created',
-                    'activation_mail' => 'unsent', 
+                    'activation_mail' => 'could not sent', 
                 ],
             ];
         }

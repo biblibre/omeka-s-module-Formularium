@@ -55,19 +55,6 @@ class Module extends AbstractModule
         SQL);
 
         $connection->executeStatement(<<<'SQL'
-        CREATE TABLE formularium_form_action_result (
-            id INT AUTO_INCREMENT NOT NULL,
-            form_submission_id INT DEFAULT NULL,
-            action_internal_label VARCHAR(255) DEFAULT NULL,
-            status VARCHAR(255) NOT NULL,
-            data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
-            INDEX IDX_8683D02D422B0E0C (form_submission_id),
-            PRIMARY KEY(id)
-        ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
-        SQL);
-
-
-        $connection->executeStatement(<<<'SQL'
         CREATE TABLE formularium_form_submission (
             id INT AUTO_INCREMENT NOT NULL,
             form_id INT NOT NULL,
@@ -89,6 +76,18 @@ class Module extends AbstractModule
             INDEX IDX_26C0C2F4A6E82043 (handler_id),
             PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+        SQL);
+
+        $connection->executeStatement(<<<'SQL'
+        CREATE TABLE formularium_form_action_result (
+            id INT AUTO_INCREMENT NOT NULL,
+            form_submission_id INT DEFAULT NULL,
+            action_label VARCHAR(255) DEFAULT NULL,
+            status VARCHAR(255) NOT NULL,
+            data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
+            INDEX IDX_8683D02D422B0E0C (form_submission_id),
+            PRIMARY KEY(id)
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
         SQL);
 
         $connection->executeStatement(<<<'SQL'
@@ -218,11 +217,12 @@ class Module extends AbstractModule
             CREATE TABLE formularium_form_action_result (
                 id INT AUTO_INCREMENT NOT NULL,
                 form_submission_id INT DEFAULT NULL,
-                action_internal_label VARCHAR(255) NOT NULL,
+                action_label VARCHAR(255) DEFAULT NULL,
+                status VARCHAR(255) NOT NULL,
                 data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
                 INDEX IDX_8683D02D422B0E0C (form_submission_id),
                 PRIMARY KEY(id)
-            ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
+            ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
             SQL);
 
             $connection->executeStatement(<<<'SQL'

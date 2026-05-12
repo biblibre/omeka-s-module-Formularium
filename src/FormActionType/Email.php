@@ -108,14 +108,17 @@ class Email extends AbstractFormActionType
             $this->mailer->send($message);
         } catch (MailException $e) {
             // TODO store action status in action result.
-            $this->logger()->err((string) $e);
+            // $this->logger()->err((string) $e);
             return [
-                'o:status' => FormSubmissionRepresentation::FAILED,
-                'o:data' => 'Could not send mail.',
+                'o:status' => FormActionResultRepresentation::FAILED,
+                'o:data' => ['reason' => 'Could not send mail',],
             ];
         }
 
-        return [ 'o:status' => FormSubmissionRepresentation::SUCCEEDED, 'o:data' => 'Mail sent.' ];
+        return [
+            'o:status' => FormActionResultRepresentation::SUCCEEDED, 
+            'o:data' => ['details' => 'Mail sent']
+        ];
     }
 
     protected function renderTemplate(string $template, array $values): string

@@ -30,6 +30,7 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
         <tr>
             <th><?= $this->translate('Name') ?></th>
             <th><?= $this->translate('Submissions') ?></th>
+            <th><?= $this->translate('Actions') ?></th>
         </tr>
     </thead>
     <tbody>
@@ -66,6 +67,17 @@ $this->htmlElement('body')->appendAttribute('class', 'formularium formularium-fo
                 </ul>
             </td>
             <td><?= $this->hyperlink($form->submissionCount(), $this->url('admin/formularium/form-submission', [], ['query' => ['form_id' => $form->id()]])) ?></td>
+            <td>
+                    <?php $actions = $form->actions(); ?>
+                    <?php foreach($actions as $idx => $action): ?>
+                        <?php
+                            echo $this->escapeHtml($action['internal_label'] !== '' ? $action['internal_label'] : $action['type']);
+                            if ($idx !== count($actions) - 1) {
+                                echo ',';
+                            }
+                        ?>
+                    <?php endforeach; ?>
+            </td>
         </tr>
         <?php endforeach; ?>
     </tbody>

@@ -7,16 +7,17 @@ use Omeka\Api\Representation\AbstractEntityRepresentation;
 class FormActionResultRepresentation extends AbstractEntityRepresentation
 {
 
-    public const STATUSES = [ self::CREATED, self::FAILED, self::SUCCEEDED ];
+    public const STATUSES = [ self::CREATED, self::FAILED, self::SUCCEEDED, self::ERROR ];
 
     public const CREATED = 'created';
     public const FAILED = 'failed';
     public const SUCCEEDED = 'succeeded';
+    public const ERROR = 'error';
 
     public function getJsonLd()
     {
         return [
-            'o:action_internal_label' => $this->resource->getActionInternalLabel(),
+            'o:action_label' => $this->getActionLabel(),
             'o:status' => $this->resource->getStatus(),
             'o:data' => $this->resource->getData()
         ];
@@ -37,6 +38,10 @@ class FormActionResultRepresentation extends AbstractEntityRepresentation
             ],
             ['force_canonical' => $canonical]
         );
+    }
+
+    public function getActionLabel() {
+        return $this->resource->getActionLabel();
     }
 
     public function formSubmission(): FormSubmissionRepresentation

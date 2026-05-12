@@ -11,28 +11,29 @@ use Omeka\Stdlib\ErrorStore;
 interface FormActionTypeInterface
 {
     /**
-     * The label of this action type interface.
+     * The label of this action type.
      */
     public function getLabel(): string;
 
     /**
-     * 
+     * Allows for adding some front-end dependencies 
+     * needed by the action part of the form.
      */
     public function prepareForm(PhpRenderer $view): void;
 
     /**
-     * Here the field set of the action setting configuration
-     * form must be filled.
+     * Configure the fieldset for the configuration form on the admin interface.
      */
     public function settingsFieldsetAddElements(Fieldset $fieldset): void;
 
     /**
-     * 
+     * Returns the template for the partial element for this action.
      */
     public function getSettingsFieldsetPartial(): string;
 
     /**
-     * 
+     * If the action needs custom hydration logic. 
+     * For persistance in database.
      */
     public function hydrateFormAction(
         FormAction $formAction,
@@ -41,7 +42,7 @@ interface FormActionTypeInterface
 
     /**
      * Here the action is performed. 
-     * And the status field in actionResult must be updated.
+     * The status field in actionResult must be updated.
      * The settings of the action are available in the 'settings' key
      * of the action argument. 
      */

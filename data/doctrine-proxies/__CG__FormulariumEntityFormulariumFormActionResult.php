@@ -67,10 +67,10 @@ class FormulariumFormActionResult extends \Formularium\Entity\FormulariumFormAct
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'actionInternalLabel', 'formSubmission', 'status', 'data'];
+            return ['__isInitialized__', 'id', 'actionLabel', 'formSubmission', 'status', 'data'];
         }
 
-        return ['__isInitialized__', 'id', 'actionInternalLabel', 'formSubmission', 'status', 'data'];
+        return ['__isInitialized__', 'id', 'actionLabel', 'formSubmission', 'status', 'data'];
     }
 
     /**
@@ -195,23 +195,23 @@ class FormulariumFormActionResult extends \Formularium\Entity\FormulariumFormAct
     /**
      * {@inheritDoc}
      */
-    public function getActionInternalLabel(): ?string
+    public function getActionLabel(): ?string
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActionInternalLabel', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getActionLabel', []);
 
-        return parent::getActionInternalLabel();
+        return parent::getActionLabel();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setActionInternalLabel(string $label): void
+    public function setActionLabel(string $label): void
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActionInternalLabel', [$label]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActionLabel', [$label]);
 
-        parent::setActionInternalLabel($label);
+        parent::setActionLabel($label);
     }
 
     /**
