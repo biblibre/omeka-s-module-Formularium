@@ -80,3 +80,16 @@
         <div class="value"><pre><?= $this->escapeHtml(json_encode($data, JSON_PRETTY_PRINT)) ?></pre></div>
     </div>
 <?php endif; ?>
+<div class="meta-group">
+    <h4><?= $this->translate('Actions Results'); ?></h4>
+        <?php foreach($resource->actionResults() as $action): ?>
+            <div class="value">
+                <?= $this->translate('Label') ?> : <?= $action->getJsonLd()['o:action_label'] ?> 
+                <br>
+                <?= $this->translate('Status') ?> : <?= $action->getJsonLd()['o:status'] ?> 
+                <br>
+                <?= $this->translate('Data') ?> :
+                <pre><?= $this->escapeHtml(json_encode($action->getJsonLd()['o:data'], JSON_PRETTY_PRINT)) ?></pre>
+            </div>
+        <?php endforeach; ?>
+</div>

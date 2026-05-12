@@ -79,6 +79,18 @@ class Module extends AbstractModule
         SQL);
 
         $connection->executeStatement(<<<'SQL'
+        CREATE TABLE formularium_form_action_result (
+            id INT AUTO_INCREMENT NOT NULL,
+            form_submission_id INT DEFAULT NULL,
+            action_label VARCHAR(255) DEFAULT NULL,
+            status VARCHAR(255) NOT NULL,
+            data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
+            INDEX IDX_8683D02D422B0E0C (form_submission_id),
+            PRIMARY KEY(id)
+        ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
+        SQL);
+
+        $connection->executeStatement(<<<'SQL'
         CREATE TABLE formularium_form_submission_file (
             id INT AUTO_INCREMENT NOT NULL,
             form_submission_id INT NOT NULL,
@@ -147,6 +159,14 @@ class Module extends AbstractModule
         FOREIGN KEY (form_submission_id) REFERENCES formularium_form_submission (id)
         ON DELETE CASCADE
         SQL);
+
+        $connection->executeStatement(<<<'SQL'
+        ALTER TABLE formularium_form_action_result 
+        ADD CONSTRAINT FK_8683D02D422B0E0C 
+        FOREIGN KEY (form_submission_id) 
+        REFERENCES formularium_form_submission (id) 
+        ON DELETE CASCADE;
+        SQL);
     }
 
     public function uninstall(ServiceLocatorInterface $serviceLocator)
@@ -155,6 +175,7 @@ class Module extends AbstractModule
 
         // TODO Delete files from storage
         $connection->executeStatement('DROP TABLE formularium_form_submission_file');
+        $connection->executeStatement('DROP TABLE formularium_form_action_result');
         $connection->executeStatement('DROP TABLE formularium_form_submission');
         $connection->executeStatement('DROP TABLE formularium_form');
     }
@@ -188,6 +209,28 @@ class Module extends AbstractModule
             $connection->executeStatement(<<<'SQL'
             ALTER TABLE formularium_form
             ADD resource_page_block_title VARCHAR(255) NOT NULL AFTER name
+            SQL);
+        }
+
+        if (Comparator::lessThan($oldVersion, '0.4.0')) {
+            $connection->executeStatement(<<<'SQL'
+            CREATE TABLE formularium_form_action_result (
+                id INT AUTO_INCREMENT NOT NULL,
+                form_submission_id INT DEFAULT NULL,
+                action_label VARCHAR(255) DEFAULT NULL,
+                status VARCHAR(255) NOT NULL,
+                data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
+                INDEX IDX_8683D02D422B0E0C (form_submission_id),
+                PRIMARY KEY(id)
+            ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            SQL);
+
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form_action_result 
+            ADD CONSTRAINT FK_8683D02D422B0E0C 
+            FOREIGN KEY (form_submission_id) 
+            REFERENCES formularium_form_submission (id) 
+            ON DELETE CASCADE;
             SQL);
         }
     }

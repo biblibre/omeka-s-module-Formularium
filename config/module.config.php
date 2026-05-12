@@ -6,6 +6,7 @@ return [
     'api_adapters' => [
         'invokables' => [
             'formularium_forms' => Api\Adapter\FormAdapter::class,
+            'formularium_form_action_result' => Api\Adapter\FormActionResultAdapter::class,
             'formularium_form_submissions' => Api\Adapter\FormSubmissionAdapter::class,
             'formularium_form_submission_files' => Api\Adapter\FormSubmissionFileAdapter::class,
         ],
@@ -63,6 +64,7 @@ return [
     'formularium_form_action_types' => [
         'factories' => [
             'email' => Service\FormActionType\EmailFactory::class,
+            'create_user' => Service\FormActionType\CreateUserFactory::class,
         ],
     ],
     'formularium_form_component_types' => [
