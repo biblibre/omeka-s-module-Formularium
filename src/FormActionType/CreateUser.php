@@ -59,7 +59,7 @@ class CreateUser extends AbstractFormActionType
             'options' => [
                 'label' => 'User Role', // @translate
                 'info' => 'Role the created user will have.', // @translate
-                'value_options' => $this->acl->getRoleLabels()
+                'value_options' => $this->acl->getRoleLabels(true), // Exclude admin roles.
             ],
             'attributes' => [
                 'required' => true,
