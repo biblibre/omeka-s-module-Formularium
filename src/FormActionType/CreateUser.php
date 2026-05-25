@@ -112,7 +112,9 @@ class CreateUser extends AbstractFormActionType
             $userRequestData['o-module-group:group'] = $action['settings']['group'];
         }
 
-        $reponse;
+        $this->acl->allow(null, 'Omeka\Api\Adapter\UserAdapter', 'create');
+        $this->acl->allow(null, 'Omeka\Entity\User', 'create');
+        $this->acl->allow(null, 'Omeka\Entity\User', 'change-role');
         try {
             $response = $this->api->create('users', $userRequestData);
         } catch (ValidationException $e) {
@@ -124,6 +126,9 @@ class CreateUser extends AbstractFormActionType
                 ],
             ];
         }
+        $this->acl->removeAllow(null, 'Omeka\Api\Adapter\UserAdapter', 'create');
+        $this->acl->removeAllow(null, 'Omeka\Entity\User', 'create');
+        $this->acl->removeAllow(null, 'Omeka\Entity\User', 'change-role');
         $user = $response->getContent()->getEntity();
 
         try {

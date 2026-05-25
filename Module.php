@@ -19,9 +19,15 @@ class Module extends AbstractModule
         $acl = $services->get('Omeka\Acl');
         $acl->allow(null, 'Formularium\Controller\Site\Form');
         $acl->allow(null, 'Formularium\Api\Adapter\FormAdapter', 'read');
+        $acl->allow(null, 'Formularium\Entity\FormulariumForm', 'read');
+
         $acl->allow(null, 'Formularium\Api\Adapter\FormSubmissionAdapter', 'create');
         $acl->allow(null, 'Formularium\Entity\FormulariumFormSubmission', 'create');
-        $acl->allow(null, 'Formularium\Entity\FormulariumForm', 'read');
+
+        $acl->allow(null, 'Formularium\Api\Adapter\FormActionResultAdapter', 'create');
+        $acl->allow(null, 'Formularium\Entity\FormulariumFormActionResult', 'create');
+        $acl->allow(null, 'Formularium\Api\Adapter\FormActionResultAdapter', 'update');
+        $acl->allow(null, 'Formularium\Entity\FormulariumFormActionResult', 'update');
 
         $em = $services->get('Omeka\EntityManager');
         $formulariumForms = $em->getRepository('Formularium\Entity\FormulariumForm')->findAll();
