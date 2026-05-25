@@ -72,6 +72,8 @@
         action.classList.add('edit');
         document.querySelector('.actions-actions').append(action);
 
+        action.dispatchEvent(new CustomEvent('formularium:action-added', { bubbles: true }));
+
         Omeka.closeSidebar($(ev.target).closest('.sidebar'));
 
         const internalLabelInput = action.querySelector('[name="internal_label"]');

@@ -4,8 +4,9 @@
  */
 ?>
 <?php $formActionType = $this->formularium()->getFormActionType($action['type']); ?>
+<?php $formActionTypeClass = 'formularium-form-action-type-' . preg_replace('/[^a-z0-9-]+/', '-', strtolower($action['type'])); ?>
 <?php $formActionTypeLabel = $formActionType ? $this->translate($formActionType->getLabel()) : $this->translate('[Unknown action type]') ?>
-<div class="formularium-form-action-settings actions-action row">
+<div class="formularium-form-action-settings <?= $formActionTypeClass ?> actions-action row">
     <div class="formularium-form-action-summary">
         <span class="sortable-handle"></span>
         <span class="actions-action-restore"><?= $this->translate('Action to delete') ?></span>

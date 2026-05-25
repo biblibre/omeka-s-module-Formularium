@@ -2,16 +2,17 @@
 
 namespace Formularium\FormActionType;
 
-use Laminas\Form\Fieldset;
-use Omeka\Api\Representation\UserRepresentation;
 use Formularium\Api\Representation\FormSubmissionRepresentation;
 use Formularium\Api\Representation\FormActionResultRepresentation;
+use Laminas\Mail\Exception\ExceptionInterface as MailException;
+use Laminas\View\Renderer\PhpRenderer;
+use Laminas\Form\Fieldset;
+use Omeka\Api\Representation\UserRepresentation;
 use Omeka\Stdlib\Mailer;
 use Omeka\Api\Manager;
 use Omeka\Module\Manager as ModuleManger;
 use Omeka\Permissions\Acl;
 use Omeka\Api\Exception\ValidationException;
-use Laminas\Mail\Exception\ExceptionInterface as MailException;
 
 class CreateUser extends AbstractFormActionType
 {
@@ -25,6 +26,11 @@ class CreateUser extends AbstractFormActionType
     public function getLabel(): string
     {
         return 'Create a user'; // @translate
+    }
+
+    public function prepareForm(PhpRenderer $view): void 
+    {
+        $view->headScript()->appendFile($view->assetUrl('js/formularium-form-action-type-createuser.js', 'Formularium'));
     }
 
     public function settingsFieldsetAddElements(Fieldset $fieldset): void
