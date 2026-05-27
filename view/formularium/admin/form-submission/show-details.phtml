@@ -83,12 +83,12 @@
     <h4><?= $this->translate('Actions Results'); ?></h4>
         <?php foreach($resource->actionResults() as $action): ?>
             <div class="value">
-                <?= $this->translate('Label') ?> : <?= $action->getActionLabel() ?> 
+                <?= $this->translate('Label') ?> : <?= $action->actionLabel() ?> 
                 <br>
-                <?= $this->translate('Status') ?> : <?= $action->getStatus() ?> 
+                <?= $this->translate('Status') ?> : <?= $action->status() ?> 
                 <br>
                 <?= $this->translate('Data') ?> :
-                <pre><?= $this->escapeHtml(json_encode($action->getData(), JSON_PRETTY_PRINT)) ?></pre>
+                <pre><?= $this->escapeHtml(json_encode($action->data(), JSON_PRETTY_PRINT)) ?></pre>
             </div>
         <?php endforeach; ?>
 </div>

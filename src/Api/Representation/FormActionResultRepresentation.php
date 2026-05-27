@@ -28,15 +28,15 @@ class FormActionResultRepresentation extends AbstractEntityRepresentation
         return 'o:FormlariumActionResult';
     }
 
-    public function getActionLabel(): string {
+    public function actionLabel(): string {
         return $this->resource->getActionLabel();
     }
 
-    public function getStatus(): string {
+    public function status(): string {
         return $this->resource->getStatus();
     }
 
-    public function getData(): array {
+    public function data(): array {
         return $this->resource->getData();
     }
 
