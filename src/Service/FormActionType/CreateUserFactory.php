@@ -19,6 +19,7 @@ class CreateUserFactory implements FactoryInterface
             $serviceLocator->get('Omeka\ApiManager'),
             $serviceLocator->get('Omeka\Acl'),
             $serviceLocator->get('Omeka\ModuleManager'),
+            $serviceLocator->get('Omeka\Logger'),
         );
     }
 }

@@ -76,7 +76,6 @@
 <?php if ($data): ?>
     <div class="meta-group">
         <h4><?= $this->translate('Data'); ?></h4>
-
         <div class="value"><pre><?= $this->escapeHtml(json_encode($data, JSON_PRETTY_PRINT)) ?></pre></div>
     </div>
 <?php endif; ?>
@@ -84,12 +83,12 @@
     <h4><?= $this->translate('Actions Results'); ?></h4>
         <?php foreach($resource->actionResults() as $action): ?>
             <div class="value">
-                <?= $this->translate('Label') ?> : <?= $action->getJsonLd()['o:action_label'] ?> 
+                <?= $this->translate('Label') ?> : <?= $action->getActionLabel() ?> 
                 <br>
-                <?= $this->translate('Status') ?> : <?= $action->getJsonLd()['o:status'] ?> 
+                <?= $this->translate('Status') ?> : <?= $action->getStatus() ?> 
                 <br>
                 <?= $this->translate('Data') ?> :
-                <pre><?= $this->escapeHtml(json_encode($action->getJsonLd()['o:data'], JSON_PRETTY_PRINT)) ?></pre>
+                <pre><?= $this->escapeHtml(json_encode($action->getData(), JSON_PRETTY_PRINT)) ?></pre>
             </div>
         <?php endforeach; ?>
 </div>

@@ -7,6 +7,7 @@ use Formularium\Api\Representation\FormActionResultRepresentation;
 use Laminas\Mail\Exception\ExceptionInterface as MailException;
 use Laminas\View\Renderer\PhpRenderer;
 use Laminas\Form\Fieldset;
+use Laminas\Log\Logger;
 use Omeka\Api\Representation\UserRepresentation;
 use Omeka\Stdlib\Mailer;
 use Omeka\Api\Manager;
@@ -21,6 +22,7 @@ class CreateUser extends AbstractFormActionType
         protected Manager $api,
         protected Acl $acl,
         protected ModuleManger $moduleManager,
+        protected Logger $logger,
     ) { }
 
     public function getLabel(): string
@@ -39,8 +41,8 @@ class CreateUser extends AbstractFormActionType
             'name' => 'email',
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
-                'label' => 'User Email form label', // @translate
-                'info' => 'This should corespond to the `HTML element name` field of the form component that will be used for entering the user email.', // @translate
+                'label' => 'User Email form elment name', // @translate
+                'info' => 'This should correspond to the `HTML element name` field of the form component that will be used for entering the user email.', // @translate
             ],
             'attributes' => [
                 'required' => true,
@@ -51,8 +53,8 @@ class CreateUser extends AbstractFormActionType
             'name' => 'name',
             'type' => 'Laminas\Form\Element\Text',
             'options' => [
-                'label' => 'User Name form label', // @translate
-                'info' => 'This should corespond to the `HTML element name` field of the form component that will be used for entering the user username.', // @translate
+                'label' => 'Username form element name', // @translate
+                'info' => 'This should correspond to the `HTML element name` field of the form component that will be used for entering the user username.', // @translate
             ],
             'attributes' => [
                 'required' => true,
@@ -81,17 +83,11 @@ class CreateUser extends AbstractFormActionType
 
             $fieldset->add([
                 'name' => 'group',
-                // TODO: Make the from be able to use elements initialized by factories.
                 'type' => 'Laminas\Form\Element\Select', 
                 'options' => [
                     'label' => 'Groups', // @translate
                     'value_options' => $groupOptions,
                     'name_as_value' => true,
-                    'resource_value_options' => [
-                        'resource' => 'groups',
-                        'query' => [],
-                        'option_text_callback' => function($v) { return $v->name(); }
-                    ],
                 ],
                 'attributes' => [
                     'multiple' => true,
@@ -124,11 +120,13 @@ class CreateUser extends AbstractFormActionType
         try {
             $response = $this->api->create('users', $userRequestData);
         } catch (ValidationException $e) {
+            $this->logger->err((string) $e);
             return [
                 'o:status' => FormActionResultRepresentation::FAILED,
                 'o:data' => [ 
-                    'user' => 'creation failed',
-                    'activation_mail' => 'not sent', 
+                    'user' => 'Creation failed',
+                    'reason' => $e->getErrorStore()->getErrors(),
+                    'activation_mail' => 'Not sent', 
                 ],
             ];
         }
@@ -140,11 +138,13 @@ class CreateUser extends AbstractFormActionType
         try {
             $this->mailer->sendUserActivation($user);
         } catch (MailException $e) {
+            $this->logger->err((string) $e);
             return [
                 'o:status' => FormActionResultRepresentation::FAILED,
                 'o:data' => [ 
-                    'user' => 'created',
-                    'activation_mail' => 'could not sent', 
+                    'user' => 'Created',
+                    'activation_mail' => 'Could not sent', 
+                    'reason' => $e->getMessage(),
                 ],
             ];
         }
@@ -159,7 +159,7 @@ class CreateUser extends AbstractFormActionType
     }
 
     // Used to add support for the Group Module.
-    function isGroupModuleActive() {
+    private function isGroupModuleActive() {
         $groupModule = $this->moduleManager->getModule('Group');
         return $groupModule && $groupModule->getState() === 'active';
     }

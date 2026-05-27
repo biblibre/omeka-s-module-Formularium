@@ -58,7 +58,10 @@ class FormController extends AbstractActionController
                             $this->logger()->err($e);
                             $actionResult = [ 
                                 'o:status' => FormActionResultRepresentation::ERROR,
-                                'o:data' => [ 'reason' => 'Uncaught execption' ],
+                                'o:data' => [ 
+                                    'reason' => 'Uncaught exception: ' . get_class($e),
+                                    'message' =>  $e->getMessage(),
+                                ],
                             ];
                         }
 

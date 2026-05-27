@@ -87,7 +87,7 @@ class Module extends AbstractModule
         $connection->executeStatement(<<<'SQL'
         CREATE TABLE formularium_form_action_result (
             id INT AUTO_INCREMENT NOT NULL,
-            form_submission_id INT DEFAULT NULL,
+            form_submission_id INT NOT NULL,
             action_label VARCHAR(255) DEFAULT NULL,
             status VARCHAR(255) NOT NULL,
             data LONGTEXT NOT NULL COMMENT '(DC2Type:json)',

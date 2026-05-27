@@ -9,11 +9,10 @@ class EmailFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
-        $mailer = $serviceLocator->get('Omeka\Mailer');
-        $translator = $serviceLocator->get('MvcTranslator');
-
-        $email = new Email($mailer, $translator);
-
-        return $email;
+        return new Email(
+            $serviceLocator->get('Omeka\Mailer'),
+            $serviceLocator->get('MvcTranslator'),
+            $serviceLocator->get('Omeka\Logger'),
+        );
     }
 }

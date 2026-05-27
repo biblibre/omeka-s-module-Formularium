@@ -110,6 +110,7 @@ class FormulariumFormSubmission extends AbstractEntity
     public function __construct()
     {
         $this->files = new ArrayCollection;
+        $this->actionResults = new ArrayCollection;
     }
 
     public function getId()

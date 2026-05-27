@@ -23,7 +23,7 @@ class FormulariumFormActionResult extends AbstractEntity {
 
     /**
      * @ManyToOne(targetEntity="Formularium\Entity\FormulariumFormSubmission")
-     * @JoinColumn(onDelete="CASCADE")
+     * @JoinColumn(nullable=false, onDelete="CASCADE")
      */
     protected FormulariumFormSubmission $formSubmission;
 

@@ -28,20 +28,16 @@ class FormActionResultRepresentation extends AbstractEntityRepresentation
         return 'o:FormlariumActionResult';
     }
 
-    public function adminUrl($action = null, $canonical = null)
-    {
-        $url = $this->getViewHelper('Url');
-        return $url('admin/formularium/form-action-result-id',
-            [
-                'action' => $action,
-                'id' => $this->id(),
-            ],
-            ['force_canonical' => $canonical]
-        );
+    public function getActionLabel(): string {
+        return $this->resource->getActionLabel();
     }
 
-    public function getActionLabel() {
-        return $this->resource->getActionLabel();
+    public function getStatus(): string {
+        return $this->resource->getStatus();
+    }
+
+    public function getData(): array {
+        return $this->resource->getData();
     }
 
     public function formSubmission(): FormSubmissionRepresentation

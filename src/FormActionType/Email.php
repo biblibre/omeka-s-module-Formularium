@@ -9,13 +9,17 @@ use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Mime\Message as MimeMessage;
 use Laminas\Mime\Mime;
 use Laminas\Mime\Part as MimePart;
+use Laminas\Log\Logger;
 use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
 use Omeka\Stdlib\Mailer;
 
 class Email extends AbstractFormActionType
 {
-    public function __construct(protected Mailer $mailer, protected TranslatorInterface $translator)
-    {
+    public function __construct(
+        protected Mailer $mailer,
+        protected TranslatorInterface $translator,
+        protected Logger $logger
+    ) {
     }
 
     public function getLabel(): string
@@ -107,17 +111,21 @@ class Email extends AbstractFormActionType
         try {
             $this->mailer->send($message);
         } catch (MailException $e) {
-            // TODO store action status in action result.
-            // $this->logger()->err((string) $e);
+            $this->logger->err((string) $e);
             return [
                 'o:status' => FormActionResultRepresentation::FAILED,
-                'o:data' => ['reason' => 'Could not send mail',],
+                'o:data' => [
+                    'message' => 'Could not send mail',
+                    'reason' => $e->getMessage(),
+                ],
             ];
         }
 
         return [
             'o:status' => FormActionResultRepresentation::SUCCEEDED, 
-            'o:data' => ['details' => 'Mail sent']
+            'o:data' => [
+                'message' => 'Mail sent',
+            ],
         ];
     }
 

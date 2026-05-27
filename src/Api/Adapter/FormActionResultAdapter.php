@@ -51,9 +51,6 @@ class FormActionResultAdapter extends AbstractEntityAdapter
                 $this->createNamedParameter($qb, $query['status']),
             ));
         }
-        $services = $this->getServiceLocator();
-        $logger = $services->get("Omeka\Logger");
-        $logger->debug("Query :" . $qb->getDQL());
     }
 
     public function validateRequest(Request $request, ErrorStore $errorStore) 
@@ -119,13 +116,4 @@ class FormActionResultAdapter extends AbstractEntityAdapter
         }
     }
 
-    public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
-    {
-        /** @var \Formularium\Entity\FormulariumFormActionResult $entity */
-        // Nothing to do
-    }
-
-    public function preprocessBatchUpdate(array $data, Request $request)
-    {
-    }
 }

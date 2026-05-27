@@ -18,8 +18,8 @@ interface FormComponentTypeInterface
     public function getLabel(): string;
 
     /**
-     * Allows for adding some front-end dependencies 
-     * needed by the action part of the form.
+     * Allows adding some front-end dependencies 
+     * needed by the action in the admin configuration form.
      */
     public function prepareForm(PhpRenderer $view): void;
 
