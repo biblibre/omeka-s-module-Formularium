@@ -41,3 +41,27 @@ Subject
 
 Body
     The e-mail body
+
+Create a user
+-------------
+
+Create a user from an email and a username.
+
+The settings allow you to select the role of the created user and its groups.
+
+Settings
+________
+
+.. image:: images/form-action/create_user.png
+
+Username
+    The HTML element name of the form component containing the username.
+
+Email
+    The HTML element name of the form component containing the username.
+
+Role
+    The role of the created user.
+
+Groups (only if the module Groups is installed)
+    The groups the user is in.
