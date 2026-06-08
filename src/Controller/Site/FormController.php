@@ -50,17 +50,17 @@ class FormController extends AbstractActionController
                             'o:action_label' => !empty($action['internal_label']) ? $action['internal_label'] : $formActionType->getLabel(),
                         ]);
 
-                        $actionResultId =  $actionResultResponse->getContent()->id();
+                        $actionResultId = $actionResultResponse->getContent()->id();
                         $actionResult = [];
                         try {
                             $actionResult = $formActionType->perform($action, $formSubmission, $formData);
                         } catch (Exception $e) {
                             $this->logger()->err($e);
-                            $actionResult = [ 
+                            $actionResult = [
                                 'o:status' => FormActionResultRepresentation::ERROR,
-                                'o:data' => [ 
+                                'o:data' => [
                                     'reason' => 'Uncaught exception: ' . get_class($e),
-                                    'message' =>  $e->getMessage(),
+                                    'message' => $e->getMessage(),
                                 ],
                             ];
                         }
@@ -77,7 +77,7 @@ class FormController extends AbstractActionController
 
                     return $this->redirect()->toRoute('site/formularium/form-id', [
                         'id' => $formularium_form->id(),
-                        'site-slug' => $this->currentSite()->slug()
+                        'site-slug' => $this->currentSite()->slug(),
                     ]);
                 }
             }

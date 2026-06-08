@@ -7,7 +7,7 @@ use Interop\Container\ContainerInterface;
 
 class HandlerSelectFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, ?array $options = null)
     {
         $element = new HandlerSelect(null, $options ?? []);
 

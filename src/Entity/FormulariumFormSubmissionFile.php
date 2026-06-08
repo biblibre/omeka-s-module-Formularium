@@ -2,9 +2,7 @@
 
 namespace Formularium\Entity;
 
-use DateTime;
 use Omeka\Entity\AbstractEntity;
-use Omeka\Entity\User;
 
 /**
  * @Entity

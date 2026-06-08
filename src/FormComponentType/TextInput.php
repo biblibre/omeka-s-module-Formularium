@@ -4,7 +4,6 @@ namespace Formularium\FormComponentType;
 
 use Formularium\Entity\FormulariumFormSubmission;
 use Formularium\FormComponent\FormComponent;
-use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\View\Renderer\PhpRenderer;

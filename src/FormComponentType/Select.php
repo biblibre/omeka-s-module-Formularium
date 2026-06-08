@@ -6,7 +6,6 @@ use Formularium\Entity\FormulariumFormSubmission;
 use Formularium\FormComponent\FormComponent;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
-use Laminas\InputFilter\InputFilterInterface;
 use Laminas\View\Renderer\PhpRenderer;
 use Omeka\Api\Request;
 use Omeka\Api\Manager as ApiManager;
@@ -70,7 +69,6 @@ class Select extends AbstractInput
         return $renderer->partial('formularium/form-component-type/select', ['form' => $form, 'formComponent' => $formComponent, 'data' => $data]);
     }
 
-
     protected function getFormElementSpec(FormComponent $formComponent): array
     {
         $spec = parent::getFormElementSpec($formComponent);
@@ -86,8 +84,8 @@ class Select extends AbstractInput
         } else {
             $options = $formComponent->getSetting('options', '');
             $options = preg_split('/[\r\n]+/', $options);
-            $options = array_map(fn($s) => trim($s), $options);
-            $options = array_filter($options, fn($s) => $s !== '');
+            $options = array_map(fn ($s) => trim($s), $options);
+            $options = array_filter($options, fn ($s) => $s !== '');
             $valueOptions = array_combine($options, $options);
         }
 

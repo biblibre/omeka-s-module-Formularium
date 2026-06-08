@@ -1,7 +1,6 @@
 <?php
 namespace Formularium\Api\Representation;
 
-use DateTime;
 use Omeka\Api\Representation\AbstractEntityRepresentation;
 
 class FormSubmissionFileRepresentation extends AbstractEntityRepresentation

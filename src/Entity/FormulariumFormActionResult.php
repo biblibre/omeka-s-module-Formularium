@@ -7,8 +7,8 @@ use Omeka\Entity\AbstractEntity;
 /**
  * @Entity
  */
-class FormulariumFormActionResult extends AbstractEntity {
-
+class FormulariumFormActionResult extends AbstractEntity
+{
     /**
      * @Id
      * @Column(type="integer")
@@ -37,7 +37,6 @@ class FormulariumFormActionResult extends AbstractEntity {
      */
     protected array $data;
 
-
     public function getId()
     {
         return $this->id;
@@ -62,7 +61,7 @@ class FormulariumFormActionResult extends AbstractEntity {
     {
         $this->formSubmission = $formSubmission;
     }
-    
+
     public function getStatus(): string
     {
         return $this->status;

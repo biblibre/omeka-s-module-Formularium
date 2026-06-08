@@ -7,7 +7,7 @@ use Interop\Container\ContainerInterface;
 
 class FormulariumSubmitterSelectFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, ?array $options = null)
     {
         $formElementManager = $serviceLocator->get('FormElementManager');
 

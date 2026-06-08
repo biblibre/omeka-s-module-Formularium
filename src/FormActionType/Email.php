@@ -122,7 +122,7 @@ class Email extends AbstractFormActionType
         }
 
         return [
-            'o:status' => FormActionResultRepresentation::SUCCEEDED, 
+            'o:status' => FormActionResultRepresentation::SUCCEEDED,
             'o:data' => [
                 'message' => 'Mail sent',
             ],
@@ -155,7 +155,7 @@ class Email extends AbstractFormActionType
 
     protected function getResourceType(AbstractResourceEntityRepresentation $resource): string
     {
-        $type = match($resource->resourceName()) {
+        $type = match ($resource->resourceName()) {
             'item_sets' => $this->translator->translate('item set'),
             'items' => $this->translator->translate('item'),
             'media' => $this->translator->translate('media'),

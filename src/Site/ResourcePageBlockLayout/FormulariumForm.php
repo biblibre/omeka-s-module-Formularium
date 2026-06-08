@@ -11,7 +11,8 @@ class FormulariumForm implements ResourcePageBlockLayoutInterface
 {
     public function __construct(
         protected FormRepresentation $formulariumForm
-    ) {}
+    ) {
+    }
 
     public function getLabel(): string
     {

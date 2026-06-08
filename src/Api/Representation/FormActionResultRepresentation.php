@@ -6,7 +6,6 @@ use Omeka\Api\Representation\AbstractEntityRepresentation;
 
 class FormActionResultRepresentation extends AbstractEntityRepresentation
 {
-
     public const STATUSES = [ self::CREATED, self::FAILED, self::SUCCEEDED, self::ERROR ];
 
     public const CREATED = 'created';
@@ -19,7 +18,7 @@ class FormActionResultRepresentation extends AbstractEntityRepresentation
         return [
             'o:action_label' => $this->getActionLabel(),
             'o:status' => $this->resource->getStatus(),
-            'o:data' => $this->resource->getData()
+            'o:data' => $this->resource->getData(),
         ];
     }
 
@@ -28,15 +27,18 @@ class FormActionResultRepresentation extends AbstractEntityRepresentation
         return 'o:FormlariumActionResult';
     }
 
-    public function actionLabel(): string {
+    public function actionLabel(): string
+    {
         return $this->resource->getActionLabel();
     }
 
-    public function status(): string {
+    public function status(): string
+    {
         return $this->resource->getStatus();
     }
 
-    public function data(): array {
+    public function data(): array
+    {
         return $this->resource->getData();
     }
 

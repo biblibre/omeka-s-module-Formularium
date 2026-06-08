@@ -4,7 +4,6 @@ namespace Formularium\Api\Adapter;
 use DateTime;
 use Doctrine\ORM\QueryBuilder;
 use Formularium\FormComponent\FormComponent;
-use Formularium\Entity\FormulariumFormSubmissionFile;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
@@ -106,7 +105,6 @@ class FormSubmissionAdapter extends AbstractEntityAdapter
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore): void
     {
         /** @var \Formularium\Entity\FormulariumFormSubmission $entity */
-
         $data = $request->getContent();
         $serviceLocator = $this->getServiceLocator();
         $user = $serviceLocator->get('Omeka\AuthenticationService')->getIdentity();
@@ -176,8 +174,7 @@ class FormSubmissionAdapter extends AbstractEntityAdapter
 
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
-        /** @var \Formularium\Entity\Form $entity */
-
+        /* @var \Formularium\Entity\Form $entity */
 
         // TODO Validate components
         // TODO Validate actions

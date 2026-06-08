@@ -6,7 +6,6 @@ use Formularium\Form\FormForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Omeka\Form\ConfirmForm;
-use Omeka\Stdlib\Message;
 
 class FormController extends AbstractActionController
 {

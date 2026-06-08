@@ -8,7 +8,6 @@ use Laminas\Mail\Exception\ExceptionInterface as MailException;
 use Laminas\View\Renderer\PhpRenderer;
 use Laminas\Form\Fieldset;
 use Laminas\Log\Logger;
-use Omeka\Api\Representation\UserRepresentation;
 use Omeka\Stdlib\Mailer;
 use Omeka\Api\Manager;
 use Omeka\Module\Manager as ModuleManger;
@@ -23,14 +22,15 @@ class CreateUser extends AbstractFormActionType
         protected Acl $acl,
         protected ModuleManger $moduleManager,
         protected Logger $logger,
-    ) { }
+    ) {
+    }
 
     public function getLabel(): string
     {
         return 'Create a user'; // @translate
     }
 
-    public function prepareForm(PhpRenderer $view): void 
+    public function prepareForm(PhpRenderer $view): void
     {
         $view->headScript()->appendFile($view->assetUrl('js/formularium-form-action-type-createuser.js', 'Formularium'));
     }
@@ -77,13 +77,13 @@ class CreateUser extends AbstractFormActionType
         if ($this->isGroupModuleActive()) {
             $groupOptions = [];
 
-            foreach($this->api->search('groups')->getContent() as $group) {
+            foreach ($this->api->search('groups')->getContent() as $group) {
                 $groupOptions[$group->id()] = $group->name();
             }
 
             $fieldset->add([
                 'name' => 'group',
-                'type' => 'Laminas\Form\Element\Select', 
+                'type' => 'Laminas\Form\Element\Select',
                 'options' => [
                     'label' => 'Groups', // @translate
                     'value_options' => $groupOptions,
@@ -92,7 +92,7 @@ class CreateUser extends AbstractFormActionType
                 'attributes' => [
                     'multiple' => true,
                     'class' => 'chosen-select',
-                    'data-placeholder' => 'Select groups...' // @translate
+                    'data-placeholder' => 'Select groups...', // @translate
                 ],
             ]);
         }
@@ -123,10 +123,10 @@ class CreateUser extends AbstractFormActionType
             $this->logger->err((string) $e);
             return [
                 'o:status' => FormActionResultRepresentation::FAILED,
-                'o:data' => [ 
+                'o:data' => [
                     'user' => 'Creation failed',
                     'reason' => $e->getErrorStore()->getErrors(),
-                    'activation_mail' => 'Not sent', 
+                    'activation_mail' => 'Not sent',
                 ],
             ];
         }
@@ -141,9 +141,9 @@ class CreateUser extends AbstractFormActionType
             $this->logger->err((string) $e);
             return [
                 'o:status' => FormActionResultRepresentation::FAILED,
-                'o:data' => [ 
+                'o:data' => [
                     'user' => 'Created',
-                    'activation_mail' => 'Could not sent', 
+                    'activation_mail' => 'Could not sent',
                     'reason' => $e->getMessage(),
                 ],
             ];
@@ -159,7 +159,8 @@ class CreateUser extends AbstractFormActionType
     }
 
     // Used to add support for the Group Module.
-    private function isGroupModuleActive() {
+    private function isGroupModuleActive()
+    {
         $groupModule = $this->moduleManager->getModule('Group');
         return $groupModule && $groupModule->getState() === 'active';
     }

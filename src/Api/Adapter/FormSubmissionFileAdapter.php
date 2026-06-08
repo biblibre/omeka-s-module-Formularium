@@ -1,9 +1,7 @@
 <?php
 namespace Formularium\Api\Adapter;
 
-use DateTime;
 use Doctrine\ORM\QueryBuilder;
-use Formularium\Entity\FormulariumFormSubmissionFile;
 use Omeka\Api\Adapter\AbstractEntityAdapter;
 use Omeka\Api\Request;
 use Omeka\Entity\EntityInterface;
@@ -55,7 +53,6 @@ class FormSubmissionFileAdapter extends AbstractEntityAdapter
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore): void
     {
         /** @var \Formularium\Entity\FormulariumFormSubmissionFile $entity */
-
         $data = $request->getContent();
         $fileData = $request->getFileData();
 

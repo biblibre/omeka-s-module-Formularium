@@ -1,7 +1,6 @@
 <?php
 namespace Formularium\Controller\Plugin;
 
-use Formularium\Api\Representation\FormRepresentation;
 use Formularium\FormComponentType\FormComponentTypeManager;
 use Formularium\FormComponentType\FormComponentTypeInterface;
 use Formularium\FormActionType\FormActionTypeManager;

@@ -24,7 +24,7 @@ class FormActionResultAdapter extends AbstractEntityAdapter
     public function getEntityClass()
     {
         return 'Formularium\Entity\FormulariumFormActionResult';
-    } 
+    }
 
     public function getResourceName()
     {
@@ -53,16 +53,16 @@ class FormActionResultAdapter extends AbstractEntityAdapter
         }
     }
 
-    public function validateRequest(Request $request, ErrorStore $errorStore) 
+    public function validateRequest(Request $request, ErrorStore $errorStore)
     {
         $data = $request->getContent();
 
-        switch ($request->getOperation()) 
-        {
+        switch ($request->getOperation()) {
             case Request::CREATE:
-                if (!array_key_exists('o:status', $data))
-                    return; // nothing to do
-                if (!in_array($data['o:status'],  FormActionResultRepresentation::STATUSES)) {
+                if (!array_key_exists('o:status', $data)) {
+                    return;
+                } // nothing to do
+                if (!in_array($data['o:status'], FormActionResultRepresentation::STATUSES)) {
                     $errorStore->addError("o:status", "Status is invalid. Must be one of: 'created', 'succeeded' or 'failed'");
                 }
                 break;
@@ -81,8 +81,7 @@ class FormActionResultAdapter extends AbstractEntityAdapter
     {
         /** @var \Formularium\Entity\FormulariumFormActionResult $entity */
         $data = $request->getContent();
-        switch ($request->getOperation())
-        {
+        switch ($request->getOperation()) {
             case Request::CREATE:
                 if (!empty($data['o:form_submission']['o:id'])) {
                     $formSubmission = $this
@@ -107,11 +106,11 @@ class FormActionResultAdapter extends AbstractEntityAdapter
                     $entity->setStatus($status);
                 }
                 if ($this->shouldHydrate($request, 'o:data')) {
-                    $data= $request->getValue('o:data');
+                    $data = $request->getValue('o:data');
                     $entity->setData($data);
                 }
                 break;
-            default: 
+            default:
                 break;
         }
     }

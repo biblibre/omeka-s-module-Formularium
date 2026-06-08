@@ -15,7 +15,7 @@ class Formularium extends AbstractBlockLayout
         return 'Formularium';
     }
 
-    public function form(PhpRenderer $view, SiteRepresentation $site, SitePageRepresentation $page = null, SitePageBlockRepresentation $block = null)
+    public function form(PhpRenderer $view, SiteRepresentation $site, ?SitePageRepresentation $page = null, ?SitePageBlockRepresentation $block = null)
     {
         $forms = $view->api()->search('formularium_forms')->getContent();
         $valueOptions = [];

@@ -3,7 +3,6 @@ namespace Formularium\Form\Element;
 
 use Doctrine\DBAL\Connection;
 use Laminas\Form\Element\Select;
-use Laminas\InputFilter\InputProviderInterface;
 use Omeka\Api\Manager as ApiManager;
 
 class HandlerSelect extends Select

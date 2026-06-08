@@ -81,8 +81,8 @@ class FileInput extends AbstractInput
         $filetypes = array_filter(array_map('trim', explode(',', $filetype_allowlist)));
         $extensions = array_filter(array_map('trim', explode(',', $extension_allowlist)));
 
-        $accept_filetypes = array_map(fn($filetype) => str_contains($filetype, '/') ? $filetype : "$filetype/*", $filetypes);
-        $accept_extensions = array_map(fn($extension) => ".$extension", $extensions);
+        $accept_filetypes = array_map(fn ($filetype) => str_contains($filetype, '/') ? $filetype : "$filetype/*", $filetypes);
+        $accept_extensions = array_map(fn ($extension) => ".$extension", $extensions);
         $accept = implode(',', array_merge($accept_filetypes, $accept_extensions));
 
         $spec['attributes']['accept'] = $accept;

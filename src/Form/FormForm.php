@@ -2,8 +2,6 @@
 
 namespace Formularium\Form;
 
-use Formularium\FormComponentType\FormComponentTypeInterface;
-use Formularium\FormComponentType\FormComponentTypeManager;
 use Laminas\Form\Form;
 
 class FormForm extends Form

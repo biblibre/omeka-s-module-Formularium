@@ -2,12 +2,10 @@
 
 namespace Formularium\Controller\Admin;
 
-use Formularium\Form\FormForm;
 use Formularium\Form\FormSubmissionBatchUpdateForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 use Omeka\Form\ConfirmForm;
-use Omeka\Stdlib\Message;
 
 class FormSubmissionController extends AbstractActionController
 {

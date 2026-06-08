@@ -7,7 +7,7 @@ use Interop\Container\ContainerInterface;
 
 class HtmlFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, ?array $options = null)
     {
         $htmlPurifier = $serviceLocator->get('Omeka\HtmlPurifier');
 

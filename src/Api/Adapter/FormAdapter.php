@@ -49,7 +49,6 @@ class FormAdapter extends AbstractEntityAdapter
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore): void
     {
         /** @var \Formularium\Entity\FormulariumForm $entity */
-
         $services = $this->getServiceLocator();
         $formComponentTypeManager = $services->get('Formularium\FormComponentTypeManager');
         $formActionTypeManager = $services->get('Formularium\FormActionTypeManager');
@@ -100,7 +99,6 @@ class FormAdapter extends AbstractEntityAdapter
     public function validateEntity(EntityInterface $entity, ErrorStore $errorStore)
     {
         /** @var \Formularium\Entity\Form $entity */
-
         $name = $entity->getName();
         if (!is_string($name) || $name === '') {
             $errorStore->addError('o:name', 'A form must have a name.');

@@ -9,7 +9,7 @@ use Omeka\Service\Exception\ConfigException;
 
 class FormulariumFormFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, ?array $options = null)
     {
         if (!preg_match('/^formulariumForm:(\d+)$/', $requestedName, $matches)) {
             throw new ConfigException('Invalid service name: ' . $requestedName);

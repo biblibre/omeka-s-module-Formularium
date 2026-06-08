@@ -2,7 +2,6 @@
 namespace Formularium\FormActionType;
 
 use Formularium\Api\Representation\FormSubmissionRepresentation;
-use Formularium\Api\Representation\FormActionResultRepresentation;
 use Formularium\FormAction\FormAction;
 use Laminas\Form\Fieldset;
 use Laminas\View\Renderer\PhpRenderer;
@@ -32,7 +31,7 @@ interface FormActionTypeInterface
     public function getSettingsFieldsetPartial(): string;
 
     /**
-     * If the action needs custom hydration logic. 
+     * If the action needs custom hydration logic.
      * For persistance in database.
      */
     public function hydrateFormAction(
@@ -41,10 +40,10 @@ interface FormActionTypeInterface
     );
 
     /**
-     * Here the action is performed. 
+     * Here the action is performed.
      * The status field in actionResult must be updated.
      * The settings of the action are available in the 'settings' key
-     * of the action argument. 
+     * of the action argument.
      */
     public function perform(
         array $action,

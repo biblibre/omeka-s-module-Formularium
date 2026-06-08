@@ -107,14 +107,13 @@ class FormSubmissionRepresentation extends AbstractEntityRepresentation
         $adapter = $this->getAdapter('formularium_form_action_result');
 
         $actionResults = [];
-        foreach ( $this->resource->getActionResults() as $actionResult)
-        {
+        foreach ($this->resource->getActionResults() as $actionResult) {
             $actionResults[] = $adapter->getRepresentation($actionResult);
         }
         return $actionResults;
     }
 
-    public function successfulActionCount(): int 
+    public function successfulActionCount(): int
     {
         $api = $this->getServiceLocator()->get('Omeka\ApiManager');
         $response = $api->search('formularium_form_action_result', [
@@ -125,10 +124,9 @@ class FormSubmissionRepresentation extends AbstractEntityRepresentation
         return $response->getTotalResults();
     }
 
-    public function actionCount(): int 
+    public function actionCount(): int
     {
         return count($this->resource->getActionResults());
     }
 
 }
-

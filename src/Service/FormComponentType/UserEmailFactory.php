@@ -7,7 +7,7 @@ use Interop\Container\ContainerInterface;
 
 class UserEmailFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, ?array $options = null)
     {
         $authenticationService = $serviceLocator->get('Omeka\AuthenticationService');
 

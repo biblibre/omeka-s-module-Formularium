@@ -18,7 +18,7 @@ interface FormComponentTypeInterface
     public function getLabel(): string;
 
     /**
-     * Allows adding some front-end dependencies 
+     * Allows adding some front-end dependencies
      * needed by the action in the admin configuration form.
      */
     public function prepareForm(PhpRenderer $view): void;
@@ -29,7 +29,7 @@ interface FormComponentTypeInterface
     public function settingsFieldsetAddElements(Fieldset $fieldset): void;
 
     /**
-     * Returns the template path of the partial document of this form component. 
+     * Returns the template path of the partial document of this form component.
      */
     public function getSettingsFieldsetPartial(): string;
 
