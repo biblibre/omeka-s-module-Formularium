@@ -3,18 +3,23 @@
 namespace Formularium\FormActionType;
 
 use Formularium\Api\Representation\FormSubmissionRepresentation;
+use Formularium\Api\Representation\FormActionResultRepresentation;
 use Laminas\Form\Fieldset;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\Mime\Message as MimeMessage;
 use Laminas\Mime\Mime;
 use Laminas\Mime\Part as MimePart;
+use Laminas\Log\Logger;
 use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
 use Omeka\Stdlib\Mailer;
 
 class Email extends AbstractFormActionType
 {
-    public function __construct(protected Mailer $mailer, protected TranslatorInterface $translator)
-    {
+    public function __construct(
+        protected Mailer $mailer,
+        protected TranslatorInterface $translator,
+        protected Logger $logger
+    ) {
     }
 
     public function getLabel(): string
@@ -65,8 +70,11 @@ class Email extends AbstractFormActionType
         ]);
     }
 
-    public function perform(array $action, FormSubmissionRepresentation $formSubmission, array $data): void
-    {
+    public function perform(
+        array $action,
+        FormSubmissionRepresentation $formSubmission,
+        array $data,
+    ): array {
         $values = $formSubmission->data();
 
         if ($resource = $formSubmission->resource()) {
@@ -100,7 +108,25 @@ class Email extends AbstractFormActionType
         $message->setEncoding('UTF-8');
         $message->getHeaders()->addHeaderLine('Content-Type', 'text/plain; charset=UTF-8');
 
-        $this->mailer->send($message);
+        try {
+            $this->mailer->send($message);
+        } catch (MailException $e) {
+            $this->logger->err((string) $e);
+            return [
+                'o:status' => FormActionResultRepresentation::FAILED,
+                'o:data' => [
+                    'message' => 'Could not send mail',
+                    'reason' => $e->getMessage(),
+                ],
+            ];
+        }
+
+        return [
+            'o:status' => FormActionResultRepresentation::SUCCEEDED, 
+            'o:data' => [
+                'message' => 'Mail sent',
+            ],
+        ];
     }
 
     protected function renderTemplate(string $template, array $values): string

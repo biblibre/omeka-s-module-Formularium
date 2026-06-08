@@ -10,6 +10,7 @@ class FormRepresentation extends AbstractEntityRepresentation
         return [
             'o:name' => $this->name(),
             'o:components' => $this->components(),
+            'o:actions' => $this->actions(),
         ];
     }
 

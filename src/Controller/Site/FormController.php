@@ -1,8 +1,10 @@
 <?php
 namespace Formularium\Controller\Site;
 
+use Formularium\Api\Representation\FormActionResultRepresentation;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use Exception;
 
 class FormController extends AbstractActionController
 {
@@ -37,25 +39,46 @@ class FormController extends AbstractActionController
                     'form_data' => $formData,
                 ];
 
-                $response = $this->api($form)->create('formularium_form_submissions', $data, $filesData);
-                if ($response) {
-                    $formSubmission = $response->getContent();
+                $formSubmissionResponse = $this->api($form)->create('formularium_form_submissions', $data, $filesData);
+                if ($formSubmissionResponse) {
+                    $formSubmission = $formSubmissionResponse->getContent();
 
-                    // TODO Perform actions
                     foreach ($formularium_form->actions() as $action) {
                         $formActionType = $this->formularium()->getFormActionType($action['type']);
-                        $formActionType->perform($action, $formSubmission, $formData);
+                        $actionResultResponse = $this->api()->create('formularium_form_action_result', [
+                            'o:form_submission' => ['o:id' => $formSubmission->id() ],
+                            'o:action_label' => !empty($action['internal_label']) ? $action['internal_label'] : $formActionType->getLabel(),
+                        ]);
+
+                        $actionResultId =  $actionResultResponse->getContent()->id();
+                        $actionResult = [];
+                        try {
+                            $actionResult = $formActionType->perform($action, $formSubmission, $formData);
+                        } catch (Exception $e) {
+                            $this->logger()->err($e);
+                            $actionResult = [ 
+                                'o:status' => FormActionResultRepresentation::ERROR,
+                                'o:data' => [ 
+                                    'reason' => 'Uncaught exception: ' . get_class($e),
+                                    'message' =>  $e->getMessage(),
+                                ],
+                            ];
+                        }
+
+                        $this->api()->update('formularium_form_action_result', $actionResultId, $actionResult, ['isPartial' => true]);
                     }
 
                     $this->messenger()->addSuccess('Form sent successfully'); // @translate
 
                     if ($site_page_id) {
                         $page = $this->api()->read('site_pages', $site_page_id)->getContent();
-
                         return $this->redirect()->toUrl($page->url());
                     }
 
-                    return $this->redirect()->toRoute('site/formularium/form-id', ['id' => $formularium_form->id(), 'site-slug' => $this->currentSite()->slug()]);
+                    return $this->redirect()->toRoute('site/formularium/form-id', [
+                        'id' => $formularium_form->id(),
+                        'site-slug' => $this->currentSite()->slug()
+                    ]);
                 }
             }
         }

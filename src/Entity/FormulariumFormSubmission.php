@@ -96,9 +96,21 @@ class FormulariumFormSubmission extends AbstractEntity
      */
     protected $files;
 
+    /**
+     * @OneToMany(
+     *     targetEntity="FormulariumFormActionResult",
+     *     mappedBy="formSubmission",
+     *     orphanRemoval=true,
+     *     cascade={"persist", "remove", "detach"},
+     *     indexBy="id"
+     * )
+     */
+    protected $actionResults;
+
     public function __construct()
     {
         $this->files = new ArrayCollection;
+        $this->actionResults = new ArrayCollection;
     }
 
     public function getId()
@@ -219,5 +231,10 @@ class FormulariumFormSubmission extends AbstractEntity
     public function getFiles()
     {
         return $this->files;
+    }
+
+    public function getActionResults()
+    {
+        return $this->actionResults;
     }
 }

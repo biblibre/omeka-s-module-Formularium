@@ -76,7 +76,19 @@
 <?php if ($data): ?>
     <div class="meta-group">
         <h4><?= $this->translate('Data'); ?></h4>
-
         <div class="value"><pre><?= $this->escapeHtml(json_encode($data, JSON_PRETTY_PRINT)) ?></pre></div>
     </div>
 <?php endif; ?>
+<div class="meta-group">
+    <h4><?= $this->translate('Actions Results'); ?></h4>
+        <?php foreach($resource->actionResults() as $action): ?>
+            <div class="value">
+                <?= $this->translate('Label') ?> : <?= $action->actionLabel() ?> 
+                <br>
+                <?= $this->translate('Status') ?> : <?= $action->status() ?> 
+                <br>
+                <?= $this->translate('Data') ?> :
+                <pre><?= $this->escapeHtml(json_encode($action->data(), JSON_PRETTY_PRINT)) ?></pre>
+            </div>
+        <?php endforeach; ?>
+</div>
