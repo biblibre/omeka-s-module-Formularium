@@ -67,10 +67,10 @@ class FormulariumForm extends \Formularium\Entity\FormulariumForm implements \Do
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'resourcePageBlockTitle', 'components', 'actions'];
+            return ['__isInitialized__', 'id', 'name', 'components', 'actions', 'settings'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'resourcePageBlockTitle', 'components', 'actions'];
+        return ['__isInitialized__', 'id', 'name', 'components', 'actions', 'settings'];
     }
 
     /**
@@ -217,28 +217,6 @@ class FormulariumForm extends \Formularium\Entity\FormulariumForm implements \Do
     /**
      * {@inheritDoc}
      */
-    public function getResourcePageBlockTitle(): string
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResourcePageBlockTitle', []);
-
-        return parent::getResourcePageBlockTitle();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setResourcePageBlockTitle(string $resourcePageBlockTitle): void
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResourcePageBlockTitle', [$resourcePageBlockTitle]);
-
-        parent::setResourcePageBlockTitle($resourcePageBlockTitle);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getComponents(): array
     {
 
@@ -278,6 +256,39 @@ class FormulariumForm extends \Formularium\Entity\FormulariumForm implements \Do
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setActions', [$actions]);
 
         parent::setActions($actions);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSettings(): array
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSettings', []);
+
+        return parent::getSettings();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSettings(array $settings): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSettings', [$settings]);
+
+        parent::setSettings($settings);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSetting(string $name, mixed $default = NULL): mixed
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSetting', [$name, $default]);
+
+        return parent::getSetting($name, $default);
     }
 
     /**

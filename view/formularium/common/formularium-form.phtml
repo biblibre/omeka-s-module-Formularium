@@ -23,6 +23,8 @@
         <?php endif; ?>
     </div>
 <?php endforeach; ?>
-<button type="submit"><?= $this->translate('Submit') ?></button>
+
+<?php $submit_button_label = $formulariumForm->setting('submit_button_label') ?: $this->translate('Submit'); ?>
+<button type="submit"><?= $this->escapeHtml($submit_button_label) ?></button>
 
 <?= $this->form()->closeTag(); ?>

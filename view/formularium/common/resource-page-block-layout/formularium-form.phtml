@@ -4,11 +4,30 @@
  * @var Laminas\Form\Form $form
  * @var Omeka\Api\Representation\AbstractResourceEntityRepresentation $resource
  */
+
+$this->headLink()->appendStylesheet($this->assetUrl('css/site/formularium.css', 'Formularium'));
+$this->headScript()->appendFile($this->assetUrl('js/site/formularium.js', 'Formularium'));
 ?>
 <div class="formularium-resource-page-block-layout-formularium-form">
-    <?php if ($title = $formulariumForm->resourcePageBlockTitle()): ?>
+    <?php if ($title = $formulariumForm->setting('resource_page_block_title')): ?>
         <h2 class="formularium-resource-page-block-layout-formularium-form__title"><?= $this->escapeHtml($title) ?></h2>
     <?php endif; ?>
 
-    <?= $this->partial('formularium/common/formularium-form', ['form' => $form, 'formulariumForm' => $formulariumForm]); ?>
+    <?php $id = sprintf('formularium-resource-page-block-layout-formularium-form-%d', $formulariumForm->id()); ?>
+    <?php $resource_page_block_collapse = $formulariumForm->setting('resource_page_block_collapse', false); ?>
+
+    <?php if ($resource_page_block_collapse): ?>
+        <button class="formularium-resource-page-block-layout-formularium-form__collapse-button" role="button" data-target="<?= $this->escapeHtml($id) ?>" href="#">
+            <?php $resource_page_block_collapse_button_label = $formulariumForm->setting('resource_page_block_collapse_button_label') ?: $this->translate('Show form') ?>
+            <?= $this->escapeHtml($resource_page_block_collapse_button_label) ?>
+        </button>
+    <?php endif; ?>
+
+    <?php $attributes = $this->htmlAttributes(['id' => $id]); ?>
+    <?php if ($resource_page_block_collapse): ?>
+        <?php $attributes->add('class', 'formularium-collapse'); ?>
+    <?php endif; ?>
+    <div <?= $attributes ?>>
+        <?= $this->partial('formularium/common/formularium-form', ['form' => $form, 'formulariumForm' => $formulariumForm]); ?>
+    </div>
 </div>

@@ -53,9 +53,9 @@ class Module extends AbstractModule
         CREATE TABLE formularium_form (
             id INT AUTO_INCREMENT NOT NULL,
             name VARCHAR(255) NOT NULL,
-            resource_page_block_title VARCHAR(255) NOT NULL,
             components LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
             actions LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
+            settings LONGTEXT NOT NULL COMMENT '(DC2Type:json)',
             PRIMARY KEY(id)
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
@@ -237,6 +237,23 @@ class Module extends AbstractModule
             FOREIGN KEY (form_submission_id) 
             REFERENCES formularium_form_submission (id) 
             ON DELETE CASCADE;
+            SQL);
+        }
+
+        if (Comparator::lessThan($oldVersion, '0.5.0')) {
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form
+            ADD settings LONGTEXT NOT NULL COMMENT '(DC2Type:json)' AFTER actions
+            SQL);
+
+            $connection->executeStatement(<<<'SQL'
+            UPDATE formularium_form
+            SET settings = JSON_OBJECT("resource_page_block_title", resource_page_block_title)
+            SQL);
+
+            $connection->executeStatement(<<<'SQL'
+            ALTER TABLE formularium_form
+            DROP resource_page_block_title
             SQL);
         }
     }

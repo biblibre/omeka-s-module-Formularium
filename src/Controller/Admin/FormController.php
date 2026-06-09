@@ -61,9 +61,9 @@ class FormController extends AbstractActionController
         $form = $this->getForm(FormForm::class, ['form' => $formulariumForm]);
         $form->setData([
             'o:name' => $formulariumForm->name(),
-            'o:resource_page_block_title' => $formulariumForm->resourcePageBlockTitle(),
             'o:components' => $formulariumForm->components(),
             'o:actions' => $formulariumForm->actions(),
+            'o:settings' => $formulariumForm->settings(),
         ]);
 
         if ($this->getRequest()->isPost()) {

@@ -22,11 +22,6 @@ class FormulariumForm extends AbstractEntity
     protected string $name;
 
     /**
-     * @Column
-     */
-    protected string $resourcePageBlockTitle;
-
-    /**
      * @Column(type="json")
      */
     protected array $components;
@@ -35,6 +30,11 @@ class FormulariumForm extends AbstractEntity
      * @Column(type="json")
      */
     protected array $actions;
+
+    /**
+     * @Column(type="json")
+     */
+    protected array $settings;
 
     public function getId()
     {
@@ -49,16 +49,6 @@ class FormulariumForm extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    public function getResourcePageBlockTitle(): string
-    {
-        return $this->resourcePageBlockTitle;
-    }
-
-    public function setResourcePageBlockTitle(string $resourcePageBlockTitle): void
-    {
-        $this->resourcePageBlockTitle = $resourcePageBlockTitle;
     }
 
     public function getComponents(): array
@@ -79,5 +69,24 @@ class FormulariumForm extends AbstractEntity
     public function setActions(array $actions): void
     {
         $this->actions = $actions;
+    }
+
+    public function getSettings(): array
+    {
+        return $this->settings;
+    }
+
+    public function setSettings(array $settings): void
+    {
+        $this->settings = $settings;
+    }
+
+    public function getSetting(string $name, mixed $default = null): mixed
+    {
+        if (!array_key_exists($name, $this->settings)) {
+            return $default;
+        }
+
+        return $this->settings[$name];
     }
 }

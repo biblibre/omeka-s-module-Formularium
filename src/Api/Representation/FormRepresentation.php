@@ -37,11 +37,6 @@ class FormRepresentation extends AbstractEntityRepresentation
         return $this->resource->getName();
     }
 
-    public function resourcePageBlockTitle(): string
-    {
-        return $this->resource->getResourcePageBlockTitle();
-    }
-
     public function components(): array
     {
         return $this->resource->getComponents();
@@ -50,6 +45,16 @@ class FormRepresentation extends AbstractEntityRepresentation
     public function actions(): array
     {
         return $this->resource->getActions();
+    }
+
+    public function settings(): array
+    {
+        return $this->resource->getSettings();
+    }
+
+    public function setting(string $name, mixed $default = null): mixed
+    {
+        return $this->resource->getSetting($name, $default);
     }
 
     public function submissionCount(): int

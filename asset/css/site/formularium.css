@@ -1,0 +1,7 @@
+.formularium-resource-page-block-layout-formularium-form__collapse-button {
+    cursor: pointer;
+}
+
+.formularium-collapse:not(.formularium-show) {
+    display: none;
+}

@@ -57,10 +57,6 @@ class FormAdapter extends AbstractEntityAdapter
             $entity->setName($request->getValue('o:name'));
         }
 
-        if ($this->shouldHydrate($request, 'o:resource_page_block_title')) {
-            $entity->setResourcePageBlockTitle($request->getValue('o:resource_page_block_title'));
-        }
-
         if ($this->shouldHydrate($request, 'o:components')) {
             $components = $request->getValue('o:components', []);
             if (!is_array($components)) {
@@ -93,6 +89,10 @@ class FormAdapter extends AbstractEntityAdapter
             }
 
             $entity->setActions($formActions);
+        }
+
+        if ($this->shouldHydrate($request, 'o:settings')) {
+            $entity->setSettings($request->getValue('o:settings'));
         }
     }
 
