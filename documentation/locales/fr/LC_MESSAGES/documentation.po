@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Formularium\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-13 16:54+0100\n"
+"POT-Creation-Date: 2026-06-09 13:25+0200\n"
 "PO-Revision-Date: 2026-02-11 12:31+0000\n"
 "Last-Translator: Julian Maurice <julian.maurice@biblibre.com>, 2026\n"
 "Language-Team: French (https://app.transifex.com/biblibre-/teams/298658/fr/)\n"
@@ -51,37 +51,138 @@ msgstr ""
 "pouvez définir le paramètre \"À\" à ``{email}`` pour envoyer un e-mail à "
 "l'utilisateur qui a soumis le formulaire."
 
-#: ../../form-actions.rst:17 ../../form-components.rst:31
-#: ../../form-components.rst:41 ../../form-components.rst:58
-#: ../../form-components.rst:77 ../../form-components.rst:92
-#: ../../form-components.rst:102 ../../form-components.rst:112
-#: ../../form-components.rst:123
+#: ../../form-actions.rst:16
+msgid ""
+"Additionally, if the submission is linked to a resource (eg. created from a "
+"resource page block), you can use the following tokens:"
+msgstr ""
+"De plus, si la soumission est liée à une ressource (par exemple créée à "
+"partir d'un bloc de page de ressource), vous pouvez utiliser les jetons "
+"suivants:"
+
+#: ../../form-actions.rst:20
+msgid "Token"
+msgstr "Jeton"
+
+#: ../../form-actions.rst:20
+msgid "Replaced by"
+msgstr "Remplacé par"
+
+#: ../../form-actions.rst:22
+msgid "``{formularium:resource:id}``"
+msgstr "``{formularium:resource:id}``"
+
+#: ../../form-actions.rst:22
+msgid "Resource's internal id"
+msgstr "Id interne de la ressource"
+
+#: ../../form-actions.rst:23
+msgid "``{formularium:resource:url}``"
+msgstr "``{formularium:resource:url}``"
+
+#: ../../form-actions.rst:23
+msgid "Resource's URL"
+msgstr "URL de la ressource"
+
+#: ../../form-actions.rst:24
+msgid "``{formularium:resource:title}``"
+msgstr "``{formularium:resource:title}``"
+
+#: ../../form-actions.rst:24
+msgid ""
+"Resource's title (which is the title according to the resource template, not"
+" necessarily ``dcterms:title``)"
+msgstr ""
+"Titre de la ressource (qui est le titre selon le modèle de ressource, pas "
+"nécessairement ``dcterms:title``)"
+
+#: ../../form-actions.rst:27
+msgid "``{formularium:resource:type}``"
+msgstr "``{formularium:resource:type}``"
+
+#: ../../form-actions.rst:27
+msgid "Resource's type (\"item\", \"item set\", or \"media\")"
+msgstr "Type de la ressource (\"contenu\", \"collection\", ou \"média\")"
+
+#: ../../form-actions.rst:32 ../../form-actions.rst:53
+#: ../../form-components.rst:31 ../../form-components.rst:41
+#: ../../form-components.rst:58 ../../form-components.rst:77
+#: ../../form-components.rst:92 ../../form-components.rst:102
+#: ../../form-components.rst:112 ../../form-components.rst:123
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../../form-actions.rst:21
+#: ../../form-actions.rst:36
 msgid "To"
 msgstr "À"
 
-#: ../../form-actions.rst:22
+#: ../../form-actions.rst:37
 msgid "The e-mail recipient"
 msgstr "Le destinataire de l'e-mail"
 
-#: ../../form-actions.rst:24
+#: ../../form-actions.rst:39
 msgid "Subject"
 msgstr "Sujet"
 
-#: ../../form-actions.rst:25
+#: ../../form-actions.rst:40
 msgid "The e-mail subject"
 msgstr "Le sujet de l'e-mail"
 
-#: ../../form-actions.rst:27
+#: ../../form-actions.rst:42
 msgid "Body"
 msgstr "Corps"
 
-#: ../../form-actions.rst:28
+#: ../../form-actions.rst:43
 msgid "The e-mail body"
 msgstr "Le corps de l'e-mail"
+
+#: ../../form-actions.rst:46
+msgid "Create a user"
+msgstr "Créer un utilisateur"
+
+#: ../../form-actions.rst:48
+msgid "Create a user from an email and a username."
+msgstr ""
+"Créer un utilisateur à partir d'une adresse e-mail et d'un nom "
+"d'utilisateur."
+
+#: ../../form-actions.rst:50
+msgid ""
+"The settings allow you to select the role of the created user and its "
+"groups."
+msgstr ""
+"Les paramètres permettent de sélectionner le rôle et les groupes de "
+"l'utilisateur créé."
+
+#: ../../form-actions.rst:57
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: ../../form-actions.rst:58 ../../form-actions.rst:61
+msgid "The HTML element name of the form component containing the username."
+msgstr ""
+"Le nom de l'élément HTML du composant de formulaire contenant le nom "
+"d'utilisateur."
+
+#: ../../form-actions.rst:60
+msgid "Email"
+msgstr "E-mail"
+
+#: ../../form-actions.rst:63
+msgid "Role"
+msgstr "Rôle"
+
+#: ../../form-actions.rst:64
+msgid "The role of the created user."
+msgstr "Le rôle de l'utilisateur créé."
+
+#: ../../form-actions.rst:66
+msgid "Groups (only if the module Groups is installed)"
+msgstr "Groupes (seulement si le module Groups est installé)"
+
+#: ../../form-actions.rst:67
+msgid "The groups the user is in."
+msgstr "Les groupes de l'utilisateur."
 
 #: ../../form-components.rst:2
 msgid "Form components"
@@ -304,6 +405,14 @@ msgstr ""
 
 #: ../../form-submissions.rst:10
 msgid ""
+"You can see how many of actions actions succeeded over the total number of "
+"action."
+msgstr ""
+"Vous pouvez voir combien d'actions ont réussi par rapport au nombre total "
+"d'actions."
+
+#: ../../form-submissions.rst:12
+msgid ""
 "Details of each submission can be viewed by clicking on the \"details\" link"
 " (the three horizontal dots)."
 msgstr ""
@@ -311,6 +420,14 @@ msgstr ""
 "lien \"détails\" (les trois points horizontaux)."
 
 #: ../../form-submissions.rst:15
+msgid ""
+"In the details each action show their status and can display more "
+"information in json form about their execution."
+msgstr ""
+"Dans les détails chaque action montre son statut et peut afficher plus "
+"d'informations sur leur exécution au format JSON."
+
+#: ../../form-submissions.rst:19
 msgid ""
 "Submissions can be marked as handled and deleted, one by one or by batch."
 msgstr ""
@@ -491,24 +608,28 @@ msgstr "Éventuellement, ajoutez des actions"
 #: ../../index.rst:35
 msgid ""
 "Create a new page for your site, and add the \"Formularium\" block to this "
-"page. In the block settings, select the form you created."
+"page. In the block settings, select the form you created. Or you can add the"
+" corresponding resource page block to the resource (item, media or item set)"
+" pages in the theme settings."
 msgstr ""
-"Créez une nouvelle page pour votre site, et ajoutez le bloc \"Formularium\" "
+"Créez une nouvelle page sur votre site, et ajoutez le block \"Formularium\" "
 "à cette page. Dans les paramètres du bloc, sélectionnez le formulaire que "
-"vous avez créé."
+"vous avez créé. Ou vous pouvez ajouter le bloc de page de ressource "
+"correspondant aux pages de ressource (contenu, média ou collection) dans les"
+" paramètres du thème."
 
-#: ../../index.rst:39
+#: ../../index.rst:41
 msgid "Features"
 msgstr "Fonctionnalités"
 
-#: ../../index.rst:41
+#: ../../index.rst:43
 msgid ""
 "Create unlimited forms with an unlimited number of components and actions"
 msgstr ""
 "Créez une infinité de formulaires avec une infinité de composants et "
 "d'actions"
 
-#: ../../index.rst:42
+#: ../../index.rst:44
 msgid ""
 "Different component types: text, text area, dropdown list, checkbox, "
 "antispam (recaptcha), file upload, ... (other modules can add their own)"
@@ -517,13 +638,19 @@ msgstr ""
 " à cocher, antispam (recaptcha), chargement de fichier, ... (d'autres "
 "modules peuvent ajouter les leurs)"
 
-#: ../../index.rst:44
+#: ../../index.rst:46
 msgid "One action type: send an email (other modules can add their own)"
 msgstr ""
 "Un type d'action: envoyer un e-mail (d'autres modules peuvent ajouter les "
 "leurs)"
 
-#: ../../index.rst:45
+#: ../../index.rst:47
+msgid "Forms can be displayed on site pages or on site resource pages"
+msgstr ""
+"Les formulaires peuvent être affichées sur les pages de site ou sur les "
+"pages de ressource"
+
+#: ../../index.rst:48
 msgid ""
 "Form submissions are entirely saved (uploaded files included) so they can be"
 " viewed later. Deleting a form submission also removes the attached files."
@@ -532,7 +659,7 @@ msgstr ""
 "fichiers chargés) pour pouvoir être consultables ultérieurement. Supprimer "
 "une soumission de formulaire supprime également les fichiers attachés."
 
-#: ../../index.rst:47
+#: ../../index.rst:50
 msgid ""
 "A flag can be set to mark a form submission as \"handled\" (whatever that "
 "means to you)"
@@ -540,16 +667,16 @@ msgstr ""
 "Une marque peut être posée pour marquer une soumission de formulaire comme "
 "étant \"traitée\" (quoi que ça signifie pour vous)"
 
-#: ../../index.rst:48
+#: ../../index.rst:51
 msgid ""
-"Form submissions can be filtered by form, site, user (if an authenticated "
-"user has made a submission), and handled status"
+"Form submissions can be filtered by form, site, resource, user (if an "
+"authenticated user has made a submission), and handled status"
 msgstr ""
 "Les soumissions de formulaire peuvent être filtrées par formulaire, site, "
-"utilisateur (si un utilisateur authentifié a fait une soumission), et par "
-"status traité"
+"ressource, utilisateur (si un utilisateur authentifié a fait une "
+"soumission), et par statut de traitement"
 
-#: ../../index.rst:50
+#: ../../index.rst:53
 msgid ""
 "Form submissions can be batch deleted and batch edited (batch edit only "
 "allows to change the handled status)"
@@ -557,21 +684,21 @@ msgstr ""
 "Les soumissions de formulaires peuvent être supprimées et modifiées par lot "
 "(la modification par lot permet uniquement de modifier le statut traité)"
 
-#: ../../index.rst:54
+#: ../../index.rst:57
 msgid "Comparison with similar modules"
 msgstr "Comparaison avec les modules similaires"
 
-#: ../../index.rst:57
+#: ../../index.rst:60
 msgid "Contact Us"
 msgstr "Contact Us"
 
-#: ../../index.rst:59
+#: ../../index.rst:62
 msgid "Contact Us is easier to set up. Formularium is more customizable"
 msgstr ""
 "Contact Us est plus facile à mettre en place. Formularium est plus "
 "personnalisable"
 
-#: ../../index.rst:60
+#: ../../index.rst:63
 msgid ""
 "Contact Us has two antispam solutions: simple and recaptcha. Formularium has"
 " only recaptcha"
@@ -579,6 +706,6 @@ msgstr ""
 "Contact Us a deux solutions antispam: simple et recaptcha. Formularium a "
 "seulement recaptcha"
 
-#: ../../index.rst:64
+#: ../../index.rst:67
 msgid "Table of contents"
 msgstr "Table des matières"
