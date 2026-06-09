@@ -52,7 +52,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#settings">Paramètres</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#create-a-user">Create a user</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-user">Créer un utilisateur</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Paramètres</a></li>
 </ul>
 </li>
@@ -92,29 +92,25 @@
 <p>Envoyer un e-mail.</p>
 <p>Tous les paramètres peuvent contenir des jetons spéciaux qui seront remplacés par des données venant de la soumission du formulaire.</p>
 <p>Par exemple, si le formulaire contient un champ texte nommé <code class="docutils literal notranslate"><span class="pre">email</span></code>, vous pouvez définir le paramètre « À » à <code class="docutils literal notranslate"><span class="pre">{email}</span></code> pour envoyer un e-mail à l’utilisateur qui a soumis le formulaire.</p>
-<p>Additionally, if the submission is linked to a resource (eg. created from a
-resource page block), you can use the following tokens:</p>
+<p>De plus, si la soumission est liée à une ressource (par exemple créée à partir d’un bloc de page de ressource), vous pouvez utiliser les jetons suivants:</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Token</p></th>
-<th class="head"><p>Replaced by</p></th>
+<tr class="row-odd"><th class="head"><p>Jeton</p></th>
+<th class="head"><p>Remplacé par</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:id}</span></code></p></td>
-<td><p>Resource’s internal id</p></td>
+<td><p>Id interne de la ressource</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:url}</span></code></p></td>
-<td><p>Resource’s URL</p></td>
+<td><p>URL de la ressource</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:title}</span></code></p></td>
-<td><p>Resource’s title (which is the title according
-to the resource template, not necessarily
-<code class="docutils literal notranslate"><span class="pre">dcterms:title</span></code>)</p></td>
+<td><p>Titre de la ressource (qui est le titre selon le modèle de ressource, pas nécessairement <code class="docutils literal notranslate"><span class="pre">dcterms:title</span></code>)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{formularium:resource:type}</span></code></p></td>
-<td><p>Resource’s type (« item », « item set », or
-« media »)</p></td>
+<td><p>Type de la ressource (« contenu », « collection », ou « média »)</p></td>
 </tr>
 </tbody>
 </table>
@@ -132,20 +128,20 @@ to the resource template, not necessarily
 </section>
 </section>
 <section id="create-a-user">
-<h2>Create a user<a class="headerlink" href="#create-a-user" title="Lien vers cette rubrique"></a></h2>
-<p>Create a user from an email and a username.</p>
-<p>The settings allow you to select the role of the created user and its groups.</p>
+<h2>Créer un utilisateur<a class="headerlink" href="#create-a-user" title="Lien vers cette rubrique"></a></h2>
+<p>Créer un utilisateur à partir d’une adresse e-mail et d’un nom d’utilisateur.</p>
+<p>Les paramètres permettent de sélectionner le rôle et les groupes de l’utilisateur créé.</p>
 <section id="id1">
 <h3>Paramètres<a class="headerlink" href="#id1" title="Lien vers cette rubrique"></a></h3>
 <img alt="_images/create_user.fr.png" src="_images/create_user.fr.png" />
 <dl class="simple">
-<dt>Username</dt><dd><p>The HTML element name of the form component containing the username.</p>
+<dt>Nom d’utilisateur</dt><dd><p>Le nom de l’élément HTML du composant de formulaire contenant le nom d’utilisateur.</p>
 </dd>
-<dt>Email</dt><dd><p>The HTML element name of the form component containing the username.</p>
+<dt>E-mail</dt><dd><p>Le nom de l’élément HTML du composant de formulaire contenant le nom d’utilisateur.</p>
 </dd>
-<dt>Role</dt><dd><p>The role of the created user.</p>
+<dt>Rôle</dt><dd><p>Le rôle de l’utilisateur créé.</p>
 </dd>
-<dt>Groups (only if the module Groups is installed)</dt><dd><p>The groups the user is in.</p>
+<dt>Groupes (seulement si le module Groups est installé)</dt><dd><p>Les groupes de l’utilisateur.</p>
 </dd>
 </dl>
 </section>
